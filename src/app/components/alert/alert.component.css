@@ -1,0 +1,9 @@
+main {
+    padding: 1rem;
+}
+
+p {
+    color: var(--color-main);
+    line-height: 25px;
+    
+}

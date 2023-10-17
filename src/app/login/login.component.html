@@ -1,0 +1,29 @@
+<main>
+    <section class="container">
+        <h1>SUNAT OPTIMIZE</h1>
+        <p>Gestiona tus guías de forma rápida y sencilla.</p>
+        <hr>
+        <form action="" class="form-login" [formGroup]="form">
+            <div>
+                <i class='bx bx-user'></i>
+                <input class="error" type="text" placeholder="Ingrese Usuario" name="usuario" id="usuario" formControlName="mail">
+            </div>
+            <div>
+                <i class='bx bx-lock'></i>
+                <input type="password" placeholder="Ingrese Contraseña" name="password" id="password" formControlName="password">
+            </div>
+            <label for="remember" class="remember">
+                <input type="checkbox" id="remember" name="remember">
+                <span>Recuérdame</span>
+            </label>
+            <button type="button" (click)="login()">
+                Ingresar
+            </button>
+        </form>
+    </section>
+    <section class="section-img">
+        <figure>
+            <img class="img-" src="assets/img-login.png" alt="img-login">
+        </figure>
+    </section>
+</main>

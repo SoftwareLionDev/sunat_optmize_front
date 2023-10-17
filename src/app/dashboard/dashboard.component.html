@@ -1,0 +1,228 @@
+<app-loading></app-loading>
+
+<header>
+    <div class="content-header">
+        <h1>SUNAT OPTIMIZE </h1>
+        <button>
+            <p>
+                MINERA VETA DORADA S.A.C.
+            </p>
+            <i class='bx bxs-user'></i>
+        </button>
+    </div>
+</header>
+
+<main class="container">
+    <article class="form-content">
+        <form action="">
+            <mat-select type="text" class="input- mat-select" placeholder="seleccionar">
+                <mat-option value="">Todos</mat-option>
+                <mat-option value="Transportista">Transportista</mat-option>
+                <mat-option value="LOGISTICA">----</mat-option>
+            </mat-select>
+            <div class="relative">
+                <input formControlName="fechainicio" readonly class="datepiker" name="fInicio" placeholder="--/--/----"
+                    [matDatepicker]="fInicio" />
+                <mat-datepicker #fInicio> </mat-datepicker>
+                <button class="datepik_button" type="button" (click)="fInicio.open()">
+                    <i class='bx bx-calendar'></i>
+                </button>
+            </div>
+            <div class="relative">
+                <input formControlName="fechafin" readonly class="datepiker" name="fFin" placeholder="--/--/----"
+                    [matDatepicker]="fFin" />
+                <mat-datepicker #fFin> </mat-datepicker>
+                <button class="datepik_button" type="button" (click)="fFin.open()">
+                    <i class='bx bx-calendar'></i>
+                </button>
+            </div>
+            <div>
+                <button class="search">
+                    <i class='bx bx-search'></i>
+                    Buscar
+                </button>
+            </div>
+        </form>
+        <button class="btn-excel">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M453.547 273.449H372.12v-40.714h81.427v40.714zm0 23.264H372.12v40.714h81.427v-40.714zm0-191.934H372.12v40.713h81.427V104.78zm0 63.978H372.12v40.713h81.427v-40.713zm0 191.934H372.12v40.714h81.427V360.69zm56.242 80.264c-2.326 12.098-16.867 12.388-26.58 12.796H302.326v52.345h-36.119L0 459.566V52.492L267.778 5.904h34.548v46.355h174.66c9.83.407 20.648-.291 29.197 5.583c5.991 8.608 5.41 19.543 5.817 29.43l-.233 302.791c-.29 16.925 1.57 34.2-1.978 50.892zm-296.51-91.256c-16.052-32.57-32.395-64.909-48.39-97.48c15.82-31.698 31.408-63.512 46.937-95.327c-13.203.64-26.406 1.454-39.55 2.385c-9.83 23.904-21.288 47.169-28.965 71.888c-7.154-23.323-16.634-45.774-25.3-68.515c-12.796.698-25.592 1.454-38.387 2.21c13.493 29.78 27.86 59.15 40.946 89.104c-15.413 29.081-29.837 58.57-44.785 87.825c12.737.523 25.475 1.047 38.212 1.221c9.074-23.148 20.357-45.424 28.267-69.038c7.096 25.359 19.135 48.798 29.023 73.051c14.017.99 27.976 1.862 41.993 2.676zM484.26 79.882H302.326v24.897h46.53v40.713h-46.53v23.265h46.53v40.713h-46.53v23.265h46.53v40.714h-46.53v23.264h46.53v40.714h-46.53v23.264h46.53v40.714h-46.53v26.897H484.26V79.882z" />
+            </svg>
+            Descargar Excel
+        </button>
+    </article>
+
+    <div class="content-search">
+        <div class="input-search">
+            <i class='bx bx-search'></i>
+            <input class="search" type="text" placeholder="Buscar....">
+        </div>
+        <div class="actualizacion">
+            <p>Ultima Sincronización: 18:50:04 </p>
+            <button type="button">
+                <i class='bx bx-refresh bx-rotate-270'></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- versión Movil -->
+    <section class="content-movil" *ngFor="let item of [1,1,1,1,1,1]">
+        <h3>GRE - Transportista: EG07 - 11</h3>
+        <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 2px; top: 2px;">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button type="button" class="mat-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                    <g fill="none" stroke="#017df8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                        <path d="M12 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5.5M19 22v-6m3 3l-3-3l-3 3" />
+                        <path d="m3 7l9 6l9-6" />
+                    </g>
+                </svg>
+                <span>Ver mensaje</span>
+            </button>
+            <button type="button" class="mat-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 40 40">
+                    <g fill="#ff9100">
+                        <path
+                            d="M14.105 20.35c0-.76-.528-1.214-1.459-1.214c-.38 0-.637.037-.772.073v2.441c.16.036.356.049.625.049c.993 0 1.606-.503 1.606-1.349zm5.766-1.19c-.417 0-.687.037-.847.074v5.408c.16.037.417.037.65.037c1.692.012 2.796-.92 2.796-2.894c.013-1.717-.993-2.625-2.599-2.625z" />
+                        <path
+                            d="M30.918 15.983h-.678v-3.271a.448.448 0 0 0-.006-.062a.545.545 0 0 0-.131-.359L24.66 6.075l-.004-.004a.566.566 0 0 0-.255-.159l-.03-.01a.539.539 0 0 0-.127-.016H10.867c-.611 0-1.107.497-1.107 1.107v8.99h-.678c-.874 0-1.582.708-1.582 1.582v8.228c0 .873.709 1.582 1.582 1.582h.678v5.633c0 .61.496 1.107 1.107 1.107h18.266c.61 0 1.107-.497 1.107-1.107v-5.633h.678c.874 0 1.582-.709 1.582-1.582v-8.228c0-.874-.709-1.582-1.582-1.582zm-20.051-8.99H23.69v5.664c0 .306.248.553.554.553h4.89v2.773H10.867v-8.99zm13.59 14.73c0 1.582-.576 2.674-1.375 3.348c-.87.723-2.194 1.067-3.813 1.067c-.969 0-1.655-.062-2.122-.122v-8.119c.687-.11 1.582-.171 2.527-.171c1.569 0 2.587.282 3.384.883c.859.637 1.399 1.655 1.399 3.114zm-14.436 4.33v-8.156c.576-.098 1.386-.171 2.526-.171c1.153 0 1.975.221 2.526.662c.527.417.882 1.104.882 1.913c0 .81-.269 1.496-.76 1.962c-.638.601-1.582.871-2.686.871c-.245 0-.466-.012-.637-.037v2.956h-1.851zm19.112 6.655H10.867v-5.333h18.266v5.333zm1.604-13.388H27.56v1.889h2.968v1.521H27.56v3.323h-1.875v-8.266h5.052v1.533z" />
+                    </g>
+                </svg>
+                <span>Descargar PDF</span>
+            </button>
+            <button type="button" class="mat-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
+                    <path fill="#ff5100"
+                        d="M24 21V9h-2v14h8v-2h-6zM18 9l-1.52 5l-.48 1.98l-.46-1.98L14 9h-2v14h2v-8l-.16-2l.58 2L16 19.63L17.58 15l.58-2l-.16 2v8h2V9h-2zm-8 0H8l-2 6l-2-6H2l2.75 7L2 23h2l2-6l2 6h2l-2.75-7L10 9z" />
+                </svg>
+                <span>Descargar XML</span>
+            </button>
+        </mat-menu>
+        <p> 20609718251 - <strong> MINERA TRESE CANALES ALAS SAC</strong></p>
+        <p>EMISIÓN: 26/07/2023 14:02:47</p>
+        <div class="flex-j">
+            <!-- anulado -->
+            <button type="button" class="anulado" (click)="openModalAnulado()">EMITIDO</button>
+            <div class="modal" *ngIf="anulado">
+                <div class="modal-content-descripcion" *ngFor="let item of [1,1,1]">
+                    <p>Estado: <strong class="pl-34">Emitido</strong></p>
+                    <p>Fecha msg: <strong> 24/07/2023 08:34 PM</strong></p>
+                </div>
+            </div>
+            <!-- El overlay -->
+            <div class="overlay" *ngIf="anulado" (click)="closeModalAnulado()"></div>
+            <span>18/09/2023 18:00:31</span>
+        </div>
+    </section>
+
+
+    <!-- web -->
+    <section class="content-desktop">
+        <section class="example-container">
+            <table mat-table [dataSource]="dataSourceOptimize">
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>Fecha msg</th>
+                    <td mat-cell *matCellDef="let element"> 23/07/2023 18:07 PM</td>
+                </ng-container>
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef>Tipo de GRE</th>
+                    <td mat-cell *matCellDef="let element">GRE-Trasnportista</td>
+                </ng-container>
+                <ng-container matColumnDef="Numeration">
+                    <th mat-header-cell *matHeaderCellDef>Númeración</th>
+                    <td mat-cell *matCellDef="let element">EG07-11</td>
+                </ng-container>
+                <ng-container matColumnDef="dateTime">
+                    <th mat-header-cell *matHeaderCellDef>Fecha/Hora Emisión</th>
+                    <td mat-cell *matCellDef="let element">23/07/2023 18:07 PM</td>
+                </ng-container>
+                <ng-container matColumnDef="Transmitter">
+                    <th mat-header-cell *matHeaderCellDef>Emisor</th>
+                    <td mat-cell *matCellDef="let element">Emisor</td>
+                </ng-container>
+                <ng-container matColumnDef="BusinessName">
+                    <th mat-header-cell *matHeaderCellDef>Razón Social</th>
+                    <td mat-cell *matCellDef="let element">MINERA TRESE CANALES...</td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Estado </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="status-anulado">
+                            <!-- Ajusta el valor de z-index según tus necesidades -->
+                            <span (click)="openModalAnulado()">Anulado</span>
+                            <div class="tooltip" style="z-index: 9999;">
+                                <div class="tooltip-content" *ngFor="let item of [1,1]">
+                                    <p>Estado: <strong class="pl-34">Emitido</strong></p>
+                                    <p>Fecha msg: <strong>24/07/2023 18.00 PM </strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                </ng-container>
+                <ng-container matColumnDef="see">
+                    <th mat-header-cell *matHeaderCellDef>Ver</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button (click)="pdf()" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                <g fill="currentColor">
+                                    <path
+                                        d="M14 2.75c1.907 0 3.262.002 4.29.14c1.005.135 1.585.389 2.008.812c.487.487.7.865.817 1.538c.132.759.135 1.84.135 3.76a.75.75 0 0 0 1.5 0v-.096c0-1.8 0-3.018-.158-3.922c-.175-1.005-.549-1.656-1.233-2.34c-.749-.75-1.698-1.081-2.87-1.239c-1.14-.153-2.595-.153-4.433-.153H14a.75.75 0 0 0 0 1.5ZM2 14.25a.75.75 0 0 1 .75.75c0 1.92.003 3.001.135 3.76c.118.673.33 1.051.817 1.538c.423.423 1.003.677 2.009.812c1.028.138 2.382.14 4.289.14a.75.75 0 0 1 0 1.5h-.056c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.684-.685-1.058-1.336-1.233-2.341c-.158-.904-.158-2.123-.158-3.922V15a.75.75 0 0 1 .75-.75Zm20 0a.75.75 0 0 1 .75.75v.096c0 1.8 0 3.018-.158 3.922c-.175 1.005-.549 1.656-1.233 2.34c-.749.75-1.698 1.081-2.87 1.239c-1.14.153-2.595.153-4.433.153H14a.75.75 0 0 1 0-1.5c1.907 0 3.262-.002 4.29-.14c1.005-.135 1.585-.389 2.008-.812c.487-.487.7-.865.817-1.538c.132-.759.135-1.84.135-3.76a.75.75 0 0 1 .75-.75Zm-12.056-13H10a.75.75 0 0 1 0 1.5c-1.907 0-3.261.002-4.29.14c-1.005.135-1.585.389-2.008.812c-.487.487-.7.865-.817 1.538c-.132.759-.135 1.84-.135 3.76a.75.75 0 1 1-1.5 0v-.096c0-1.8 0-3.018.158-3.922c.175-1.005.549-1.656 1.233-2.34c.749-.75 1.698-1.081 2.87-1.239c1.14-.153 2.595-.153 4.433-.153ZM12 10.75a1.25 1.25 0 1 0 0 2.5a1.25 1.25 0 0 0 0-2.5Z" />
+                                    <path fill-rule="evenodd"
+                                        d="M5.892 14.06C5.297 13.37 5 13.025 5 12c0-1.025.297-1.37.892-2.06C7.08 8.562 9.072 7 12 7c2.927 0 4.92 1.562 6.108 2.94c.595.69.892 1.035.892 2.06c0 1.025-.297 1.37-.892 2.06C16.92 15.438 14.928 17 12 17c-2.927 0-4.92-1.562-6.108-2.94ZM9.25 12a2.75 2.75 0 1 1 5.5 0a2.75 2.75 0 0 1-5.5 0Z"
+                                        clip-rule="evenodd" />
+                                </g>
+                            </svg>
+                        </button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="options">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="flex-button-accion">
+                            <!-- email -->
+                            <button (click)="msgAlert()" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2">
+                                        <path
+                                            d="M12 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5.5M19 22v-6m3 3l-3-3l-3 3" />
+                                        <path d="m3 7l9 6l9-6" />
+                                    </g>
+                                </svg>
+                            </button>
+                            <!-- pdf -->
+                            <button type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 40 40">
+                                    <g fill="currentColor">
+                                        <path
+                                            d="M14.105 20.35c0-.76-.528-1.214-1.459-1.214c-.38 0-.637.037-.772.073v2.441c.16.036.356.049.625.049c.993 0 1.606-.503 1.606-1.349zm5.766-1.19c-.417 0-.687.037-.847.074v5.408c.16.037.417.037.65.037c1.692.012 2.796-.92 2.796-2.894c.013-1.717-.993-2.625-2.599-2.625z" />
+                                        <path
+                                            d="M30.918 15.983h-.678v-3.271a.448.448 0 0 0-.006-.062a.545.545 0 0 0-.131-.359L24.66 6.075l-.004-.004a.566.566 0 0 0-.255-.159l-.03-.01a.539.539 0 0 0-.127-.016H10.867c-.611 0-1.107.497-1.107 1.107v8.99h-.678c-.874 0-1.582.708-1.582 1.582v8.228c0 .873.709 1.582 1.582 1.582h.678v5.633c0 .61.496 1.107 1.107 1.107h18.266c.61 0 1.107-.497 1.107-1.107v-5.633h.678c.874 0 1.582-.709 1.582-1.582v-8.228c0-.874-.709-1.582-1.582-1.582zm-20.051-8.99H23.69v5.664c0 .306.248.553.554.553h4.89v2.773H10.867v-8.99zm13.59 14.73c0 1.582-.576 2.674-1.375 3.348c-.87.723-2.194 1.067-3.813 1.067c-.969 0-1.655-.062-2.122-.122v-8.119c.687-.11 1.582-.171 2.527-.171c1.569 0 2.587.282 3.384.883c.859.637 1.399 1.655 1.399 3.114zm-14.436 4.33v-8.156c.576-.098 1.386-.171 2.526-.171c1.153 0 1.975.221 2.526.662c.527.417.882 1.104.882 1.913c0 .81-.269 1.496-.76 1.962c-.638.601-1.582.871-2.686.871c-.245 0-.466-.012-.637-.037v2.956h-1.851zm19.112 6.655H10.867v-5.333h18.266v5.333zm1.604-13.388H27.56v1.889h2.968v1.521H27.56v3.323h-1.875v-8.266h5.052v1.533z" />
+                                    </g>
+                                </svg>
+                            </button>
+                            <!-- xml -->
+                            <button type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
+                                    <path fill="currentColor"
+                                        d="M24 21V9h-2v14h8v-2h-6zM18 9l-1.52 5l-.48 1.98l-.46-1.98L14 9h-2v14h2v-8l-.16-2l.58 2L16 19.63L17.58 15l.58-2l-.16 2v8h2V9h-2zm-8 0H8l-2 6l-2-6H2l2.75 7L2 23h2l2-6l2 6h2l-2.75-7L10 9z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsOptimize" style="border-bottom: white!important;">
+                </tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsOptimize"
+                    style="border-bottom: white!important;">
+                </tr>
+            </table>
+        </section>
+        <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons>
+        </mat-paginator>
+    </section>
+</main>

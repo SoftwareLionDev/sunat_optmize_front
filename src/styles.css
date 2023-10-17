@@ -1,0 +1,160 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+    background: #FBFDFF;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --color-main: #0162AE;
+    --black: #000000;
+    --gray: #8692a6;
+    --gray-50: #696f79;
+    --gray-100: #494949;
+    --white: #fff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.input- {
+    background: #ffffff;
+    border: 0.7px solid #d3d3d3;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 19px;
+    color: #333333;
+    padding: 0.6rem 0.6rem;
+    margin-bottom: 0.05rem;
+    width: 100%;
+}
+
+.input-:focus {
+    outline: none;
+}
+
+.error .input-:disabled,
+.input-[disabled] {
+    opacity: 0.8;
+    background: #d3d3d3 !important;
+    border: 0.7px solid #d3d3d3 !important;
+    cursor: not-allowed;
+    color: #110a0a;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.mat-select {
+    font-size: 12.5px !important;
+    font-family: Inter;
+    background: #F1F2F4 !important;
+    border: 0.7px solid #F1F2F4 !important;
+}
+
+.mat-mdc-option {
+    font-size: 13px !important;
+    font-family: 'Inter' !important;
+}
+
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+.mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+    color: #0d5293 !important;
+}
+
+.mat-mdc-paginator-container {
+    background-color: #FBFDFF !important;
+}
+
+.mat-option {
+    font-size: 12px;
+    font-family: Inter;
+}
+
+input,
+button {
+    background: none;
+    border: none;
+    font: inherit;
+}
+
+input:focus {
+    outline: none;
+    /* Elimina el resplandor predeterminado del foco del navegador */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    /* Aplica una sombra al campo de entrada enfocado */
+
+    border: 1px solid var(--color-main);
+}
+
+.relative {
+    position: relative;
+}
+
+.datepiker {
+    background: #F1F2F4;
+    border: 1px solid #F1F2F4;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12.5px;
+    line-height: 19px;
+    color: #333333;
+    padding: 0.6rem 0.6rem;
+    margin-bottom: 0.05rem;
+    width: 100%;
+    height: 43px;
+}
+
+.relative i {
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    color: #696f79;
+    font-size: 24px;
+
+}
+
+.mat-calendar-body-selected {
+    background-color: var(--color-main) !important;
+    color: var(--mat-datepicker-calendar-date-selected-state-text-color);
+    font-size: 12.5px !important;
+}
+
+
+.mat-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 0.7rem;
+    padding: 0.6rem 2.3rem;
+    font-size: 11.5px;
+    font-weight: 300;
+    transition: 0.5s;
+    width: 100%;
+    color: #374151;
+    border-bottom: 1px solid #f8f7f7;
+}
