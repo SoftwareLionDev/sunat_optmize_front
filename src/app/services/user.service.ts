@@ -18,4 +18,10 @@ export class UserService {
 
     return this.http.post<ResponseApi>(url, body);
   }
+
+  session_ls(){
+    const ls_session = localStorage.getItem('session');
+
+    return ls_session ? JSON.parse(ls_session) : null;
+  }
 }

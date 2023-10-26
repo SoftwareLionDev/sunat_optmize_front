@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './loading/loading.component';
 import { AlertComponent } from './alert/alert.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MaterialModule } from '../materia-module';
 
 
 
@@ -20,6 +21,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   imports: [
     CommonModule,
     NgxSpinnerModule,
+    MaterialModule
   ]
 })
 export class ComponentsModule { }

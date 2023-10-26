@@ -1,3 +1,5 @@
+<app-loading></app-loading>
+
 <main>
     <section class="container">
         <h1>SUNAT OPTIMIZE</h1>
@@ -6,19 +8,20 @@
         <form action="" class="form-login" [formGroup]="form">
             <div>
                 <i class='bx bx-user'></i>
-                <input class="error" type="text" placeholder="Ingrese Usuario" name="usuario" id="usuario" formControlName="mail">
+                <input type="text" placeholder="Ingrese Usuario" name="usuario" id="usuario" formControlName="mail" [ngClass]="{'error': check_field('mail')}">
             </div>
             <div>
                 <i class='bx bx-lock'></i>
-                <input type="password" placeholder="Ingrese Contraseña" name="password" id="password" formControlName="password">
+                <input type="password" placeholder="Ingrese Contraseña" name="password" id="password" formControlName="password" [ngClass]="{'error': check_field('password')}">
             </div>
             <label for="remember" class="remember">
-                <input type="checkbox" id="remember" name="remember">
+                <input type="checkbox" id="remember" name="remember" formControlName="remember">
                 <span>Recuérdame</span>
             </label>
             <button type="button" (click)="login()">
                 Ingresar
             </button>
+            
         </form>
     </section>
     <section class="section-img">

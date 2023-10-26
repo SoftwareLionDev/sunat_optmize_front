@@ -7,15 +7,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService) { }
+  constructor() { }
 
   ngOnInit() {
-    /** spinner starts on init */
-    this.spinner.show();
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 1000);
   }
 }

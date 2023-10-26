@@ -1,3 +1,8 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate-pulse" [fullScreen]="true">
-    <p style="color: white"> Cargando... </p>
+    <div class="content">
+        <div class="c-circle">
+            <mat-progress-spinner *ngIf="true" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <p style="color: white"> Cargando... </p>
+    </div>
 </ngx-spinner>

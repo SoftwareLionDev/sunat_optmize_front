@@ -3,51 +3,81 @@
 <header>
     <div class="content-header">
         <h1>SUNAT OPTIMIZE </h1>
-        <button>
-            <p>
-                MINERA VETA DORADA S.A.C.
-            </p>
+        <button [matMenuTriggerFor]="menuacciones" type="button">
             <i class='bx bxs-user'></i>
+            <p>
+                {{session_ls.business_name}}
+            </p>
+            <i class='bx bx-chevron-down'></i>
         </button>
+        <mat-menu #menuacciones="matMenu" #aboveMenu="matMenu" yPosition="above">
+            <div style="min-width: 260px;">
+                <div class="menu-items-user">
+                    <div>
+                        <h3>{{ session_ls.full_name }}</h3>
+                        <p> {{ session_ls.mail }}</p>
+                    </div>
+                    <hr>
+                    <ul class="accion-toolbar">
+                        <li>
+                            <a class="cerrar-sesion" type="button" (click)="close()">
+                                <i class='bx bx-power-off'></i>
+                                <span>Cerrar Sesión</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </mat-menu>
     </div>
 </header>
 
 <main class="container">
     <article class="form-content">
-        <form action="">
-            <mat-select type="text" class="input- mat-select" placeholder="seleccionar">
-                <mat-option value="">Todos</mat-option>
-                <mat-option value="Transportista">Transportista</mat-option>
-                <mat-option value="LOGISTICA">----</mat-option>
-            </mat-select>
-            <div class="relative">
-                <input formControlName="fechainicio" readonly class="datepiker" name="fInicio" placeholder="--/--/----"
-                    [matDatepicker]="fInicio" />
-                <mat-datepicker #fInicio> </mat-datepicker>
-                <button class="datepik_button" type="button" (click)="fInicio.open()">
-                    <i class='bx bx-calendar'></i>
-                </button>
-            </div>
-            <div class="relative">
-                <input formControlName="fechafin" readonly class="datepiker" name="fFin" placeholder="--/--/----"
-                    [matDatepicker]="fFin" />
-                <mat-datepicker #fFin> </mat-datepicker>
-                <button class="datepik_button" type="button" (click)="fFin.open()">
-                    <i class='bx bx-calendar'></i>
-                </button>
-            </div>
+        <div class="form">
             <div>
-                <button class="search">
+                <span class="title-search">Tipo de Guia</span>
+                <div class="relative">
+                    <mat-select type="text" class="input- mat-select" placeholder="seleccionar" #type_guide value="">
+                        <mat-option value="">Todos</mat-option>
+                        <mat-option value="Remitente">Remitente</mat-option>
+                        <mat-option value="Transportista">Transportista</mat-option>
+                    </mat-select>
+                </div>
+            </div>
+
+            <div>
+                <span class="title-search">F. Emisión (Inicio)</span>
+                <div class="relative">
+                    <input readonly class="datepiker" name="fInicio" placeholder="--/--/----"
+                        [matDatepicker]="fInicio" #start_date value="{{current_date}}"/>
+                    <mat-datepicker #fInicio> </mat-datepicker>
+                    <button class="datepik_button" type="button" (click)="fInicio.open()">
+                        <i class='bx bx-calendar'></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div>
+                <span class="title-search">F. Emisión (Fin)</span>
+                <div class="relative">
+                    <input readonly class="datepiker" name="fFin" placeholder="--/--/----"
+                        [matDatepicker]="fFin" #end_date value="{{current_date}}"/>
+                    <mat-datepicker #fFin> </mat-datepicker>
+                    <button class="datepik_button" type="button" (click)="fFin.open()">
+                        <i class='bx bx-calendar'></i>
+                    </button>
+                </div>
+            </div>
+            <div class="container-search">
+                <button class="search" id="search" (click)="btn_search(start_date.value, end_date.value, type_guide.value)">
                     <i class='bx bx-search'></i>
                     Buscar
                 </button>
             </div>
-        </form>
-        <button class="btn-excel">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
-                <path fill="currentColor"
-                    d="M453.547 273.449H372.12v-40.714h81.427v40.714zm0 23.264H372.12v40.714h81.427v-40.714zm0-191.934H372.12v40.713h81.427V104.78zm0 63.978H372.12v40.713h81.427v-40.713zm0 191.934H372.12v40.714h81.427V360.69zm56.242 80.264c-2.326 12.098-16.867 12.388-26.58 12.796H302.326v52.345h-36.119L0 459.566V52.492L267.778 5.904h34.548v46.355h174.66c9.83.407 20.648-.291 29.197 5.583c5.991 8.608 5.41 19.543 5.817 29.43l-.233 302.791c-.29 16.925 1.57 34.2-1.978 50.892zm-296.51-91.256c-16.052-32.57-32.395-64.909-48.39-97.48c15.82-31.698 31.408-63.512 46.937-95.327c-13.203.64-26.406 1.454-39.55 2.385c-9.83 23.904-21.288 47.169-28.965 71.888c-7.154-23.323-16.634-45.774-25.3-68.515c-12.796.698-25.592 1.454-38.387 2.21c13.493 29.78 27.86 59.15 40.946 89.104c-15.413 29.081-29.837 58.57-44.785 87.825c12.737.523 25.475 1.047 38.212 1.221c9.074-23.148 20.357-45.424 28.267-69.038c7.096 25.359 19.135 48.798 29.023 73.051c14.017.99 27.976 1.862 41.993 2.676zM484.26 79.882H302.326v24.897h46.53v40.713h-46.53v23.265h46.53v40.713h-46.53v23.265h46.53v40.714h-46.53v23.264h46.53v40.714h-46.53v23.264h46.53v40.714h-46.53v26.897H484.26V79.882z" />
-            </svg>
+        </div>
+
+        <button class="btn-excel" style="background: #1F9B61;" (click)="exportar_excel()">
+            <mat-icon>cloud_download</mat-icon>
             Descargar Excel
         </button>
     </article>
@@ -55,25 +85,25 @@
     <div class="content-search">
         <div class="input-search">
             <i class='bx bx-search'></i>
-            <input class="search" type="text" placeholder="Buscar....">
+            <input type="search" placeholder="Buscar...." #filter_value (input)="filter(filter_value.value)">
         </div>
         <div class="actualizacion">
-            <p>Ultima Sincronización: 18:50:04 </p>
-            <button type="button">
-                <i class='bx bx-refresh bx-rotate-270'></i>
-            </button>
+            <p *ngIf="info_sync">Sincronización: {{fn.date_user(info_sync.date_sync)}} {{info_sync.time_sync}} </p>
         </div>
     </div>
 
 
     <!-- versión Movil -->
-    <section class="content-movil" *ngFor="let item of [1,1,1,1,1,1]">
-        <h3>GRE - Transportista: EG07 - 11</h3>
+    <section class="content-movil" *ngFor="let item of dataSourceOptimize.data">
+        <h3>{{ item.type_gre }}: {{ item.numeration }}</h3>
         <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 2px; top: 2px;">
             <mat-icon>more_vert</mat-icon>
         </button>
+        
+        <!-- Menu de opciones para descargar -->
         <mat-menu #menu="matMenu">
-            <button type="button" class="mat-menu">
+            
+            <!-- <button type="button" class="mat-menu">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                     <g fill="none" stroke="#017df8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M12 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5.5M19 22v-6m3 3l-3-3l-3 3" />
@@ -81,8 +111,9 @@
                     </g>
                 </svg>
                 <span>Ver mensaje</span>
-            </button>
-            <button type="button" class="mat-menu">
+            </button> -->
+
+            <button type="button" class="mat-menu" (click)="download_file(item.ruc_issuer, item.code_gre, item.numeration.split('-')[0], item.numeration.split('-')[1], item.datetime_issue, 'pdf')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 40 40">
                     <g fill="#ff9100">
                         <path
@@ -93,7 +124,8 @@
                 </svg>
                 <span>Descargar PDF</span>
             </button>
-            <button type="button" class="mat-menu">
+
+            <button type="button" class="mat-menu" (click)="download_file(item.ruc_issuer, item.code_gre, item.numeration.split('-')[0], item.numeration.split('-')[1], item.datetime_issue, 'xml')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
                     <path fill="#ff5100"
                         d="M24 21V9h-2v14h8v-2h-6zM18 9l-1.52 5l-.48 1.98l-.46-1.98L14 9h-2v14h2v-8l-.16-2l.58 2L16 19.63L17.58 15l.58-2l-.16 2v8h2V9h-2zm-8 0H8l-2 6l-2-6H2l2.75 7L2 23h2l2-6l2 6h2l-2.75-7L10 9z" />
@@ -101,17 +133,39 @@
                 <span>Descargar XML</span>
             </button>
         </mat-menu>
-        <p> 20609718251 - <strong> MINERA TRESE CANALES ALAS SAC</strong></p>
-        <p>EMISIÓN: 26/07/2023 14:02:47</p>
+
+        <p> {{ item.ruc_issuer }} - <strong> {{item.business_name}} </strong></p>
+        <p>EMISIÓN: {{ item.datetime_issue }}</p>
         <div class="flex-j">
             <!-- anulado -->
-            <button type="button" class="anulado" (click)="openModalAnulado()">EMITIDO</button>
-            <div class="modal" *ngIf="anulado">
-                <div class="modal-content-descripcion" *ngFor="let item of [1,1,1]">
-                    <p>Estado: <strong class="pl-34">Emitido</strong></p>
-                    <p>Fecha msg: <strong> 24/07/2023 08:34 PM</strong></p>
+            <button type="button" *ngIf="item.status_code == '01'">{{ item.description_code }}</button>
+            <button type="button" *ngIf="item.status_code == '02'" class="anulado" [matMenuTriggerFor]="menuacciones">{{ item.description_code }}</button>
+
+            <mat-menu #menuacciones="matMenu" #aboveMenu="matMenu" yPosition="above">
+              <div style="min-width: 260px;">
+                <div class="tooltip-content">
+                  <div>
+                    <p>Estado:</p>
+                    <strong class="pl-34">Emitido</strong>
+                  </div>
+                  <div>
+                    <p>Fecha Emitido:</p>
+                    <strong>{{ date_format(item.datetime_issue) }}</strong>
+                  </div>
                 </div>
-            </div>
+                <div class="tooltip-content">
+                  <div>
+                    <p>Con baja:</p>
+                    <strong class="pl-34"> {{ item.sub_status }} </strong>
+                  </div>
+
+                  <div>
+                    <p>Fecha baja:</p>
+                    <strong> {{ item.date_low }} </strong>
+                  </div>
+                </div>
+              </div>
+            </mat-menu>
             <!-- El overlay -->
             <div class="overlay" *ngIf="anulado" (click)="closeModalAnulado()"></div>
             <span>18/09/2023 18:00:31</span>
@@ -124,49 +178,82 @@
         <section class="example-container">
             <table mat-table [dataSource]="dataSourceOptimize">
                 <ng-container matColumnDef="date">
-                    <th mat-header-cell *matHeaderCellDef>Fecha msg</th>
-                    <td mat-cell *matCellDef="let element"> 23/07/2023 18:07 PM</td>
+                    <th mat-header-cell *matHeaderCellDef>Fecha mensaje</th>
+                    <td mat-cell *matCellDef="let element"> {{ element.fecPublica }}</td>
                 </ng-container>
                 <ng-container matColumnDef="type">
                     <th mat-header-cell *matHeaderCellDef>Tipo de GRE</th>
-                    <td mat-cell *matCellDef="let element">GRE-Trasnportista</td>
+                    <td mat-cell *matCellDef="let element">{{ element.type_gre }}</td>
                 </ng-container>
                 <ng-container matColumnDef="Numeration">
                     <th mat-header-cell *matHeaderCellDef>Númeración</th>
-                    <td mat-cell *matCellDef="let element">EG07-11</td>
+                    <td mat-cell *matCellDef="let element">{{element.numeration}}</td>
                 </ng-container>
                 <ng-container matColumnDef="dateTime">
                     <th mat-header-cell *matHeaderCellDef>Fecha/Hora Emisión</th>
-                    <td mat-cell *matCellDef="let element">23/07/2023 18:07 PM</td>
+                    <td mat-cell *matCellDef="let element"> {{ date_format(element.datetime_issue) }} </td>
                 </ng-container>
                 <ng-container matColumnDef="Transmitter">
-                    <th mat-header-cell *matHeaderCellDef>Emisor</th>
-                    <td mat-cell *matCellDef="let element">Emisor</td>
+                    <th mat-header-cell *matHeaderCellDef>RUC del Emisor</th>
+                    <td mat-cell *matCellDef="let element">{{ element.ruc_issuer }}</td>
                 </ng-container>
                 <ng-container matColumnDef="BusinessName">
                     <th mat-header-cell *matHeaderCellDef>Razón Social</th>
-                    <td mat-cell *matCellDef="let element">MINERA TRESE CANALES...</td>
+                    <td mat-cell *matCellDef="let element"> 
+                        <div class="business-name-content" [title]="element.business_name">
+                            {{ element.business_name }}
+                        </div>
+                    </td>
                 </ng-container>
+                
                 <ng-container matColumnDef="status">
                     <th mat-header-cell *matHeaderCellDef> Estado </th>
                     <td mat-cell *matCellDef="let element">
-                        <div class="status-anulado">
+                        <div *ngIf="element.description_code == 'Emitido'" class="status-issued">
+                            {{ element.description_code }}
+                        </div>
+                        
+                        <div *ngIf="element.description_code == 'Baja'">
                             <!-- Ajusta el valor de z-index según tus necesidades -->
-                            <span (click)="openModalAnulado()">Anulado</span>
-                            <div class="tooltip" style="z-index: 9999;">
-                                <div class="tooltip-content" *ngFor="let item of [1,1]">
-                                    <p>Estado: <strong class="pl-34">Emitido</strong></p>
-                                    <p>Fecha msg: <strong>24/07/2023 18.00 PM </strong></p>
+                            <span class="status-anulado" [matMenuTriggerFor]="menuacciones">
+                                <mat-icon *ngIf="element.sub_status.includes('Antes de iniciar')">arrow_back_ios</mat-icon>
+                                <mat-icon *ngIf="element.sub_status.includes('Durante el traslado')"> timer</mat-icon>
+                                {{ element.description_code }}
+                            </span>
+
+                            <mat-menu #menuacciones="matMenu" #aboveMenu="matMenu" yPosition="above">
+                                <div style="min-width: 260px;">
+                                    <div class="tooltip-content">
+                                        <div>
+                                            <p>Estado:</p>
+                                            <strong class="pl-34">Emitido</strong>
+                                        </div>
+                                        <div>
+                                            <p>Fecha Emitido:</p>
+                                            <strong>{{ date_format(element.datetime_issue) }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="tooltip-content">
+                                        <div>
+                                            <p>Con baja:</p>
+                                            <strong class="pl-34"> {{ element.sub_status.replace('Con baja - ', '') }} </strong>
+                                        </div>
+
+                                        <div>
+                                            <p>Fecha baja:</p>
+                                            <strong> {{ element.date_low }} </strong>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </mat-menu>
                         </div>
                     </td>
-
                 </ng-container>
+
                 <ng-container matColumnDef="see">
                     <th mat-header-cell *matHeaderCellDef>Ver</th>
                     <td mat-cell *matCellDef="let element">
-                        <button (click)="pdf()" type="button">
+                        <button (click)="pdf(element.ruc_issuer, element.code_gre, element.numeration.split('-')[0], element.numeration.split('-')[1], element.datetime_issue)" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                 <g fill="currentColor">
                                     <path
@@ -179,12 +266,13 @@
                         </button>
                     </td>
                 </ng-container>
+
                 <ng-container matColumnDef="options">
                     <th mat-header-cell *matHeaderCellDef>Acciones</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="flex-button-accion">
                             <!-- email -->
-                            <button (click)="msgAlert()" type="button">
+                            <!-- <button (click)="msgAlert()" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2">
@@ -193,9 +281,10 @@
                                         <path d="m3 7l9 6l9-6" />
                                     </g>
                                 </svg>
-                            </button>
+                            </button> -->
+
                             <!-- pdf -->
-                            <button type="button">
+                            <button type="button" (click)="download_file(element.ruc_issuer, element.code_gre, element.numeration.split('-')[0], element.numeration.split('-')[1], element.datetime_issue, 'pdf')">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 40 40">
                                     <g fill="currentColor">
                                         <path
@@ -205,8 +294,9 @@
                                     </g>
                                 </svg>
                             </button>
+
                             <!-- xml -->
-                            <button type="button">
+                            <button type="button" (click)="download_file(element.ruc_issuer, element.code_gre, element.numeration.split('-')[0], element.numeration.split('-')[1], element.datetime_issue, 'xml')">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
                                     <path fill="currentColor"
                                         d="M24 21V9h-2v14h8v-2h-6zM18 9l-1.52 5l-.48 1.98l-.46-1.98L14 9h-2v14h2v-8l-.16-2l.58 2L16 19.63L17.58 15l.58-2l-.16 2v8h2V9h-2zm-8 0H8l-2 6l-2-6H2l2.75 7L2 23h2l2-6l2 6h2l-2.75-7L10 9z" />
@@ -222,7 +312,12 @@
                 </tr>
             </table>
         </section>
-        <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons>
+        <mat-paginator [pageSizeOptions]="[10, 30, 50]" showFirstLastButtons *ngIf="dataSourceOptimize.data && dataSourceOptimize.data.length > 10">
         </mat-paginator>
     </section>
+
+    <div class="not-found" *ngIf="dataSourceOptimize.data.length == 0">
+        <mat-icon>blur_off</mat-icon>
+        <span>No se encontraron guias, con los filtros establecidos.</span>
+    </div>
 </main>
