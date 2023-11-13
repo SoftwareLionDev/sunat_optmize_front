@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Funtions } from '../src/funtions';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AppConfig } from '../config';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +18,23 @@ export class LoginComponent {
     private form_builder: FormBuilder,
     private s_user: UserService,
     private fn: Funtions,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ){
 
   }
 
-  ngOnInit(){
+  async ngOnInit(){
+    
+    let r_config = await this.http.get('assets/config.json').toPromise();
+
+    console.log('holaaa');
+    let  config = r_config as { apiUrl: string };
+    console.log(config.apiUrl);
+
+    AppConfig.url_api = config.apiUrl;
+
+
     const session_ls = this.s_user.session_ls();
 
     if(session_ls){
@@ -55,7 +68,6 @@ export class LoginComponent {
       if(!r.success){
         return this.fn.message_error(r.message);
       }
-    
       
       localStorage.setItem('session', JSON.stringify(r.result));
 
@@ -64,6 +76,9 @@ export class LoginComponent {
       this.fn.set_ls_configuration(checked, this.form.value.mail, this.form.value.password);
 
       this.router.navigate(['/dashboard']);
+    }, (error) => {
+      this.fn.hiden_loading();
+      return this.fn.message_error(error.message);
     });
   }
 

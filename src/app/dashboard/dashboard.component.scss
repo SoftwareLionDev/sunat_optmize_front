@@ -458,7 +458,7 @@ hr {
     .form-content .form {
         width: 60%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 90px 1fr;
         flex-direction: row;
         align-items: center;
     }
@@ -616,4 +616,19 @@ hr {
         font-weight: 500;
         font-size: 14px;
     }
+}
+
+.content-sumary{
+    display: flex;
+    gap: 5px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
 }

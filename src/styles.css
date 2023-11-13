@@ -226,9 +226,9 @@ input:focus {
 .status-anulado {
     display: inline-block;
     cursor: pointer;
-    color: #de1414;
+    color: #de1414 !important;
     font-weight: 500;
-    border: 1.2px solid #de1414;
+    border: 1.2px solid #de1414 !important;
     background-color: #de141415;
     padding: 4px 15px;
     border-radius: 4px;
@@ -276,4 +276,13 @@ input:focus {
 
 .status-anulado:hover .tooltip {
     display: block;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
