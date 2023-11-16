@@ -632,3 +632,14 @@ hr {
     text-align: center;
     padding: 10px 0;
 }
+
+
+.not-pdf{
+    color: gray;
+    cursor: auto;
+}
+
+.not-pdf:hover{
+    background: transparent !important;
+    background: none !important;
+}

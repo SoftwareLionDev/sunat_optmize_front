@@ -124,6 +124,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   pdf(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string) {
+    if(serie[0] == 'T') return;
+
     date_issue = this.fn.convert_date(date_issue, 'dd/mm/yyyy');
 
     const data = {
@@ -150,6 +152,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   download_file(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string, type_file: string) {
+    if(serie[0] == 'T' && type_file == 'pdf') return;
+
     date_issue = this.fn.convert_date(date_issue, 'dd/mm/yyyy');
 
     const data = {
