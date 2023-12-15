@@ -1,0 +1,103 @@
+.form-content {
+    display: grid;
+    gap: 1rem;
+}
+
+
+main {
+    padding: 30px;
+}
+
+
+
+.input- {
+    padding: 0.5rem 0.5rem 0.5rem 43px;
+    height: 42px;
+}
+
+.relative {
+    position: relative;
+}
+
+.icons {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    font-size: 24px;
+    color: #595959;
+    width: 26px;
+}
+
+.content-section {
+    display: grid;
+    gap: 1rem;
+    /* padding-block-start: 1.4rem; */
+}
+
+.content_ {
+    display: grid;
+    gap: 1rem;
+    padding-block-start: 1rem;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    background: white;
+    width: 100%;
+    padding: 1rem 0rem;
+    border-top: 1px solid rgb(247, 247, 247);
+    font-size: 12.5px;
+
+}
+
+footer .cancelar {
+    display: flex;
+    width: 150px;
+    height: 39px;
+    padding: 9px 27px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 3px;
+    border: 1px solid var(--color-main);
+    background: #FFF;
+    color: var(--color-main);
+    cursor: pointer;
+    font-size: 12.5px;
+    outline: none;
+    font-weight: 500;
+}
+
+footer .guardar {
+    display: flex;
+    font-weight: 500;
+    width: 180px;
+    height: 38px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 12.5px;
+    border-radius: 3px;
+    background: var(--color-main);
+    cursor: pointer;
+    outline: none;
+}
+
+
+.custom-slide-toggle {
+    font-family: 'Flexo' !important;
+    /* Reemplaza 'YourFontFamily' con el nombre de la fuente que desees utilizar */
+}
+
+mat-slide-toggle {
+    font-family: 'Flexo' !important;
+}

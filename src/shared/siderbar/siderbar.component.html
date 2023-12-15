@@ -1,0 +1,101 @@
+<mat-sidenav-container class="sidenav-container" style="z-index: 10;">
+    <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="isMenuOpen">
+        <mat-nav-list>
+            <div style="padding-left: 20px; height: 65px; display: flex; align-items: center;">
+                <p class="logo">SUNAT <span>Optimize</span></p>
+            </div>
+            <span *ngFor="let item of menu">
+                <span *ngIf="item.children && item.children.length > 0">
+                    <mat-accordion>
+                        <mat-expansion-panel hideToggle class="mat-elevation-z0" [expanded]="item.estado"
+                            (opened)="setStep(item)">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <div class="menu" routerLinkActive="active" mat-list-item
+                                        fxLayoutAlign="space-between center">
+                                        <div [innerHTML]="item.iconName" style="font-size: 22px; font-weight: 400;">
+                                        </div>
+                                        <span> {{item.displayName}}</span>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <!-- sub rutas -->
+                            <span style="border-radius: 30px;">
+                                <span *ngFor="let child of item.children">
+                                    <a class="submenu" [routerLink]="child.route" routerLinkActive="active">
+                                        <div class="menu" routerLinkActive="router-link-active">
+                                            <span [innerHTML]="child.iconName" style="font-size: 13px;"></span>
+                                            <span routerLinkActive="active-icon"> {{child.displayName}} </span>
+                                        </div>
+                                    </a>
+                                </span>
+                            </span>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </span>
+
+                <!-- ruta independiente -->
+                <span *ngIf="!item.children || item.children.length === 0">
+                    <a [routerLink]="item.route" mat-list-item>
+                        <div class="menu" routerLinkActive="router-link-active">
+                            <i [innerHTML]="item.iconName" style="font-size: 22px;"></i>
+                            <span routerLinkActive="active-icon">
+                                {{item.displayName}}</span>
+                        </div>
+                    </a>
+                </span>
+            </span>
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content [ngStyle]="{'margin-left.px' : contentMargin }" style="background: #FAFAFB;">
+        <mat-toolbar style="position: sticky; top: 0; z-index: 100; width: 100%; background-color: white;">
+            <mat-toolbar-row>
+                <div class="flex-header">
+                    <button mat-icon-button (click)="drawer.toggle();">
+                        <mat-icon routerLinkActive="active-icon">menu</mat-icon>
+                    </button>
+                    <p class="operat">Usuarios</p>
+                </div>
+                <div class="btn-header">
+                    <button *ngIf="" type="button" class="btn-tolbar" (click)="toggleFullScreen()">
+                        <i *ngIf="!isFullScreenOpen" class='bx bx-fullscreen'></i>
+                        <i *ngIf="isFullScreenOpen" class='bx bx-exit-fullscreen'></i>
+                    </button>
+                    <button *ngIf="" type="button" class="btn-tolbar">
+                        <i class='bx bx-bell'></i>
+                    </button>
+                    <button [matMenuTriggerFor]="menuacciones" type="button" class="user-content">
+                        <div class="user-name"><i class='bx bxs-user'></i></div>
+                        <p>{{session_ls.business_name}}</p>
+                        <i class='bx bx-chevron-down'></i>
+                    </button>
+                </div>
+                <mat-menu #menuacciones="matMenu" #aboveMenu="matMenu" yPosition="above">
+                    <div style="min-width: 270px;">
+                        <div class="menu-items-user">
+                            <div>
+                                <h3>{{session_ls.business_name}} </h3>
+                                <p> {{ session_ls.mail }}</p>
+                            </div>
+                            <hr>
+                            <ul class="accion-toolbar">
+                                <li>
+                                    <a (click)="close()" class="cerrar-sesion" type="button">
+                                        <i class='bx bx-power-off'></i>
+                                        <span>Cerrar Sesión</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </mat-menu>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <div class="container_">
+            <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

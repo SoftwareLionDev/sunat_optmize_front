@@ -13,13 +13,13 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  login(body: any): Observable<ResponseApi>{
-    const url = AppConfig.url_api+'/user/login';
+  login(body: any): Observable<ResponseApi> {
+    const url = AppConfig.url_api + '/user/login';
 
     return this.http.post<ResponseApi>(url, body);
   }
 
-  session_ls(){
+  session_ls() {
     const ls_session = localStorage.getItem('session');
 
     return ls_session ? JSON.parse(ls_session) : null;

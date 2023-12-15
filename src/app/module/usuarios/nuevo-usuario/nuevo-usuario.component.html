@@ -1,0 +1,67 @@
+<header class="modals-header">
+    <h2>Nueva Usuario</h2>
+    <button type="button" mat-dialog-close>
+        <i class='bx bx-x-circle'></i>
+    </button>
+</header>
+
+<main style="max-height: 100vh; height: 100%; overflow: auto;">
+    <form class="form-content">
+        <div>
+            <label class="text-label" title="required">Cargo</label>
+            <mat-select class="input-" style="padding-left: 0.4rem;" placeholder="Seleccionar Cargo">
+                <mat-option [value]="1">Administrados</mat-option>
+                <mat-option [value]="1">Administrados</mat-option>
+                <mat-option [value]="1">Administrados</mat-option>
+            </mat-select>
+        </div>
+        <div>
+            <label class="text-label" title="required">Nombre(s)</label>
+            <div class="relative">
+                <img class="icons" src="assets/nombre.svg" alt="">
+                <input type="text" class="input-" placeholder="Ingrese nombres y Apellidos">
+            </div>
+        </div>
+
+        <div>
+            <label class="text-label" title="required">Correo electrónico</label>
+            <div class="relative">
+                <i class='bx bx-envelope icons'></i>
+                <input type="text" class="input-" placeholder="Ingrese Correo Electrónico">
+            </div>
+        </div>
+        <div>
+            <label class="text-label" title="required"> Usuario</label>
+            <div class="relative">
+                <i class='bx bx-user icons'></i>
+                <input type="text" class="input-" placeholder="Ingrese Usuario">
+            </div>
+        </div>
+        <div>
+            <label class="text-label" title="required">Contraseña</label>
+            <div class="relative">
+                <i class='bx bx-lock icons'></i>
+                <input type="text" class="input-" placeholder="Ingrese Contraseña">
+            </div>
+        </div>
+
+        <div>
+            <mat-slide-toggle color="primary">
+                <span class="text-label">Recepcionar todos los mensajes</span>
+            </mat-slide-toggle>
+        </div>
+        <div>
+            <mat-slide-toggle color="primary">
+                <span class="text-label">Recepcionar mensajes (Sin concesion relacionada)</span>
+            </mat-slide-toggle>
+        </div>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer>
+        <button class="cancelar" mat-dialog-close type="button">Cancelar</button>
+        <button class="guardar" (click)="openSnackBar()" type="button">Guardar</button>
+    </footer>
+</main>

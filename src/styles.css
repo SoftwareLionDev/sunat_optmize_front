@@ -1,20 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-
-html,
-body {
-    height: 100%;
-    background-color: #f2f7fb;
-    overflow-x: hidden;
-    color: #333;
-    font-family: open sans, sans-serif;
-
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-
 :root {
-    --color-main: #0162AE;
+    /* --color-main: #243e8c; */
+    --color-main: #5570f2;
+    --color-secundario: #0A1331;
     --black: #000000;
     --gray: #8692a6;
     --gray-50: #696f79;
@@ -22,12 +9,25 @@ body {
     --white: #fff;
 }
 
+/* styles.css o styles.scss */
+.mobile-dialog {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.desktop-dialog {
+    width: 500px !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+
 * {
     box-sizing: border-box;
-    margin: 0;
     padding: 0;
-    font-family: Inter, Helvetica, sans-serif;
-    font-size: 13px;
+    margin: 0;
+    font-family: 'Flexo';
 }
 
 a {
@@ -39,21 +39,6 @@ button {
     cursor: pointer;
 }
 
-.input- {
-    background: #ffffff;
-    border: 0.7px solid #444444;
-    box-sizing: border-box;
-    border-radius: 6px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 19px;
-    color: #333333;
-    padding: 0.6rem 1rem;
-    margin-bottom: 0.05rem;
-    width: 100%;
-}
 
 
 .tc {
@@ -70,14 +55,13 @@ button {
     background: #d3d3d3 !important;
     border: 0.7px solid #d3d3d3 !important;
     cursor: not-allowed;
-    color: #110a0a;
+    color: #595959;
     font-weight: 600;
     pointer-events: none;
 }
 
 .mat-select {
     font-size: 12.5px !important;
-    font-family: Inter;
     background: #ffffff !important;
     border: 0.7px solid #DBDFE9 !important;
     height: 41px;
@@ -85,7 +69,6 @@ button {
 
 .mat-mdc-option {
     font-size: 13px !important;
-    font-family: 'Inter' !important;
 }
 
 .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
@@ -98,9 +81,11 @@ button {
 }
 
 .mat-option {
-    font-size: 12px;
-    font-family: Inter;
+    font-size: 12.5px;
+    font-family: "flexo";
 }
+
+
 
 input,
 button {
@@ -122,7 +107,7 @@ input:focus {
     position: relative;
 }
 
-.datepiker {
+/* .datepiker {
     background: #ffffff;
     border: 0.7px solid #DBDFE9;
     box-sizing: border-box;
@@ -145,7 +130,7 @@ input:focus {
     color: #696f79;
     font-size: 24px;
 
-}
+} */
 
 .mat-calendar-body-selected {
     background-color: var(--color-main) !important;
@@ -278,11 +263,581 @@ input:focus {
     display: block;
 }
 
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+mat-option {
+    font-size: 12.5px;
+    font-family: 'Flexo' !important;
+    font-weight: 500 !important;
+}
+
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-BlackIt.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-BoldIt.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-ThinIt.ttf') format('truetype');
+    font-weight: 100;
+    /* Thin */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-Demi.ttf') format('truetype');
+    font-weight: 600;
+    /* Demi */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-DemiIt.ttf') format('truetype');
+    font-weight: 600;
+    /* Demi */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-Heavy.ttf') format('truetype');
+    font-weight: 800;
+    /* Heavy */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-HeavyIt.ttf') format('truetype');
+    font-weight: 800;
+    /* Heavy */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-It.ttf') format('truetype');
+    font-weight: normal;
+    /* Regular */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-Light.ttf') format('truetype');
+    font-weight: 300;
+    /* Light */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-LightIt.ttf') format('truetype');
+    font-weight: 300;
+    /* Light */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('./assets/font/Flexo-MediumIt.ttf') format('truetype');
+    font-weight: 500;
+    /* Medium */
+    font-style: italic;
+}
+
+
 body {
     margin: 0;
+}
+
+* {
     padding: 0;
-    font-family: Arial, sans-serif;
+    margin: 0;
+    font-family: 'Flexo';
+}
+
+.mat-mdc-select-value {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #595959 !important;
+}
+
+input:focus {
+    border: 1px solid var(--color-main) !important;
+}
+
+button {
+    outline: none;
+    background: transparent;
+    border: none;
+}
+
+.modals-header {
+    border-radius: 3px 3px 0px 0px;
+    background: white;
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecf0;
+    background: #FFF;
+}
+
+.modals-header h2 {
+    color: var(--color-main);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.modals-header button {
+    background: transparent;
+    border: none;
+    color: #747576;
+    cursor: pointer;
+}
+
+.modals-header button i {
+    font-size: 30px
+}
+
+.recargar-modals .mat-mdc-dialog-container {
+    border-radius: 0px !important;
+}
+
+.just-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mat-mdc-menu-content {
+    margin: 0;
+    padding: 0px 0 !important;
+    list-style-type: none;
+}
+
+
+.container-sections {
+    background: #ffffff;
+    box-shadow: 0px 1px 10px rgba(63, 61, 86, 0.05);
+    padding: 15px 0px;
+}
+
+.operat {
+    color: #111827;
+    font-size: 17px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.tc {
+    text-align: center !important;
+}
+
+.text-label {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.3rem;
+    color: #80868E;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.input- {
+    background: #ffffff;
+    border: 0.7px solid #d3d3d3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-style: normal;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    font-size: 13px;
+    color: #595959;
+    padding: 0.3rem 0.6rem;
+    width: 100%;
+    height: 39px;
+}
+
+
+
+
+input::placeholder {
+    color: rgba(157, 157, 157, 0.734);
+    font-weight: 500;
+}
+
+.input-:focus {
+    outline: none;
+}
+
+.input-:disabled,
+.input-[disabled] {
+    opacity: 0.8;
+    background: #8686861f;
+    cursor: not-allowed;
+    color: #110a0a;
+    font-weight: 600;
+    pointer-events: none;
+    border: 0.7px solid #9696961f;
+}
+
+.content-piker {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.py-30 {
+    padding: 30px 0px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
+}
+
+.pb-40 {
+    padding-bottom: 40px;
+}
+
+.title_ {
+    color: #3C3F43;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+._descripcion {
+    color: #80868E;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    padding-top: 2px;
+    line-height: 20px;
+
+}
+
+
+
+.datepiker {
+    border: 0.7px solid #d3d3d3;
+    padding: 0.3rem 0.6rem;
+    font-size: 13px;
+    font-weight: 500;
+    height: 39px;
+    width: 100%;
+    border-radius: 4px;
+    outline: none;
+    color: #3f3f46;
+    background-color: white;
+}
+
+label[title~="required"]:after {
+    content: "*";
+    color: red;
+    margin-left: 4px;
+}
+
+
+.inabilitar-fila td {
+    color: rgb(176, 176, 176) !important;
+    text-decoration: line-through;
+}
+
+.inabilitar-fila td .estado {
+    opacity: none;
+}
+
+.inabilitar-fila td button {
+    opacity: 1 !important;
+    color: rgb(0, 0, 0) !important;
+    text-decoration: none !important;
+}
+
+
+.datepik_button {
+    position: absolute;
+    top: 8px;
+    right: 11px;
+    cursor: pointer;
+    color: #81888e;
+}
+
+.datepik_button i {
+    font-size: 22px;
+}
+
+.filter-pdts {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+.mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+    color: var(--color-main);
+}
+
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+    color: var(--color-main) !important;
+}
+
+.mat-mdc-option {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-user-select: none;
+    user-select: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    color: var(--mat-option-label-text-color);
+    font-family: var(--mat-option-label-text-font);
+    line-height: var(--mat-option-label-text-line-height);
+    font-size: var(--mat-option-label-text-size);
+    letter-spacing: var(--mat-option-label-text-tracking);
+    font-weight: var(--mat-option-label-text-weight);
+    min-height: 41px !important;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    border-color: var(--color-main) !important;
+    background-color: #3097ff25 !important;
+}
+
+.mat-calendar-body-cell-content:hover {
+    top: 5%;
+    left: 5%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 90%;
+    height: 90%;
+    line-height: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 999px;
+    border-color: var(--color-main) !important;
+    background: var(--color-main) !important;
+}
+
+.mat-calendar-body-selected {
+    background-color: var(--color-main) !important;
+    color: var(--mat-datepicker-calendar-date-selected-state-text-color);
+}
+
+
+
+
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    background-color: #0ab39c !important;
+    border-radius: 10px !important;
+    box-sizing: border-box;
+    display: flex !important;
+    align-items: center !important;
+    max-width: 33vw;
+    max-width: 400px;
+    width: 100%;
+    padding: 10px 35px;
+    transform-origin: center;
+    margin-top: 56px !important;
+}
+
+
+
+.ocultr-filtr {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-main);
+    cursor: pointer;
+}
+
+.mat-mdc-option.mdc-list-item {
+    align-items: center;
+    font-size: 12px;
+}
+
+small {
+    color: var(--color-main);
+    font-size: 11.5px;
+}
+
+.btn-search {
+    display: flex;
+    padding: 9px 20px;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    height: 40px;
+    color: white;
+    background: var(--color-main);
+    cursor: pointer;
+}
+
+.btn-search i {
+    font-size: 20px;
+}
+
+.mat-drawer.mat-drawer-side {
+    z-index: 2 !important;
+}
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    font-weight: 400 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    font-size: 12.5px !important;
+}
+
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap;
+    height: 100%;
+    position: relative;
+    width: 290px !important;
+}
+
+.container_ {
+    padding: 20px;
+}
+
+
+
+@media (min-width: 768px) {
+    .grid-cols-6 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.4rem;
+        padding: 0rem 1rem 1rem 1rem;
+    }
+
+    .container_ {
+        padding: 20px;
+    }
+
+}
+
+@media (min-width: 968px) {
+    .mat-drawer.mat-drawer-side {
+        z-index: 1 !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-cols-6 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .container_ {
+        padding: 25px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .grid-cols-6 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .container_ {
+        padding: 30px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .grid-cols-6 {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .container_ {
+        padding: 35px;
+    }
 }

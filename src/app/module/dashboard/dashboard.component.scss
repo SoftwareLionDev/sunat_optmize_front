@@ -57,20 +57,17 @@ header .content-header .bx-chevron-down {
 
 
 
-.container {
-    max-width: 1500px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 1.4rem;
-}
+
 
 article .btn-excel {
-    background-color: var(--color-main);
+    background-color: #1F9B61;
     padding: 0.5rem 1.7rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    font-size: 13px;
+    font-weight: 600;
     color: var(--white);
     cursor: pointer;
     border-radius: 6px;
@@ -81,7 +78,7 @@ article .btn-excel {
 
 
 article .btn-excel:hover {
-    background-color: #136ec9;
+    background-color: #137f4c;
     color: ghostwhite;
 }
 
@@ -104,7 +101,7 @@ article .btn-excel:hover {
 .content-search .input-search i {
     position: absolute;
     left: 10px;
-    top: 12px;
+    top: 10px;
     font-size: 20px;
     color: var(--gray-100);
 }
@@ -113,8 +110,9 @@ article .btn-excel:hover {
     width: 100%;
     border: 1px solid #DBDFE9;
     outline: none;
-    padding: 1.1rem 1.1rem 1.1rem 3rem;
-    height: 42px;
+    padding: 1.1rem 1.1rem 1.1rem 2.5rem;
+    height: 39px;
+    font-size: 13px;
     border-radius: 6px;
     background: #ffffff;
     font-weight: 500;
@@ -135,15 +133,12 @@ article .btn-excel:hover {
 .form-content .form {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.7rem;
 }
 
 .content-search.input-search:focus {
     outline: none;
-    /* Elimina el resplandor predeterminado del foco del navegador */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    /* Aplica una sombra al campo de entrada enfocado */
-
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.474);
     border: 1px solid var(--color-main);
 }
 
@@ -168,6 +163,7 @@ article .btn-excel:hover {
     border-radius: 100%;
     justify-content: center;
     cursor: pointer !important;
+
 }
 
 .content-search .actualizacion button i {
@@ -249,7 +245,7 @@ th {
     color: white;
     font-weight: 700;
     font-size: 13px;
-    background-color: var(--color-main) !important;
+    background-color: #0A1331 !important;
     border: none;
     position: sticky;
     top: 0;
@@ -437,8 +433,10 @@ hr {
     align-items: center;
     justify-content: center;
     height: 43px;
+    font-weight: 600;
     gap: 0.5rem;
     width: 100%;
+    font-size: 13px;
 }
 
 .search i {
@@ -456,7 +454,7 @@ hr {
     }
 
     .form-content .form {
-        width: 60%;
+        width: 70%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 90px 1fr;
         flex-direction: row;
@@ -505,6 +503,7 @@ hr {
         font-weight: 600;
         gap: 0.5rem;
         width: auto;
+        font-family: 13px;
     }
 
     article .btn-excel {
@@ -541,15 +540,26 @@ hr {
 
 }
 
+@media (min-width: 1400px) {
 
-.status-anulado{
+    .form-content {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+}
+
+
+.status-anulado {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
     width: 90px;
 
-    mat-icon{
+    mat-icon {
         font-size: 18px;
         width: auto;
         height: auto;
@@ -568,23 +578,23 @@ hr {
     text-align: center;
 }
 
-.tooltip-content div{
-    display: flex; 
+.tooltip-content div {
+    display: flex;
     justify-content: space-between;
     align-items: center;
 
-    p{
+    p {
         min-width: 75px;
     }
 
-    strong{
+    strong {
         text-align: right;
         line-height: 1;
     }
 }
 
 
-.container-search{
+.container-search {
     height: 100%;
     display: flex;
     align-items: end;
@@ -598,29 +608,38 @@ hr {
 }
 
 
-.not-found{
+.not-found {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 50px;
     flex-direction: column;
 
-    mat-icon{
+    mat-icon {
         font-size: 56px;
         width: auto;
         height: auto;
         padding-bottom: 10px;
     }
 
-    span{
+    span {
         font-weight: 500;
         font-size: 14px;
     }
 }
 
-.content-sumary{
+.content-sumary {
     display: flex;
     gap: 5px;
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.content-sumary input {
+    width: 19px;
+    height: 19px;
+    border: 1px solid #017df8;
 }
 
 .footer {
@@ -634,12 +653,12 @@ hr {
 }
 
 
-.not-pdf{
+.not-pdf {
     color: gray;
     cursor: auto;
 }
 
-.not-pdf:hover{
+.not-pdf:hover {
     background: transparent !important;
     background: none !important;
 }
