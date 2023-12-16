@@ -9,12 +9,13 @@
                 <mat-option value="">Inactivo</mat-option>
             </mat-select>
         </div>
+
         <div class="col-4">
             <label class="text-label">buscador</label>
             <input type="text" class="input-" placeholder="Buscar...">
         </div>
 
-        <div class="flex-end">
+        <div class="content-desktop">
             <button class="ocultr-filtr">
                 <i class='bx bx-plus'></i>
                 Nuevo
@@ -25,44 +26,6 @@
     <main class="container-sections content-desktop">
         <section class="example-container" style="border-top: 1px solid #E0E4E8 ;">
             <table mat-table [dataSource]="dataSource">
-                <ng-container matColumnDef="cargo">
-                    <th mat-header-cell *matHeaderCellDef>Cargo</th>
-                    <td mat-cell *matCellDef="let element">Administrador</td>
-                </ng-container>
-                <ng-container matColumnDef="nombre">
-                    <th mat-header-cell *matHeaderCellDef>Nombre(s)</th>
-                    <td mat-cell *matCellDef="let element">Miguel Angel Vega Gavidia</td>
-                </ng-container>
-                <ng-container matColumnDef="correo">
-                    <th mat-header-cell *matHeaderCellDef>Correo Electrónico</th>
-                    <td mat-cell *matCellDef="let element">miguel98.vilca@gmail.com</td>
-                </ng-container>
-                <ng-container matColumnDef="usuario">
-                    <th mat-header-cell *matHeaderCellDef class="tc">Usuario</th>
-                    <td mat-cell *matCellDef="let element" class="tc">Miguel98
-
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="Contrasenia">
-                    <th mat-header-cell *matHeaderCellDef class="tc">Contraseña</th>
-                    <td mat-cell *matCellDef="let element" class="tc">
-                        miguel123.
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="activo">
-                    <th mat-header-cell *matHeaderCellDef class="tc">Activos</th>
-                    <td mat-cell *matCellDef="let element" class="tc">
-                        <!-- <i class='bx bxs-user-check acti'></i> -->
-                        <i class='bx bx-check acti'></i>
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="sinConexion">
-                    <th mat-header-cell *matHeaderCellDef class="tc">Sin Conexión</th>
-                    <td mat-cell *matCellDef="let element" class="tc">
-                        <!-- <i class='bx bxs-user-x sin-con'></i> -->
-                        <i class='bx bx-x sin-con'></i>
-                    </td>
-                </ng-container>
                 <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef class="tc">Estado</th>
                     <td mat-cell *matCellDef="let element" class="tc">
@@ -78,6 +41,36 @@
                         </div>
                     </td>
                 </ng-container>
+
+                <ng-container matColumnDef="departamento">
+                    <th mat-header-cell *matHeaderCellDef>Departamento</th>
+                    <td mat-cell *matCellDef="let element">La Libertdad</td>
+                </ng-container>
+                <ng-container matColumnDef="codigo">
+                    <th mat-header-cell *matHeaderCellDef class="tc">Código</th>
+                    <td mat-cell *matCellDef="let element" class="tc">120921</td>
+                </ng-container>
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef>Nombre Concesión</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet </td>
+                </ng-container>
+                <ng-container matColumnDef="zona">
+                    <th mat-header-cell *matHeaderCellDef>Zona</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet</td>
+                </ng-container>
+
+                <ng-container matColumnDef="proveedor">
+                    <th mat-header-cell *matHeaderCellDef>Proveedores</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet.
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="personal">
+                    <th mat-header-cell *matHeaderCellDef>Personal</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet
+                    </td>
+                </ng-container>
+
+
                 <ng-container matColumnDef="MontoRecarga">
                     <th mat-header-cell *matHeaderCellDef class="tc">Acciones</th>
                     <td mat-cell *matCellDef="let element">
@@ -88,6 +81,9 @@
                             <button type="button" class="key delete">
                                 <img src="assets/delte.svg" alt="img">
                             </button>
+                            <button (click)="HistorialCambios()" type="button" class="key historial">
+                                <i class='bx bx-history'></i>
+                            </button>
                         </div>
                     </td>
                 </ng-container>
@@ -97,7 +93,6 @@
                 <!-- class=" inabilitar-fila " -->
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
-
             <!--not data-->
             <div *ngIf="" class="not-data">
                 <img src="assets/svg/notdata.png" alt="not-data" />
@@ -108,7 +103,6 @@
         <div>
             <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons></mat-paginator>
         </div>
-
     </main>
 </main>
 <main class="content-movil">
@@ -122,24 +116,22 @@
                 </path>
             </svg>
         </label>
-
         <div class="ga-5">
-            <h3>Miguel Angel Vega Gavidia</h3>
-            <p>miguel98.vilca@gmail.com</p>
-            <div>
-                <h4>Administrador</h4>
+            <h3> Lorem ipsum dolor sit amet </h3>
+            <p>0329352</p>
+            <div class="center">
+                <h4> <i class='bx bx-map'></i> PIURA</h4>
             </div>
         </div>
         <div class="flex-star">
             <ul class="estados">
-                <li> <i class='bx bx-check'></i> Recibir todos los mensajes</li>
-                <li> <i class='bx bx-x'></i> Recibir mensajes (Sin concesion relacionada)</li>
+                <li> <i class='bx bx-map-alt'></i> Los Laureles</li>
+                <li> <i class='bx bx-buildings'></i>Cerro Verde S.A.C</li>
             </ul>
         </div>
         <div class="datos-user">
             <ul>
-                <li> <i class='bx bxs-user'></i> Software Lion S.A.C</li>
-                <li> <i class='bx bxs-lock-alt'></i> miguel123.</li>
+                <li> <i class='bx bxs-user'></i> Roberth Palomino</li>
             </ul>
             <div class="flex-item">
                 <button (click)="nuevoUsuario()" type="button" class="key">
@@ -148,13 +140,16 @@
                 <button type="button" class="key delete">
                     <img src="assets/delte.svg" alt="img">
                 </button>
+                <button (click)="HistorialCambios()" type="button" class="key historial">
+                    <i class='bx bx-history'></i>
+                </button>
             </div>
         </div>
     </article>
     <div class="btn-movil">
         <button class="ocultr-filtr">
             <i class='bx bx-plus'></i>
-            Nuevo
+            Nueva Concesión
         </button>
     </div>
 </main>

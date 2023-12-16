@@ -115,7 +115,7 @@ export class SiderbarComponent {
     {
       displayName: 'Concesiones',
       iconName: '<i class="bx bx-map-pin"></i>',
-      route: '/dashboard/recargas',
+      route: '/dashboard/concesiones',
     },
     // {
     //   displayName: 'Concesiones',

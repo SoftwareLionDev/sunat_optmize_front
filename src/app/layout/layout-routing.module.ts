@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { DashboardComponent } from '../module/dashboard/dashboard.component';
 import { ListadoUsuariosComponent } from '../module/usuarios/listado-usuarios/listado-usuarios.component';
 import { BienvenidoComponent } from '../module/bienvenido/bienvenido.component';
+import { ReporteGuiaComponent } from '../module/reporte-guia/reporte-guia.component';
+import { ListadoConcesionesComponent } from '../module/concesiones/listado-concesiones/listado-concesiones.component';
 
 const routes: Routes = [
   {
@@ -11,8 +12,9 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'bienvenido', component: BienvenidoComponent },
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: ReporteGuiaComponent },
       { path: 'usuarios', component: ListadoUsuariosComponent },
+      { path: 'concesiones', component: ListadoConcesionesComponent },
       {
         path: '',
         redirectTo: 'dashboard',

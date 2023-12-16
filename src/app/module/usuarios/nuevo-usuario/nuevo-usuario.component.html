@@ -8,18 +8,21 @@
 <main style="max-height: 100vh; height: 100%; overflow: auto;">
     <form class="form-content">
         <div>
-            <label class="text-label" title="required">Cargo</label>
-            <mat-select class="input-" style="padding-left: 0.4rem;" placeholder="Seleccionar Cargo">
-                <mat-option [value]="1">Administrados</mat-option>
-                <mat-option [value]="1">Administrados</mat-option>
-                <mat-option [value]="1">Administrados</mat-option>
-            </mat-select>
+            <label class="text-label" title="required">Rol</label>
+            <div class="relative">
+                <img class="icons" src="assets/rol.svg" alt="">
+                <mat-select class="input- class2" placeholder="Seleccionar Cargo">
+                    <mat-option [value]="1">Administrados</mat-option>
+                    <mat-option [value]="1">Administrados</mat-option>
+                    <mat-option [value]="1">Administrados</mat-option>
+                </mat-select>
+            </div>
         </div>
         <div>
             <label class="text-label" title="required">Nombre(s)</label>
             <div class="relative">
                 <img class="icons" src="assets/nombre.svg" alt="">
-                <input type="text" class="input-" placeholder="Ingrese nombres y Apellidos">
+                <input type="text" class="input-" placeholder=" Ingrese Nombre(s)">
             </div>
         </div>
 

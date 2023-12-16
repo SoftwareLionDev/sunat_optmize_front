@@ -1,0 +1,136 @@
+<header class="modals-header">
+    <h2>Historial de Cambios</h2>
+    <button type="button" mat-dialog-close>
+        <i class='bx bx-x-circle'></i>
+    </button>
+</header>
+
+<main style="max-height: 60vh; height: 100%; overflow: auto; padding: 30px;">
+    <div class="form">
+        <div>
+            <label class="text-label">Fecha Inicio</label>
+            <div class="relative">
+                <input readonly class="datepiker" name="fInicio" placeholder="--/--/----" [matDatepicker]="fInicio"
+                    #start_date value="" />
+                <mat-datepicker #fInicio> </mat-datepicker>
+                <button class="datepik_button" type="button" (click)="fInicio.open()">
+                    <i class='bx bx-calendar'></i>
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <label class="text-label">Fecha Fin</label>
+            <div class="relative">
+                <input readonly class="datepiker" name="fFin" placeholder="--/--/----" [matDatepicker]="fFin" #end_date
+                    value="1" />
+                <mat-datepicker #fFin> </mat-datepicker>
+                <button class="datepik_button" type="button" (click)="fFin.open()">
+                    <i class='bx bx-calendar'></i>
+                </button>
+            </div>
+        </div>
+        <div class="-col-2">
+            <label class="text-label">Buscador</label>
+            <input type="text" class="input-" placeholder="Buscar..">
+        </div>
+
+        <div class="container-search">
+            <button class="search" id="search">
+                <i class='bx bx-search'></i>
+                Buscar
+            </button>
+        </div>
+    </div>
+
+    <main class="container-sections content-desktop">
+        <section class="example-container" style="border-top: 1px solid #E0E4E8 ;">
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="usuario">
+                    <th mat-header-cell *matHeaderCellDef>Usuario</th>
+                    <td mat-cell *matCellDef="let element">Marco</td>
+                </ng-container>
+                <ng-container matColumnDef="estado">
+                    <th mat-header-cell *matHeaderCellDef class="tc">Estado</th>
+                    <td mat-cell *matCellDef="let element" class="tc">120921</td>
+                </ng-container>
+                <ng-container matColumnDef="fecha">
+                    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet </td>
+                </ng-container>
+                <ng-container matColumnDef="departamento">
+                    <th mat-header-cell *matHeaderCellDef>Departamento</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet</td>
+                </ng-container>
+
+                <ng-container matColumnDef="codigo">
+                    <th mat-header-cell *matHeaderCellDef>Código</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet.
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="proveedor">
+                    <th mat-header-cell *matHeaderCellDef>Proveedor</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="personal">
+                    <th mat-header-cell *matHeaderCellDef>Personal</th>
+                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet
+                    </td>
+                </ng-container>
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"
+                    style=" position: sticky !important; top: 0px !important;  z-index: 20 !important;">
+                </tr>
+                <!-- class=" inabilitar-fila " -->
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+
+            <!--not data-->
+            <div *ngIf="" class="not-data">
+                <img src="assets/svg/notdata.png" alt="not-data" />
+                <p>Realice una búsqueda</p>
+                <span>Para que pueda comenzar a transferir</span>
+            </div>
+        </section>
+        <div>
+            <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons></mat-paginator>
+        </div>
+
+    </main>
+    <main class="content-movil">
+        <article *ngFor="let item of [1,1,1,1,1]" class="card-user">
+
+
+            <div class="ga-5">
+                <h3>Miguel Angel Vega Gavidia</h3>
+                <p>miguel98.vilca@gmail.com</p>
+                <div>
+                    <h4>Administrador</h4>
+                </div>
+            </div>
+            <div class="flex-star">
+                <ul class="estados">
+                    <li> <i class='bx bx-check'></i> Recibir todos los mensajes</li>
+                    <li> <i class='bx bx-x'></i> Recibir mensajes (Sin concesion relacionada)</li>
+                </ul>
+            </div>
+            <div class="datos-user">
+                <ul>
+                    <li> <i class='bx bxs-user'></i> Software Lion S.A.C</li>
+                    <li> <i class='bx bxs-lock-alt'></i> miguel123.</li>
+                </ul>
+                <div class="flex-item">
+                    <button type="button" class="key">
+                        <img src="assets/editusuario.svg" alt="img">
+                    </button>
+                    <button type="button" class="key delete">
+                        <img src="assets/delte.svg" alt="img">
+                    </button>
+                </div>
+            </div>
+        </article>
+    </main>
+</main>

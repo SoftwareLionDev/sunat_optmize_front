@@ -242,14 +242,15 @@ tr.mat-header-row {
 }
 
 th {
-    color: white;
-    font-weight: 700;
+    color: var(--color-secundario);
     font-size: 13px;
-    background-color: #0A1331 !important;
-    border: none;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: #e4e8ff !important;
+    position: sticky !important;
+    top: 0px !important;
+    z-index: 20 !important;
 }
 
 td {
@@ -404,7 +405,7 @@ hr {
 }
 
 .pl-34 {
-    // padding-left: 28px;
+    /* // padding-left: 28px; */
 }
 
 .anulado {
@@ -568,10 +569,10 @@ hr {
 
 .status-issued {
     display: inline-block;
-    // color: #de1414;
+    /* // color: #de1414; */
     font-weight: 500;
     border: 1.2px solid #565656;
-    // background-color: #de141415;
+    /* // background-color: #de141415; */
     padding: 4px 15px;
     border-radius: 4px;
     width: 90px;

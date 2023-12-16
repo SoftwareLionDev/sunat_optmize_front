@@ -6,7 +6,7 @@
                 <p class="logo">SUNAT <span>Optimize</span></p>
             </div>
             <span *ngFor="let item of menu">
-                <span *ngIf="item.children && item.children.length > 0">
+                <!-- <span *ngIf="item.children && item.children.length > 0">
                     <mat-accordion>
                         <mat-expansion-panel hideToggle class="mat-elevation-z0" [expanded]="item.estado"
                             (opened)="setStep(item)">
@@ -20,7 +20,6 @@
                                     </div>
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <!-- sub rutas -->
                             <span style="border-radius: 30px;">
                                 <span *ngFor="let child of item.children">
                                     <a class="submenu" [routerLink]="child.route" routerLinkActive="active">
@@ -33,7 +32,7 @@
                             </span>
                         </mat-expansion-panel>
                     </mat-accordion>
-                </span>
+                </span> -->
 
                 <!-- ruta independiente -->
                 <span *ngIf="!item.children || item.children.length === 0">
@@ -55,17 +54,17 @@
             <mat-toolbar-row>
                 <div class="flex-header">
                     <button mat-icon-button (click)="drawer.toggle();">
-                        <mat-icon routerLinkActive="active-icon">menu</mat-icon>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M2 5.995c0-.55.446-.995.995-.995h8.01a.995.995 0 0 1 0 1.99h-8.01A.995.995 0 0 1 2 5.995M2 12c0-.55.446-.995.995-.995h18.01a.995.995 0 1 1 0 1.99H2.995A.995.995 0 0 1 2 12m.995 5.01a.995.995 0 0 0 0 1.99h12.01a.995.995 0 0 0 0-1.99z" />
+                        </svg>
                     </button>
                     <p class="operat">Usuarios</p>
                 </div>
                 <div class="btn-header">
-                    <button *ngIf="" type="button" class="btn-tolbar" (click)="toggleFullScreen()">
+                    <button type="button" class="btn-tolbar" (click)="toggleFullScreen()">
                         <i *ngIf="!isFullScreenOpen" class='bx bx-fullscreen'></i>
                         <i *ngIf="isFullScreenOpen" class='bx bx-exit-fullscreen'></i>
-                    </button>
-                    <button *ngIf="" type="button" class="btn-tolbar">
-                        <i class='bx bx-bell'></i>
                     </button>
                     <button [matMenuTriggerFor]="menuacciones" type="button" class="user-content">
                         <div class="user-name"><i class='bx bxs-user'></i></div>

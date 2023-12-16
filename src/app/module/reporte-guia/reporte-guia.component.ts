@@ -12,11 +12,11 @@ import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../../config';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-reporte-guia',
+  templateUrl: './reporte-guia.component.html',
+  styleUrls: ['./reporte-guia.component.css']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class ReporteGuiaComponent {
   year: number = new Date().getFullYear();
 
   anulado = false;

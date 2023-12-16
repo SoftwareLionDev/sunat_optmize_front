@@ -1,0 +1,76 @@
+<header class="modals-header">
+    <h2> Nuevo Concesión</h2>
+    <button type="button" mat-dialog-close>
+        <i class='bx bx-x-circle'></i>
+    </button>
+</header>
+
+<main style="max-height: 100vh; height: 100%; overflow: auto;">
+    <form class="form-content">
+        <div>
+            <label class="text-label" title="required">Departamento</label>
+            <div class="relative">
+                <i class='bx bx-map icons'></i>
+                <mat-select class="input- class2" placeholder="Seleccionar departamento">
+                    <mat-option [value]="1">Administrados</mat-option>
+                    <mat-option [value]="1">Administrados</mat-option>
+                    <mat-option [value]="1">Administrados</mat-option>
+                </mat-select>
+            </div>
+        </div>
+
+
+
+        <div>
+            <label class="text-label" title="required">Código</label>
+            <div class="relative">
+                <img class="icons" src="assets/code.svg" alt="">
+                <input type="text" class="input-" placeholder="Código único">
+            </div>
+        </div>
+
+        <div>
+            <label class="text-label" title="required">Nombre Concesión</label>
+            <div class="relative">
+                <img class="icons" src="assets/name.svg" alt="">
+                <input type="text" class="input-" placeholder="Nombre de concesión">
+            </div>
+        </div>
+
+        <div>
+            <label class="text-label" title="required"> Zona</label>
+            <div class="relative">
+                <i class='bx bx-map-alt icons'></i>
+                <input type="text" class="input-" placeholder="Ingrese Zona">
+            </div>
+        </div>
+        <div>
+            <label class="text-label" title="required">Proveedores</label>
+            <div class="relative">
+                <i class='bx bx-buildings icons'></i>
+                <input type="text" class="input-" placeholder="Ingrese Proveedor">
+            </div>
+        </div>
+
+        <div>
+            <label class="text-label" title="required">Personal asignado</label>
+            <div class="relative">
+                <i class='bx bx-user icons'></i>
+                <mat-select class="input- class2" placeholder="Seleccionar Personal">
+                    <mat-option [value]="1">Administrados</mat-option>
+                    <mat-option [value]="1">Administrados</mat-option>
+                    <mat-option [value]="1">Administrados</mat-option>
+                </mat-select>
+            </div>
+        </div>
+
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer>
+        <button class="cancelar" mat-dialog-close type="button">Cancelar</button>
+        <button class="guardar" type="button">Guardar</button>
+    </footer>
+</main>

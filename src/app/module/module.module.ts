@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,15 +8,22 @@ import { ListadoUsuariosComponent } from './usuarios/listado-usuarios/listado-us
 import { NuevoUsuarioComponent } from './usuarios/nuevo-usuario/nuevo-usuario.component';
 import { RouterModule } from '@angular/router';
 import { BienvenidoComponent } from './bienvenido/bienvenido.component';
+import { ReporteGuiaComponent } from './reporte-guia/reporte-guia.component';
+import { ListadoConcesionesComponent } from './concesiones/listado-concesiones/listado-concesiones.component';
+import { NuevaConcesionComponent } from './concesiones/nueva-concesion/nueva-concesion.component';
+import { HistorialCambiosComponent } from './concesiones/historial-cambios/historial-cambios.component';
 
 
 
 @NgModule({
   declarations: [
-    DashboardComponent,
     ListadoUsuariosComponent,
     NuevoUsuarioComponent,
-    BienvenidoComponent
+    BienvenidoComponent,
+    ReporteGuiaComponent,
+    ListadoConcesionesComponent,
+    NuevaConcesionComponent,
+    HistorialCambiosComponent
   ],
   imports: [
     BrowserModule,
