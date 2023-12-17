@@ -13,7 +13,6 @@
     color: white;
     background: var(--color-main);
     border-radius: 800px;
-    margin-right: 4px;
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 600;
@@ -22,14 +21,14 @@
 
 .logo {
     color: white;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
 }
 
 .logo span {
-    color: #000000;
-    font-size: 22px;
+    color: var(--color-secundario);
+    font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -137,7 +136,7 @@ a {
 
 .menu {
     font-style: normal;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
     align-items: center;
     gap: 0.5rem;
@@ -149,6 +148,7 @@ a {
 
 .router-link-active {
     color: white !important;
+
 }
 
 .flex-header {
@@ -159,7 +159,7 @@ a {
 
 .submenu {
     font-style: normal;
-    font-size: 12px;
+    font-size: 13px;
     display: flex;
     font-weight: 500;
     align-items: center;
@@ -211,7 +211,7 @@ a {
         padding: 3px 0.5rem;
         background-color: white;
         border-radius: 100px;
-        border: 1px solid #e6eaee;
+        border: 1px solid #e6eaeea3;
     }
 
     .user-content p {
@@ -233,7 +233,6 @@ a {
         color: white;
         background: var(--color-main);
         border-radius: 800px;
-        margin-right: 6px;
         font-size: 14px;
         text-transform: uppercase;
         font-weight: 600;
@@ -457,32 +456,10 @@ a {
 
 }
 
-.menu {
-    font-style: normal;
-    font-size: 12px;
-    font-weight: 400;
-    align-items: center;
-    gap: 0.5rem;
-    display: flex;
-    align-items: center;
-    color: rgb(200, 200, 200);
-}
-
-.router-link-active {
-    color: white !important;
-}
 
 
-.mat-toolbar-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #FFF;
-    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.10);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
+
+
 
 
 
@@ -603,7 +580,7 @@ hr {
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
 }
 
 .menu-items-user ul li a:hover {
@@ -620,4 +597,22 @@ hr {
     color: #df0c0c;
     cursor: pointer;
 
+}
+
+.movil {
+    display: block;
+}
+
+.destop {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .movil {
+        display: none;
+    }
+
+    .destop {
+        display: block;
+    }
 }

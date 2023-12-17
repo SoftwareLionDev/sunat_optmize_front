@@ -35,12 +35,12 @@ export class LoginComponent {
     AppConfig.url_api = config.apiUrl;
 
 
-    // const session_ls = this.s_user.session_ls();
+    const session_ls = this.s_user.session_ls();
 
-    // if (session_ls) {
-    //   this.router.navigate(['/dashboard']);
-    //   return;
-    // }
+    if (session_ls) {
+      this.router.navigate(['/dashboard']);
+      return;
+    }
 
     this.create_form();
 
@@ -57,30 +57,29 @@ export class LoginComponent {
     }
   }
 
-  // login() {
-  //   if (this.form.invalid) return;
+  login() {
+    if (this.form.invalid) return;
 
-  //   this.fn.show_spinner();
+    this.fn.show_spinner();
 
-  //   this.s_user.login(this.form.value).subscribe(r => {
-  //     this.fn.hiden_loading();
+    this.s_user.login(this.form.value).subscribe(r => {
+      this.fn.hiden_loading();
 
-  //     if (!r.success) {
-  //       return this.fn.message_error(r.message);
-  //     }
+      if (!r.success) {
+        return this.fn.message_error(r.message);
+      }
+      localStorage.setItem('session', JSON.stringify(r.result));
 
-  //     localStorage.setItem('session', JSON.stringify(r.result));
+      let checked = this.form.value.remember;
 
-  //     let checked = this.form.value.remember;
+      this.fn.set_ls_configuration(checked, this.form.value.mail, this.form.value.password);
 
-  //     this.fn.set_ls_configuration(checked, this.form.value.mail, this.form.value.password);
-
-  //     this.router.navigate(['/dashboard']);
-  //   }, (error) => {
-  //     this.fn.hiden_loading();
-  //     return this.fn.message_error(error.message);
-  //   });
-  // }
+      this.router.navigate(['/dashboard']);
+    }, (error) => {
+      this.fn.hiden_loading();
+      return this.fn.message_error(error.message);
+    });
+  }
 
   check_field(property: string) {
     const component_Control = this.form.get(property);

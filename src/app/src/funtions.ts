@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { NgxSpinnerService } from "ngx-spinner";
 import * as XLSX from 'xlsx';
+import { QuestionComponent } from "../components/question/question.component";
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +11,8 @@ import * as XLSX from 'xlsx';
 export class Funtions {
     constructor(
         private snackBar: MatSnackBar,
-        private spinner: NgxSpinnerService
+        private spinner: NgxSpinnerService,
+        private modals: MatDialog
     ) {
 
     }
@@ -21,10 +24,16 @@ export class Funtions {
             horizontalPosition: 'center', // Puede ser 'start', 'center', 'end', o 'left' y 'right'
         });
     }
+    public delete_user() {
+        this.modals.open(QuestionComponent, {
+            width: '330px',
+        })
+    }
+
+
 
     get_ls_configuration() {
         const ls = localStorage.getItem('configuration');
-
         return ls ? JSON.parse(ls) : null;
     }
 
@@ -122,7 +131,7 @@ export class Funtions {
         URL.revokeObjectURL(url);
     }
 
-    exporto_to_excel(data: any){
+    exporto_to_excel(data: any) {
         const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
         const wb: XLSX.WorkBook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');

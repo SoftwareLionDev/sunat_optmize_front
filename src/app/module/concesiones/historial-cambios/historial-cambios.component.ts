@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./historial-cambios.component.css']
 })
 export class HistorialCambiosComponent {
-  public displayedColumns: string[] = ['usuario', 'estado', 'fecha', 'departamento', 'codigo', 'proveedor', 'personal'];
+  public displayedColumns: string[] = ['usuario', 'estado', 'fecha', 'departamento', 'codigo', 'proveedor', 'P', '3', 'personal'];
   public dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

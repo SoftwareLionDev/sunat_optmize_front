@@ -5,7 +5,7 @@
     </button>
 </header>
 
-<main style="max-height: 60vh; height: 100%; overflow: auto; padding: 30px;">
+<main style="overflow: auto; padding: 30px;">
     <div class="form">
         <div>
             <label class="text-label">Fecha Inicio</label>
@@ -35,7 +35,7 @@
             <input type="text" class="input-" placeholder="Buscar..">
         </div>
 
-        <div class="container-search">
+        <div *ngIf="" class="container-search">
             <button class="search" id="search">
                 <i class='bx bx-search'></i>
                 Buscar
@@ -52,34 +52,41 @@
                 </ng-container>
                 <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef class="tc">Estado</th>
-                    <td mat-cell *matCellDef="let element" class="tc">120921</td>
+                    <td mat-cell *matCellDef="let element" class="tc">
+                        <!-- modificar - desactivar - eliminar - insertar -->
+                        <span class="status desactivar">desactivar</span>
+                    </td>
                 </ng-container>
                 <ng-container matColumnDef="fecha">
-                    <th mat-header-cell *matHeaderCellDef>Fecha</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet </td>
+                    <th mat-header-cell *matHeaderCellDef class="tc">Fecha</th>
+                    <td mat-cell *matCellDef="let element" class="tc">13/07/2023</td>
                 </ng-container>
                 <ng-container matColumnDef="departamento">
-                    <th mat-header-cell *matHeaderCellDef>Departamento</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet</td>
+                    <th mat-header-cell *matHeaderCellDef class="tc">Departamento</th>
+                    <td mat-cell *matCellDef="let element" class="tc">PIURA</td>
                 </ng-container>
-
                 <ng-container matColumnDef="codigo">
-                    <th mat-header-cell *matHeaderCellDef>Código</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet.
+                    <th mat-header-cell *matHeaderCellDef class="tc">Código</th>
+                    <td mat-cell *matCellDef="let element" class="tc">09422
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="proveedor">
                     <th mat-header-cell *matHeaderCellDef>Proveedor</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet
-                    </td>
+                    <td mat-cell *matCellDef="let element">CERRO ROJO BL </td>
+                </ng-container>
+                <ng-container matColumnDef="P">
+                    <th mat-header-cell *matHeaderCellDef class="tc">P</th>
+                    <td mat-cell *matCellDef="let element" class="tc">3 </td>
+                </ng-container>
+                <ng-container matColumnDef="3">
+                    <th mat-header-cell *matHeaderCellDef class="tc">3</th>
+                    <td mat-cell *matCellDef="let element" class="tc"> 2</td>
                 </ng-container>
                 <ng-container matColumnDef="personal">
                     <th mat-header-cell *matHeaderCellDef>Personal</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet
+                    <td mat-cell *matCellDef="let element">Roberth Palomino
                     </td>
                 </ng-container>
-
-
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"
                     style=" position: sticky !important; top: 0px !important;  z-index: 20 !important;">
@@ -87,7 +94,6 @@
                 <!-- class=" inabilitar-fila " -->
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
-
             <!--not data-->
             <div *ngIf="" class="not-data">
                 <img src="assets/svg/notdata.png" alt="not-data" />
@@ -102,33 +108,27 @@
     </main>
     <main class="content-movil">
         <article *ngFor="let item of [1,1,1,1,1]" class="card-user">
-
-
-            <div class="ga-5">
-                <h3>Miguel Angel Vega Gavidia</h3>
-                <p>miguel98.vilca@gmail.com</p>
+            <div class="datos-user">
                 <div>
-                    <h4>Administrador</h4>
+                    <h3>Roberth Palomino</h3>
+                    <p>Marco</p>
+                    <h4>0932592</h4>
                 </div>
-            </div>
-            <div class="flex-star">
-                <ul class="estados">
-                    <li> <i class='bx bx-check'></i> Recibir todos los mensajes</li>
-                    <li> <i class='bx bx-x'></i> Recibir mensajes (Sin concesion relacionada)</li>
-                </ul>
+                <!-- modificar - desactivar - eliminar - insertar -->
+                <span class="status desactivar">desactivar</span>
             </div>
             <div class="datos-user">
-                <ul>
-                    <li> <i class='bx bxs-user'></i> Software Lion S.A.C</li>
-                    <li> <i class='bx bxs-lock-alt'></i> miguel123.</li>
-                </ul>
-                <div class="flex-item">
-                    <button type="button" class="key">
-                        <img src="assets/editusuario.svg" alt="img">
-                    </button>
-                    <button type="button" class="key delete">
-                        <img src="assets/delte.svg" alt="img">
-                    </button>
+                <div>
+                    <p>Fecha </p>
+                    <h3> 13/07/2027</h3>
+                </div>
+                <div>
+                    <p>Departamento</p>
+                    <h3>PIURA</h3>
+                </div>
+                <div>
+                    <p>Proveedor</p>
+                    <h3>CERRO VERDE BL</h3>
                 </div>
             </div>
         </article>

@@ -242,16 +242,17 @@ tr.mat-header-row {
 }
 
 th {
-    color: var(--color-secundario);
+    color: var(--white) !important;
     font-size: 13px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    background: #e4e8ff !important;
+    background: var(--color-main) !important;
     position: sticky !important;
     top: 0px !important;
     z-index: 20 !important;
 }
+
 
 td {
     color: #354049;

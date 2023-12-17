@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { HistorialCambiosComponent } from '../historial-cambios/historial-cambios.component';
+import { Funtions } from 'src/app/src/funtions';
 
 @Component({
   selector: 'app-listado-concesiones',
@@ -18,7 +19,10 @@ export class ListadoConcesionesComponent {
   public dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private modals: MatDialog, private viewportRuler: ViewportRuler) { }
+  constructor(
+    private modals: MatDialog,
+    private viewportRuler: ViewportRuler,
+    private fn: Funtions) { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -53,6 +57,11 @@ export class ListadoConcesionesComponent {
     this.modals.open(HistorialCambiosComponent, modalConfig);
   }
 
+
+
+  public delete_concesion() {
+    this.fn.delete_user();
+  }
 
 
 

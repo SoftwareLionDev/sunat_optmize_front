@@ -4,18 +4,21 @@ import { LoadingComponent } from './loading/loading.component';
 import { AlertComponent } from './alert/alert.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialModule } from '../materia-module';
+import { QuestionComponent } from './question/question.component';
 
 
 
 @NgModule({
   declarations: [
     LoadingComponent,
-    AlertComponent
+    AlertComponent,
+    QuestionComponent
   ],
 
   exports: [
     LoadingComponent,
-    AlertComponent
+    AlertComponent,
+    QuestionComponent
   ]
   ,
   imports: [

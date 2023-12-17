@@ -4,6 +4,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NuevoUsuarioComponent } from '../nuevo-usuario/nuevo-usuario.component';
 import { ViewportRuler } from '@angular/cdk/scrolling';
+import { ListUsersService } from 'src/app/services/list-users.service';
+import { Funtions } from 'src/app/src/funtions';
+import { HttpClient } from '@angular/common/http';
+import { QuestionComponent } from 'src/app/components/question/question.component';
 
 @Component({
   selector: 'app-listado-usuarios',
@@ -12,25 +16,51 @@ import { ViewportRuler } from '@angular/cdk/scrolling';
 })
 export class ListadoUsuariosComponent {
 
-
-  switchState: boolean = false;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   public displayedColumns: string[] = ['estado', 'cargo', 'nombre', 'correo', 'usuario', 'Contrasenia', 'activo', 'sinConexion', 'MontoRecarga'];
-  public dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  public dataSource = new MatTableDataSource<any>([]);
 
-  constructor(private modals: MatDialog, private viewportRuler: ViewportRuler) { }
+  constructor(
+    private modals: MatDialog,
+    private viewportRuler: ViewportRuler,
+    private listUsers: ListUsersService,
+    public fn: Funtions
+  ) { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.list_User();
+  }
 
+  aplicarFiltro(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  public list_User() {
+    this.fn.show_spinner();
+    this.listUsers.list_users().subscribe(r => {
+      this.fn.hiden_loading();
+      if (r.success) {
+        this.dataSource.data = r.result;
+        this.dataSource.paginator = this.paginator;
+      }
+    }, (error) => {
+      this.fn.hiden_loading();
+      this.fn.message_error(error.message.includes('Http failure response') ? 'No se pudo conectar con la fuente de datos' : error.message);
+    }
+    );
+  }
+
+  public delete() {
+    this.fn.delete_user();
   }
 
   public nuevoUsuario() {
     const isMobile = this.viewportRuler.getViewportSize().width < 600; // Ajusta el umbral según tus necesidades
-
     const modalConfig = {
       width: isMobile ? '100%' : '500px',
       height: isMobile ? '100%' : 'auto',
@@ -41,41 +71,7 @@ export class ListadoUsuariosComponent {
 
     this.modals.open(NuevoUsuarioComponent, modalConfig);
   }
-
-
-
-
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Factura Electronica', weight: 1.0079, symbol: 'El codigo de Local anexo  Consignado no se encuentra ' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 1, name: 'Factura Electronica', weight: 1.0079, symbol: 'El codigo de Local anexo  Consignado no se encuentra ' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-
-];
 
 

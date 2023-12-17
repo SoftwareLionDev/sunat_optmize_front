@@ -15,7 +15,6 @@ export class UserService {
 
   login(body: any): Observable<ResponseApi> {
     const url = AppConfig.url_api + '/user/login';
-
     return this.http.post<ResponseApi>(url, body);
   }
 

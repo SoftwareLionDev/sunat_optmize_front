@@ -30,9 +30,9 @@ import { HistorialCambiosComponent } from './concesiones/historial-cambios/histo
     MaterialModule,
     ComponentsModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
   ]
 })
 export class ModuleModule { }

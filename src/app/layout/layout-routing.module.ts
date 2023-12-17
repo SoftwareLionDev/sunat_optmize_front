@@ -11,10 +11,12 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'bienvenido', component: BienvenidoComponent },
-      { path: 'dashboard', component: ReporteGuiaComponent },
-      { path: 'usuarios', component: ListadoUsuariosComponent },
-      { path: 'concesiones', component: ListadoConcesionesComponent },
+      {
+        path: 'bienvenido', component: BienvenidoComponent, data: { displayName: 'Panel de Inicio' }
+      },
+      { path: 'dashboard', component: ReporteGuiaComponent, data: { displayName: 'Reporte (Guias)' } },
+      { path: 'usuarios', component: ListadoUsuariosComponent, data: { displayName: 'Usuarios' } },
+      { path: 'concesiones', component: ListadoConcesionesComponent, data: { displayName: 'Concesiones' } },
       {
         path: '',
         redirectTo: 'dashboard',

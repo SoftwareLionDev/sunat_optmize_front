@@ -2,8 +2,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Observable, filter, map } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -21,7 +21,7 @@ export interface NavItem {
   styleUrls: ['./siderbar.component.css']
 })
 export class SiderbarComponent {
-
+  selectedItem: string = 'PANEL DE INICIO';
   public menutoogle?: boolean;
   public mobile?: boolean;
   public isMenuInitOpen?: boolean;
@@ -35,9 +35,10 @@ export class SiderbarComponent {
     public modals: MatDialog,
     private s_user: UserService,
     private router: Router,
-
+    private route: ActivatedRoute
   ) { }
   async ngOnInit() {
+
     this.isMenuOpen = true;
     this.session_ls = this.s_user.session_ls();
 
@@ -46,6 +47,7 @@ export class SiderbarComponent {
       return;
     }
   }
+
   close() {
     localStorage.removeItem('session');
     this.router.navigate(['/']);
@@ -72,28 +74,8 @@ export class SiderbarComponent {
     item.estado = true;
   }
 
-
-  @HostListener('window:keydown', ['$event'])
-  handleKeyPress(event: KeyboardEvent) {
-    if (event.key === 'F11') {
-      event.preventDefault();
-      this.toggleFullScreen();
-    }
-  }
-
-  toggleFullScreen() {
-    const doc = window.document;
-    const docEl = doc.documentElement;
-    const requestFullScreen = docEl.requestFullscreen || docEl.requestFullscreen || docEl.requestFullscreen || docEl.requestFullscreen;
-    const exitFullScreen = doc.exitFullscreen || doc.exitFullscreen || doc.exitFullscreen;
-
-    if (!doc.fullscreenElement && !doc.fullscreenElement && !doc.fullscreenElement && !doc.fullscreenElement) {
-      requestFullScreen.call(docEl);
-      this.isFullScreenOpen = true;
-    } else {
-      exitFullScreen.call(doc);
-      this.isFullScreenOpen = false;
-    }
+  onSelectItem(item: string): void {
+    this.selectedItem = item;
   }
 
   menu: NavItem[] = [
@@ -117,31 +99,6 @@ export class SiderbarComponent {
       iconName: '<i class="bx bx-map-pin"></i>',
       route: '/dashboard/concesiones',
     },
-    // {
-    //   displayName: 'Concesiones',
-    //   iconName: '<i class="bx bx-map-pin"></i>',
-    //   estado: false,
-    //   route: 'mypages',
-    //   children: [
-    //     {
-    //       displayName: 'Consultas',
-    //       iconName: '<i class="bx bx-radio-circle"></i>',
-    //       route: '/dashboard/reporte/consulta',
-    //     },
-
-    //     {
-    //       displayName: 'Sesiones',
-    //       iconName: '<i class="bx bx-radio-circle"></i>',
-    //       route: '/dashboard/reporte/sesiones',
-    //     },
-
-    //     {
-    //       displayName: 'Recargas',
-    //       iconName: '<i class="bx bx-radio-circle"></i>',
-    //       route: '/dashboard/reporte/recargas',
-    //     },
-    //   ]
-    // },
   ];
 }
 

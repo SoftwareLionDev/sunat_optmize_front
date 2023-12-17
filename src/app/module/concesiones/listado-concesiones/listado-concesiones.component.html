@@ -1,5 +1,4 @@
 <main>
-
     <form class="grid-cols-6">
         <div>
             <label class="text-label">Estado</label>
@@ -9,17 +8,22 @@
                 <mat-option value="">Inactivo</mat-option>
             </mat-select>
         </div>
-
         <div class="col-4">
-            <label class="text-label">buscador</label>
-            <input type="text" class="input-" placeholder="Buscar...">
-        </div>
-
-        <div class="content-desktop">
-            <button class="ocultr-filtr">
-                <i class='bx bx-plus'></i>
-                Nuevo
-            </button>
+            <div class="flex_">
+                <div class="w-full">
+                    <label class="text-label">Buscador</label>
+                    <div class="relative">
+                        <i class='bx bx-search-alt icons'></i>
+                        <input type="text" class="input- pl-34" placeholder="Buscar...">
+                    </div>
+                </div>
+                <div class="content-btn">
+                    <button class="ocultr-filtr">
+                        <i class='bx bx-plus'></i>
+                        Nueva <span>Concesión</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </form>
 
@@ -30,7 +34,7 @@
                     <th mat-header-cell *matHeaderCellDef class="tc">Estado</th>
                     <td mat-cell *matCellDef="let element" class="tc">
                         <div class="flex just-center">
-                            <input id="checkbox" type="checkbox" />
+                            <input id="checkbox" class="checkbox" type="checkbox" />
                             <label class="switch" for="checkbox">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
                                     <path
@@ -78,7 +82,7 @@
                             <button (click)="nuevoUsuario()" type="button" class="key">
                                 <img src="assets/editusuario.svg" alt="img">
                             </button>
-                            <button type="button" class="key delete">
+                            <button (click)="delete_concesion()" type="button" class="key delete">
                                 <img src="assets/delte.svg" alt="img">
                             </button>
                             <button (click)="HistorialCambios()" type="button" class="key historial">
@@ -108,7 +112,7 @@
 <main class="content-movil">
     <article *ngFor="let item of [1,1,1,1,1]" class="card-user">
         <!-- <span class="content_name">M</span> -->
-        <input id="checkbox" type="checkbox" />
+        <input id="checkbox" class="checkbox" type="checkbox" />
         <label class="switch" for="checkbox">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
                 <path
@@ -117,39 +121,40 @@
             </svg>
         </label>
         <div class="ga-5">
-            <h3> Lorem ipsum dolor sit amet </h3>
-            <p>0329352</p>
-            <div class="center">
-                <h4> <i class='bx bx-map'></i> PIURA</h4>
+            <h3> <strong>0329352 </strong> - Empalme 1B-Buenos Aires-Canchaque </h3>
+            <div class="datos-user">
+                <ul>
+                    <li> <i class='bx bx-map'></i> PIURA</li>
+                    <li> <i class='bx bx-map-alt'></i> Los Laureles</li>
+                </ul>
             </div>
         </div>
         <div class="flex-star">
             <ul class="estados">
-                <li> <i class='bx bx-map-alt'></i> Los Laureles</li>
                 <li> <i class='bx bx-buildings'></i>Cerro Verde S.A.C</li>
-            </ul>
-        </div>
-        <div class="datos-user">
-            <ul>
                 <li> <i class='bx bxs-user'></i> Roberth Palomino</li>
             </ul>
-            <div class="flex-item">
-                <button (click)="nuevoUsuario()" type="button" class="key">
-                    <img src="assets/editusuario.svg" alt="img">
-                </button>
-                <button type="button" class="key delete">
-                    <img src="assets/delte.svg" alt="img">
-                </button>
-                <button (click)="HistorialCambios()" type="button" class="key historial">
-                    <i class='bx bx-history'></i>
-                </button>
-            </div>
+
         </div>
-    </article>
-    <div class="btn-movil">
-        <button class="ocultr-filtr">
-            <i class='bx bx-plus'></i>
-            Nueva Concesión
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="mat-icon-button">
+            <mat-icon>more_vert</mat-icon>
         </button>
-    </div>
+        <mat-menu #menu="matMenu">
+            <button type="button" class="mat-menu" (click)="nuevoUsuario()">
+                <img src="assets/editusuario.svg" alt="img">
+                <span>Editar Usuario</span>
+            </button>
+            <button type="button" (click)="HistorialCambios()" class="mat-menu">
+                <i class='bx bx-history'></i>
+                Historial de Cambios
+            </button>
+            <button (click)="delete_concesion()" type="button" class="mat-menu delete">
+                <img src="assets/delte.svg" alt="img">
+                <span>Eliminar Usuario</span>
+            </button>
+
+        </mat-menu>
+    </article>
+
 </main>

@@ -5,16 +5,14 @@
     </button>
 </header>
 
-<main style="max-height: 100vh; height: 100%; overflow: auto;">
-    <form class="form-content">
+<main style="max-height: 90vh; height: 100%; overflow: auto;">
+    <form class="form-content" [formGroup]="formUser" (ngSubmit)="saveUser()">
         <div>
             <label class="text-label" title="required">Rol</label>
             <div class="relative">
                 <img class="icons" src="assets/rol.svg" alt="">
-                <mat-select class="input- class2" placeholder="Seleccionar Cargo">
-                    <mat-option [value]="1">Administrados</mat-option>
-                    <mat-option [value]="1">Administrados</mat-option>
-                    <mat-option [value]="1">Administrados</mat-option>
+                <mat-select formControlName="role_name" class="input- class2" placeholder="Seleccionar Cargo">
+                    <mat-option *ngFor="let item of list_role" [value]="item.id_role"> {{item.role_name }}</mat-option>
                 </mat-select>
             </div>
         </div>
@@ -22,7 +20,7 @@
             <label class="text-label" title="required">Nombre(s)</label>
             <div class="relative">
                 <img class="icons" src="assets/nombre.svg" alt="">
-                <input type="text" class="input-" placeholder=" Ingrese Nombre(s)">
+                <input type="text" formControlName="full_name" class="input-" placeholder=" Ingrese Nombre(s)">
             </div>
         </div>
 
@@ -30,31 +28,32 @@
             <label class="text-label" title="required">Correo electrónico</label>
             <div class="relative">
                 <i class='bx bx-envelope icons'></i>
-                <input type="text" class="input-" placeholder="Ingrese Correo Electrónico">
+                <input type="text" formControlName="mail" class="input-" placeholder="Ingrese Correo Electrónico">
             </div>
         </div>
         <div>
             <label class="text-label" title="required"> Usuario</label>
             <div class="relative">
                 <i class='bx bx-user icons'></i>
-                <input type="text" class="input-" placeholder="Ingrese Usuario">
+                <input type="text" formControlName="username" class="input-" placeholder="Ingrese Usuario">
             </div>
         </div>
         <div>
             <label class="text-label" title="required">Contraseña</label>
             <div class="relative">
                 <i class='bx bx-lock icons'></i>
-                <input type="text" class="input-" placeholder="Ingrese Contraseña">
+                <input type="text" formControlName="password" class="input-" placeholder="Ingrese Contraseña">
             </div>
         </div>
 
         <div>
-            <mat-slide-toggle color="primary">
+            <mat-slide-toggle formControlName="receive_all_message" color="primary">
                 <span class="text-label">Recepcionar todos los mensajes</span>
             </mat-slide-toggle>
         </div>
+
         <div>
-            <mat-slide-toggle color="primary">
+            <mat-slide-toggle formControlName="receive_without_concession" color="primary">
                 <span class="text-label">Recepcionar mensajes (Sin concesion relacionada)</span>
             </mat-slide-toggle>
         </div>
@@ -65,6 +64,6 @@
     <br>
     <footer>
         <button class="cancelar" mat-dialog-close type="button">Cancelar</button>
-        <button class="guardar" (click)="openSnackBar()" type="button">Guardar</button>
+        <button class="guardar" type="submit">Guardar</button>
     </footer>
 </main>
