@@ -3,12 +3,11 @@
     <form class="grid-cols-6">
         <div>
             <label class="text-label">Estado</label>
-            <mat-select class="input-" placeholder="seleccionar">
-                <mat-option value="todos">TODOS</mat-option>
+            <mat-select class="input-" (selectionChange)="applyFilter($event.value)" placeholder="seleccionar">
+                <mat-option value="">TODOS</mat-option>
                 <mat-option value="A">Activo</mat-option>
                 <mat-option value="D">Inactivo</mat-option>
             </mat-select>
-
         </div>
         <div class="col-4">
             <div class="flex_">
@@ -20,7 +19,7 @@
                     </div>
                 </div>
                 <div class="content-btn">
-                    <button (click)="nuevoUsuario()" type="button" class="ocultr-filtr">
+                    <button (click)="nuevoUsuario(null,false)" type="button" class="ocultr-filtr">
                         <i class='bx bx-plus'></i>
                         Nuevo <span>Usuario</span>
                     </button>
@@ -90,7 +89,7 @@
                     <th mat-header-cell *matHeaderCellDef class="tc">Acciones</th>
                     <td mat-cell *matCellDef="let user_lis">
                         <div class="flex-item">
-                            <button (click)="nuevoUsuario()" type="button" class="key">
+                            <button (click)="nuevoUsuario(user_lis, true)" type="button" class="key">
                                 <img src="assets/editusuario.svg" alt="img">
                             </button>
                             <button (click)="delete()" type="button" class="key delete">
@@ -121,6 +120,7 @@
         <div>
             <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons></mat-paginator>
         </div>
+
     </main>
 </main>
 <main class="content-movil">
@@ -161,7 +161,7 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button type="button" class="mat-menu" (click)="nuevoUsuario()">
+            <button type="button" class="mat-menu" (click)="nuevoUsuario(items, true)">
                 <img src="assets/editusuario.svg" alt="img">
                 <span>Editar Usuario</span>
             </button>

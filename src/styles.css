@@ -47,6 +47,38 @@ button {
 }
 
 
+input.error {
+    border-color: #e74c3c;
+    color: #e74c3c;
+    transition: all 0.5s ease-in-out;
+}
+
+
+
+input.error:focus {
+    border-color: #e74c3c;
+    color: #e74c3c;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Estilo para resaltar el campo cuando es válido */
+input.ng-valid {
+    border: 1px solid green;
+}
+
+/* Estilo para resaltar el campo cuando es inválido
+input.ng-invalid {
+    border: 1px solid red;
+} */
+
+/* Estilo para el mensaje de error */
+.mensaje-error {
+    color: red;
+    font-size: 12px;
+}
+
+
+
 
 .not-data-content {
     display: grid;

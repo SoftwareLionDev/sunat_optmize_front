@@ -6,52 +6,54 @@
 </header>
 
 <main style="max-height: 90vh; height: 100%; overflow: auto;">
-    <form class="form-content" [formGroup]="formUser" (ngSubmit)="saveUser()">
+    <form class="form-content" [formGroup]="formUser">
         <div>
             <label class="text-label" title="required">Rol</label>
             <div class="relative">
                 <img class="icons" src="assets/rol.svg" alt="">
-                <mat-select formControlName="role_name" class="input- class2" placeholder="Seleccionar Cargo">
+                <mat-select formControlName="id_role" class="input- class2" placeholder="Seleccionar Cargo">
                     <mat-option *ngFor="let item of list_role" [value]="item.id_role"> {{item.role_name }}</mat-option>
                 </mat-select>
             </div>
         </div>
+
         <div>
             <label class="text-label" title="required">Nombre(s)</label>
             <div class="relative">
-                <img class="icons" src="assets/nombre.svg" alt="">
-                <input type="text" formControlName="full_name" class="input-" placeholder=" Ingrese Nombre(s)">
+                <img class="icons" src="assets/nombre.svg" alt="nombre">
+                <input type="text" formControlName="full_name" [ngClass]="{'error': check_field('full_name')}"
+                    class="input-" placeholder=" Ingrese Nombre(s)">
             </div>
         </div>
-
         <div>
             <label class="text-label" title="required">Correo electrónico</label>
             <div class="relative">
                 <i class='bx bx-envelope icons'></i>
-                <input type="text" formControlName="mail" class="input-" placeholder="Ingrese Correo Electrónico">
+                <input type="text" formControlName="mail" class="input-" [ngClass]="{'error': check_field('mail')}"
+                    placeholder="Ingrese Correo Electrónico">
             </div>
         </div>
         <div>
             <label class="text-label" title="required"> Usuario</label>
             <div class="relative">
                 <i class='bx bx-user icons'></i>
-                <input type="text" formControlName="username" class="input-" placeholder="Ingrese Usuario">
+                <input type="text" formControlName="username" class="input-"
+                    [ngClass]="{'error': check_field('username')}" placeholder="Ingrese Usuario">
             </div>
         </div>
         <div>
             <label class="text-label" title="required">Contraseña</label>
             <div class="relative">
                 <i class='bx bx-lock icons'></i>
-                <input type="text" formControlName="password" class="input-" placeholder="Ingrese Contraseña">
+                <input type="text" formControlName="password" class="input-"
+                    [ngClass]="{'error': check_field('password')}" placeholder="Ingrese Contraseña">
             </div>
         </div>
-
         <div>
             <mat-slide-toggle formControlName="receive_all_message" color="primary">
                 <span class="text-label">Recepcionar todos los mensajes</span>
             </mat-slide-toggle>
         </div>
-
         <div>
             <mat-slide-toggle formControlName="receive_without_concession" color="primary">
                 <span class="text-label">Recepcionar mensajes (Sin concesion relacionada)</span>
@@ -64,6 +66,6 @@
     <br>
     <footer>
         <button class="cancelar" mat-dialog-close type="button">Cancelar</button>
-        <button class="guardar" type="submit">Guardar</button>
+        <button (click)="saveUser()" class="guardar" type="submit">Guardar</button>
     </footer>
 </main>

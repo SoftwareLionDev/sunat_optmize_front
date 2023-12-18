@@ -4,6 +4,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { NgxSpinnerService } from "ngx-spinner";
 import * as XLSX from 'xlsx';
 import { QuestionComponent } from "../components/question/question.component";
+import { FormGroup } from "@angular/forms";
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,16 @@ export class Funtions {
             horizontalPosition: 'center', // Puede ser 'start', 'center', 'end', o 'left' y 'right'
         });
     }
+
+    public message_information(message: string) {
+        this.snackBar.open(message, 'Cerrar', {
+            duration: 5000,
+            verticalPosition: 'top', // Puede ser 'top', 'bottom', o 'center'
+            horizontalPosition: 'center', // Puede ser 'start', 'center', 'end', o 'left' y 'right'
+        });
+    }
+    
+
     public delete_user() {
         this.modals.open(QuestionComponent, {
             width: '330px',
@@ -137,4 +148,19 @@ export class Funtions {
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
         XLSX.writeFile(wb, 'datos.xlsx');
     }
+
+
+
+    public empty_form(form: FormGroup) {
+
+        return Object.values(form.controls).forEach(control => {
+            if (control instanceof FormGroup) {
+                Object.values(control.controls).forEach(control => control.markAsTouched());
+            }
+            else {
+                control.markAsTouched();
+            }
+        });
+    }
+
 }
