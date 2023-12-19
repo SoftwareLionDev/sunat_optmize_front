@@ -1,5 +1,5 @@
 <header class="modals-header">
-    <h2>Nueva Usuario</h2>
+    <h2>{{body.edit ? 'Editar' : 'Nuevo'}} Usuario</h2>
     <button type="button" mat-dialog-close>
         <i class='bx bx-x-circle'></i>
     </button>
@@ -21,8 +21,7 @@
             <label class="text-label" title="required">Nombre(s)</label>
             <div class="relative">
                 <img class="icons" src="assets/nombre.svg" alt="nombre">
-                <input type="text" formControlName="full_name" [ngClass]="{'error': check_field('full_name')}"
-                    class="input-" placeholder=" Ingrese Nombre(s)">
+                <input type="text" formControlName="full_name" [ngClass]="{'error': check_field('full_name')}" class="input-" placeholder=" Ingrese Nombre(s)">
             </div>
         </div>
         <div>

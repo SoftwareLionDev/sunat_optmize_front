@@ -91,7 +91,7 @@ td.mat-footer-cell {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #FA4B00;
+    /* border: 2px solid #FA4B00; */
     box-shadow: 0px 0px 3px rgb(2, 2, 2) inset;
 }
 
@@ -430,7 +430,7 @@ td {
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid #FA4B00;
+        /* border: 2px solid #FA4B00; */
         box-shadow: 0px 0px 3px rgb(2, 2, 2) inset;
     }
 
@@ -454,4 +454,14 @@ td {
         gap: 5px;
     }
 
+}
+
+.active{
+    background: lime;
+    color: red;
+}
+
+.deactivate{
+    background: red;
+    color: lime;
 }

@@ -2,10 +2,10 @@
     <form class="grid-cols-6">
         <div>
             <label class="text-label">Estado</label>
-            <mat-select type="text" class="input-" placeholder="seleccionar">
+            <mat-select type="text" class="input-" (selectionChange)="filter_state()" [(ngModel)]="value_state_filter" name="value_state_filter" placeholder="seleccionar">
                 <mat-option value="">TODOS</mat-option>
-                <mat-option value="">Activo</mat-option>
-                <mat-option value="">Inactivo</mat-option>
+                <mat-option value="A">Activo</mat-option>
+                <mat-option value="D">Inactivo</mat-option>
             </mat-select>
         </div>
         <div class="col-4">
@@ -14,11 +14,11 @@
                     <label class="text-label">Buscador</label>
                     <div class="relative">
                         <i class='bx bx-search-alt icons'></i>
-                        <input type="text" class="input- pl-34" placeholder="Buscar...">
+                        <input (keyup)="search($event)" type="text" class="input- pl-34" placeholder="Buscar...">
                     </div>
                 </div>
                 <div class="content-btn">
-                    <button class="ocultr-filtr">
+                    <button class="ocultr-filtr" (click)="new_concession()">
                         <i class='bx bx-plus'></i>
                         Nueva <span>Concesión</span>
                     </button>
@@ -33,9 +33,9 @@
                 <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef class="tc">Estado</th>
                     <td mat-cell *matCellDef="let element" class="tc">
-                        <div class="flex just-center">
-                            <input id="checkbox" class="checkbox" type="checkbox" />
-                            <label class="switch" for="checkbox">
+                        <div class="flex just-center" (click)="change_state(element.id_concession, (element.id_state == 'A' ? 'D' : 'A'))">
+                            <!-- <input id="checkbox" class="checkbox" type="checkbox" /> -->
+                            <label class="switch" for="{{element.id_concession}}" [ngClass]="{'active': element.id_state == 'A', 'deactivate': element.id_state == 'D'}">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
                                     <path
                                         d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z">
@@ -48,29 +48,29 @@
 
                 <ng-container matColumnDef="departamento">
                     <th mat-header-cell *matHeaderCellDef>Departamento</th>
-                    <td mat-cell *matCellDef="let element">La Libertdad</td>
+                    <td mat-cell *matCellDef="let element">{{element.department}}</td>
                 </ng-container>
                 <ng-container matColumnDef="codigo">
                     <th mat-header-cell *matHeaderCellDef class="tc">Código</th>
-                    <td mat-cell *matCellDef="let element" class="tc">120921</td>
+                    <td mat-cell *matCellDef="let element" class="tc">{{element.code}}</td>
                 </ng-container>
                 <ng-container matColumnDef="nombre">
                     <th mat-header-cell *matHeaderCellDef>Nombre Concesión</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet </td>
+                    <td mat-cell *matCellDef="let element">{{element.name}} </td>
                 </ng-container>
                 <ng-container matColumnDef="zona">
                     <th mat-header-cell *matHeaderCellDef>Zona</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet</td>
+                    <td mat-cell *matCellDef="let element">{{element.zone}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="proveedor">
-                    <th mat-header-cell *matHeaderCellDef>Proveedores</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet.
+                    <th mat-header-cell *matHeaderCellDef>N° Proveedores</th>
+                    <td mat-cell *matCellDef="let element">{{element.nro_supplier}}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="personal">
                     <th mat-header-cell *matHeaderCellDef>Personal</th>
-                    <td mat-cell *matCellDef="let element">Lorem ipsum dolor sit amet
+                    <td mat-cell *matCellDef="let element">{{element.full_name}}
                     </td>
                 </ng-container>
 
@@ -79,10 +79,10 @@
                     <th mat-header-cell *matHeaderCellDef class="tc">Acciones</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="flex-item">
-                            <button (click)="nuevoUsuario()" type="button" class="key">
+                            <button (click)="new_concession(element)" type="button" class="key">
                                 <img src="assets/editusuario.svg" alt="img">
                             </button>
-                            <button (click)="delete_concesion()" type="button" class="key delete">
+                            <button (click)="delete(element.id_concession)" type="button" class="key delete">
                                 <img src="assets/delte.svg" alt="img">
                             </button>
                             <button (click)="HistorialCambios()" type="button" class="key historial">
@@ -109,11 +109,12 @@
         </div>
     </main>
 </main>
+
 <main class="content-movil">
-    <article *ngFor="let item of [1,1,1,1,1]" class="card-user">
+    <article *ngFor="let item of dataSource.data" class="card-user">
         <!-- <span class="content_name">M</span> -->
-        <input id="checkbox" class="checkbox" type="checkbox" />
-        <label class="switch" for="checkbox">
+        <!-- <input id="checkbox" class="checkbox" type="checkbox" /> -->
+        <label class="switch" for="checkbox" [ngClass]="{'active': item.id_state == 'A', 'deactivate': item.id_state == 'D'}" (click)="change_state(item.id_concession, (item.id_state == 'A' ? 'D' : 'A'))">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
                 <path
                     d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z">
@@ -121,18 +122,18 @@
             </svg>
         </label>
         <div class="ga-5">
-            <h3> <strong>0329352 </strong> - Empalme 1B-Buenos Aires-Canchaque </h3>
+            <h3> <strong>{{item.code}} </strong> - {{ item.name }} </h3>
             <div class="datos-user">
                 <ul>
-                    <li> <i class='bx bx-map'></i> PIURA</li>
-                    <li> <i class='bx bx-map-alt'></i> Los Laureles</li>
+                    <li> <i class='bx bx-map'></i> {{item.department}}</li>
+                    <li> <i class='bx bx-map-alt'></i> {{ item.zone }} </li>
                 </ul>
             </div>
         </div>
         <div class="flex-star">
             <ul class="estados">
-                <li> <i class='bx bx-buildings'></i>Cerro Verde S.A.C</li>
-                <li> <i class='bx bxs-user'></i> Roberth Palomino</li>
+                <li> <i class='bx bx-buildings'></i>{{ item.nro_supplier }}</li>
+                <li> <i class='bx bxs-user'></i> {{item.full_name}}</li>
             </ul>
 
         </div>
@@ -141,15 +142,15 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button type="button" class="mat-menu" (click)="nuevoUsuario()">
+            <button type="button" class="mat-menu" (click)="new_concession(item)">
                 <img src="assets/editusuario.svg" alt="img">
-                <span>Editar Usuario</span>
+                <span>Editar Concesión</span>
             </button>
             <button type="button" (click)="HistorialCambios()" class="mat-menu">
                 <i class='bx bx-history'></i>
                 Historial de Cambios
             </button>
-            <button (click)="delete_concesion()" type="button" class="mat-menu delete">
+            <button (click)="delete(item)" type="button" class="mat-menu delete">
                 <img src="assets/delte.svg" alt="img">
                 <span>Eliminar Usuario</span>
             </button>

@@ -1,9 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable, filter, map } from 'rxjs';
+import { AppConfig } from 'src/app/config';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -35,9 +37,13 @@ export class SiderbarComponent {
     public modals: MatDialog,
     private s_user: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) { }
   async ngOnInit() {
+    let r_config = await this.http.get('assets/config.json').toPromise();
+    let config = r_config as { apiUrl: string };
+    AppConfig.url_api = config.apiUrl;
 
     this.isMenuOpen = true;
     this.session_ls = this.s_user.session_ls();
@@ -85,7 +91,7 @@ export class SiderbarComponent {
       route: '/dashboard/bienvenido',
     },
     {
-      displayName: 'Reporte Guias',
+      displayName: 'Reporte GRE',
       iconName: '<i class="bx bx-server" ></i>',
       route: '/dashboard/dashboard',
     },
