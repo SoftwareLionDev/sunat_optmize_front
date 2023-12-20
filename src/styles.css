@@ -346,7 +346,7 @@ input:focus {
 
 @media (min-width: 768px) {
     .full-screen-modal {
-        max-width: 550px !important;
+        max-width: 500px !important;
         height: auto;
         width: 100%;
     }

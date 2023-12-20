@@ -1,11 +1,11 @@
-<header class="modals-header">
+<header class="modals-header" style="height: 6vh;">
     <h2>{{body.edit ? 'Editar' : 'Nuevo'}} Usuario</h2>
     <button type="button" mat-dialog-close>
         <i class='bx bx-x-circle'></i>
     </button>
 </header>
 
-<main style="max-height: 90vh; height: 100%; overflow: auto;">
+<main style="max-height: 84vh; height: 100%; overflow: auto;">
     <form class="form-content" [formGroup]="formUser">
         <div>
             <label class="text-label" title="required">Rol</label>
@@ -21,7 +21,8 @@
             <label class="text-label" title="required">Nombre(s)</label>
             <div class="relative">
                 <img class="icons" src="assets/nombre.svg" alt="nombre">
-                <input type="text" formControlName="full_name" [ngClass]="{'error': check_field('full_name')}" class="input-" placeholder=" Ingrese Nombre(s)">
+                <input type="text" formControlName="full_name" [ngClass]="{'error': check_field('full_name')}"
+                    class="input-" placeholder=" Ingrese Nombre(s)">
             </div>
         </div>
         <div>
@@ -59,12 +60,8 @@
             </mat-slide-toggle>
         </div>
     </form>
-    <br>
-    <br>
-    <br>
-    <br>
-    <footer>
-        <button class="cancelar" mat-dialog-close type="button">Cancelar</button>
-        <button (click)="saveUser()" class="guardar" type="submit">Guardar</button>
-    </footer>
 </main>
+<footer style="height: 10vh;">
+    <button class="cancelar" mat-dialog-close type="button">Cancelar</button>
+    <button (click)="saveUser()" class="guardar" type="submit">Guardar</button>
+</footer>

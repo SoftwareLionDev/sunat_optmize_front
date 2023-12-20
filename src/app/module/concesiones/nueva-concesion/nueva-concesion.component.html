@@ -1,11 +1,11 @@
-<header class="modals-header">
+<header class="modals-header" style="height: 6vh;">
     <h2> Nuevo Concesión</h2>
     <button type="button" mat-dialog-close>
         <i class='bx bx-x-circle'></i>
     </button>
 </header>
 
-<main style="max-height: 80vh; height: 100%; overflow: auto;">
+<main style="max-height: 84vh; height: 100%; overflow: auto;">
     <form class="form-content" [formGroup]="form_concession">
         <div>
             <label class="text-label" title="required">Departamento</label>
@@ -79,7 +79,7 @@
 
     </form>
 </main>
-<footer>
+<footer style="height: 10vh;">
     <button class="cancelar" mat-dialog-close type="button">Cancelar</button>
     <button class="guardar" type="button" (click)="save_concession()">Guardar</button>
 </footer>

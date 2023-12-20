@@ -136,7 +136,7 @@ a {
 
 .menu {
     font-style: normal;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
     align-items: center;
     gap: 0.5rem;
@@ -159,7 +159,7 @@ a {
 
 .submenu {
     font-style: normal;
-    font-size: 13px;
+    font-size: 12.5px;
     display: flex;
     font-weight: 500;
     align-items: center;
