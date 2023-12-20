@@ -5,6 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import * as XLSX from 'xlsx';
 import { QuestionComponent } from "../components/question/question.component";
 import { FormGroup } from "@angular/forms";
+import Swal from 'sweetalert2';
 
 @Injectable({
     providedIn: 'root'
@@ -19,26 +20,32 @@ export class Funtions {
     }
 
     public message_error(message: string) {
-        this.snackBar.open(message, 'Cerrar', {
-            duration: 5000,
-            verticalPosition: 'top', // Puede ser 'top', 'bottom', o 'center'
-            horizontalPosition: 'center', // Puede ser 'start', 'center', 'end', o 'left' y 'right'
+        Swal.fire({
+            title: 'Error',
+            text: message,
+            icon: 'error',
         });
     }
 
     public message_information(message: string) {
-        this.snackBar.open(message, 'Cerrar', {
-            duration: 5000,
-            verticalPosition: 'top', // Puede ser 'top', 'bottom', o 'center'
-            horizontalPosition: 'center', // Puede ser 'start', 'center', 'end', o 'left' y 'right'
-        });
+        Swal.fire({
+            title: 'Información',
+            text: message,
+            icon: 'info',
+          });
     }
-    
 
-    public delete_user() {
-        this.modals.open(QuestionComponent, {
-            width: '330px',
-        })
+    public message_question(message: string, title: string = '¿Estás seguro?'): Promise<boolean> {
+        return Swal.fire({
+          title: title,
+          text: message,
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: 'Cancelar',
+        }).then((result) => {
+          return result.isConfirmed;
+        });
     }
 
     
@@ -72,7 +79,7 @@ export class Funtions {
         return a_date_user[2] + '-' + a_date_user[1] + '-' + a_date_user[0];
     }
 
-    date_user(date_db: string) {
+    public date_user(date_db: string) {
         let a_date_user = date_db.split('-');
 
         return a_date_user[2] + '/' + a_date_user[1] + '/' + a_date_user[0];

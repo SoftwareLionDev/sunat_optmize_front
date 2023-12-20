@@ -18,6 +18,7 @@ export class ListadoUsuariosComponent {
   public displayedColumns: string[] = ['estado', 'cargo', 'nombre', 'correo', 'usuario', 'Contrasenia', 'activo', 'sinConexion', 'MontoRecarga'];
   public dataSource = new MatTableDataSource<any>([]);
   public dataUsers: any[] = [];
+  public value_state_filter: string = 'A';
 
   constructor(
     private modals: MatDialog,
@@ -30,25 +31,40 @@ export class ListadoUsuariosComponent {
     this.dataSource.paginator = this.paginator;
   }
 
-
   ngOnInit() {
     this.list_User();
   }
 
-  aplicarFiltro(event: Event) {
+  search(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    
+
+    if (window.innerWidth <= 767) {
+
+      this.dataSource.data = this.dataUsers.filter(x => x.id_state.includes(this.value_state_filter));
+
+      this.dataSource.data = this.dataSource.data.filter(item => {
+        for (const key in item) {
+          if (item[key] && item[key].toString().includes(filterValue)) {
+            return true; // Si alguna propiedad contiene el valor, se incluye en el resultado
+          }
+        }
+        return false; // Si ninguna propiedad contiene el valor, se excluye del resultado
+      });
+    }
+    else {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
   }
 
-  applyFilter(filterValue: string) {
-    console.log(filterValue);
-    let data_filter: any[] = this.dataUsers.filter(x => x.id_state.includes(filterValue));
+  applyFilter() {
+    let data_filter: any[] = this.dataUsers.filter(x => x.id_state.includes(this.value_state_filter));
+
     this.dataSource.data = data_filter;
     // this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-
   }
 
 
@@ -56,10 +72,14 @@ export class ListadoUsuariosComponent {
     this.fn.show_spinner();
     this.users.list_users().subscribe(r => {
       this.fn.hiden_loading();
+
       if (r.success) {
         this.dataUsers = r.result;
         this.dataSource.data = this.dataUsers;
         this.dataSource.paginator = this.paginator;
+
+        this.applyFilter();
+        console.log('holaaaaaaa', this.value_state_filter);
       }
     }, (error) => {
       this.fn.hiden_loading();
@@ -68,10 +88,37 @@ export class ListadoUsuariosComponent {
     );
   }
 
-  public delete() {
-    this.fn.delete_user();
+  public async delete(id_user: number) {
+    const response = await this.fn.message_question('¿Desea eliminar el usuario?');
+
+    if(!response) return;
+
+    this.users.delete(id_user).subscribe(r => {
+      if(!r.success){
+        this.fn.message_error(r.message);
+        return;
+      }
+
+      this.list_User();
+    });
   }
 
+  public async change_state(id_user: number, id_state: string){
+    let operation = id_state == 'A' ? 'activar' : 'desactivar';
+
+    let response = await this.fn.message_question(`¿Desea ${operation} el usuario?`);
+    
+    if(response){
+      this.users.change_state(id_user, id_state).subscribe(r => {
+        if(!r.success){
+          this.fn.message_error(r.message);
+          return;
+        }
+  
+        this.list_User();
+      });
+    }
+  }
 
   public nuevoUsuario(item: any, edit: boolean) {
     const body = {
@@ -88,6 +135,7 @@ export class ListadoUsuariosComponent {
       panelClass: isMobile ? 'mobile-dialog' : 'desktop-dialog',
       data: body,
     };
+    
     const dialogRef = this.modals.open(NuevoUsuarioComponent, modalConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result.ok) {

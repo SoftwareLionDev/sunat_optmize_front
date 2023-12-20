@@ -27,11 +27,7 @@ export class LoginComponent {
   async ngOnInit() {
 
     let r_config = await this.http.get('assets/config.json').toPromise();
-
-    console.log('holaaa');
     let config = r_config as { apiUrl: string };
-    console.log(config.apiUrl);
-
     AppConfig.url_api = config.apiUrl;
 
 

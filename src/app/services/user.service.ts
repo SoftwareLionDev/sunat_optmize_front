@@ -38,6 +38,22 @@ export class UserService {
     return this.http.get<ResponseApi>(url);
   }
 
+  change_state(id_user: number, id_state: string): Observable<ResponseApi>{
+    const url = AppConfig.url_api + `/user/change-state`;
+
+    const body = {
+      id_user,
+      id_state
+    };
+    
+    return this.http.post<ResponseApi>(url, body);
+  }
+
+  delete(id_user: number){
+    const url = AppConfig.url_api + `/user/`+id_user;
+    
+    return this.http.delete<ResponseApi>(url);
+  }
 
   session_ls() {
     const ls_session = localStorage.getItem('session');

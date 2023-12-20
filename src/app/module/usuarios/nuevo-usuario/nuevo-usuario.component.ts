@@ -15,14 +15,15 @@ export class NuevoUsuarioComponent implements OnInit {
   mostrarErrores: { [key: string]: boolean } = {};
 
   constructor(
-    private close: MatDialogRef<null>, @Optional() @Inject(MAT_DIALOG_DATA)
-    public body: any,
+    private close: MatDialogRef<null>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public body: any,
     public fn: Funtions,
     public fb: FormBuilder,
     public users: UserService,
 
   ) {
     this.CreateFormUser();
+    
     if (body.edit) this.Edit_users();
   }
 
