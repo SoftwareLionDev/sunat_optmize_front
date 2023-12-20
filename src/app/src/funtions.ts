@@ -32,23 +32,23 @@ export class Funtions {
             title: 'Información',
             text: message,
             icon: 'info',
-          });
+        });
     }
 
     public message_question(message: string, title: string = '¿Estás seguro?'): Promise<boolean> {
         return Swal.fire({
-          title: title,
-          text: message,
-          icon: 'question',
-          showCancelButton: true,
-          confirmButtonText: 'Aceptar',
-          cancelButtonText: 'Cancelar',
+            title: title,
+            text: message,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar',
         }).then((result) => {
-          return result.isConfirmed;
+            return result.isConfirmed;
         });
     }
 
-    
+
 
     get_ls_configuration() {
         const ls = localStorage.getItem('configuration');

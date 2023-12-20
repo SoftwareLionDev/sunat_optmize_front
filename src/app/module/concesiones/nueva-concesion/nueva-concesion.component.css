@@ -100,3 +100,8 @@ footer .guardar {
 mat-slide-toggle {
     font-family: 'Flexo' !important;
 }
+
+mat-option {
+    text-transform: uppercase;
+    font-size: 12px;
+}

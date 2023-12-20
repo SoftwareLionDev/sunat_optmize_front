@@ -11,8 +11,16 @@
             <label class="text-label" title="required">Departamento</label>
             <div class="relative">
                 <i class='bx bx-map icons'></i>
-                <mat-select class="input- class2" placeholder="Seleccionar departamento" formControlName="id_department" [ngClass]="{'error': check_field('id_department')}">
-                    <mat-option *ngFor="let item of departments" [value]="item.id_department"> {{item.name }}</mat-option>
+                <mat-select class="input- class2" placeholder="Seleccionar departamento" formControlName="id_department"
+                    [ngClass]="{'error': check_field('id_department')}">
+                    <mat-option style="font-size: 12px;">
+                        <ngx-mat-select-search noEntriesFoundLabel="No se encontro información"
+                            placeholderLabel="Buscar" #departmentos class="text-search"
+                            style="font-size: 12px;"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let item of departments | busquedaCampo: 'name': departmentos.value" [value]="
+                        item.id_department"> {{item.name
+                        }}</mat-option>
                 </mat-select>
             </div>
         </div>
@@ -21,7 +29,8 @@
             <label class="text-label" title="required">Código</label>
             <div class="relative">
                 <img class="icons" src="assets/code.svg" alt="">
-                <input type="text" class="input-" [ngClass]="{'error': check_field('code')}" placeholder="Código único" formControlName="code">
+                <input type="text" class="input-" [ngClass]="{'error': check_field('code')}" placeholder="Código único"
+                    formControlName="code">
             </div>
         </div>
 
@@ -29,7 +38,8 @@
             <label class="text-label" title="required">Nombre Concesión</label>
             <div class="relative">
                 <img class="icons" src="assets/name.svg" alt="">
-                <input type="text" class="input-" placeholder="Nombre de concesión" formControlName="name" [ngClass]="{'error': check_field('name')}">
+                <input type="text" class="input-" placeholder="Nombre de concesión" formControlName="name"
+                    [ngClass]="{'error': check_field('name')}">
             </div>
         </div>
 
@@ -37,14 +47,16 @@
             <label class="text-label" title="required"> Zona</label>
             <div class="relative">
                 <i class='bx bx-map-alt icons'></i>
-                <input type="text" class="input-" placeholder="Ingrese Zona" formControlName="zone" [ngClass]="{'error': check_field('zone')}">
+                <input type="text" class="input-" placeholder="Ingrese Zona" formControlName="zone"
+                    [ngClass]="{'error': check_field('zone')}">
             </div>
         </div>
         <div>
             <label class="text-label" title="required">N° Proveedores</label>
             <div class="relative">
                 <i class='bx bx-buildings icons'></i>
-                <input type="number" class="input-" placeholder="N° Proveedor" formControlName="nro_supplier" [ngClass]="{'error': check_field('nro_supplier')}">
+                <input type="number" class="input-" placeholder="N° Proveedor" formControlName="nro_supplier"
+                    [ngClass]="{'error': check_field('nro_supplier')}">
             </div>
         </div>
 
@@ -52,8 +64,15 @@
             <label class="text-label" title="required">Personal asignado</label>
             <div class="relative">
                 <i class='bx bx-user icons'></i>
-                <mat-select class="input- class2" placeholder="Seleccionar Personal" formControlName="id_user_assigned" [ngClass]="{'error': check_field('id_user_assigned')}">
-                    <mat-option *ngFor="let user of users" [value]="user.id_user">{{user.full_name}}</mat-option>
+                <mat-select class="input- class2" placeholder="Seleccionar Personal" formControlName="id_user_assigned"
+                    [ngClass]="{'error': check_field('id_user_assigned')}">
+                    <mat-option style="font-size: 12px;">
+                        <ngx-mat-select-search noEntriesFoundLabel="No se encontro información"
+                            placeholderLabel="Buscar" #usuarios class="text-search"
+                            style="font-size: 12px;"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let user of users | busquedaCampo: 'full_name': usuarios.value"
+                        [value]="user.id_user">{{user.full_name}}</mat-option>
                 </mat-select>
             </div>
         </div>

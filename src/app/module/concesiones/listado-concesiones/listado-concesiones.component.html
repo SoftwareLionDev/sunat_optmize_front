@@ -2,7 +2,8 @@
     <form class="grid-cols-6">
         <div>
             <label class="text-label">Estado</label>
-            <mat-select type="text" class="input-" (selectionChange)="filter_state()" [(ngModel)]="value_state_filter" name="value_state_filter" placeholder="seleccionar">
+            <mat-select type="text" class="input-" (selectionChange)="filter_state()" [(ngModel)]="value_state_filter"
+                name="value_state_filter" placeholder="seleccionar">
                 <mat-option value="">TODOS</mat-option>
                 <mat-option value="A">Activo</mat-option>
                 <mat-option value="D">Inactivo</mat-option>
@@ -33,9 +34,11 @@
                 <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef class="tc">Estado</th>
                     <td mat-cell *matCellDef="let element" class="tc">
-                        <div class="flex just-center" (click)="change_state(element.id_concession, (element.id_state == 'A' ? 'D' : 'A'))">
+                        <div class="flex just-center"
+                            (click)="change_state(element.id_concession, (element.id_state == 'A' ? 'D' : 'A'))">
                             <!-- <input id="checkbox" class="checkbox" type="checkbox" /> -->
-                            <label class="switch" for="{{element.id_concession}}" [ngClass]="{'active': element.id_state == 'A', 'deactivate': element.id_state == 'D'}">
+                            <label class="switch" for="{{element.id_concession}}"
+                                [ngClass]="{'active': element.id_state == 'A', 'deactivate': element.id_state == 'D'}">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
                                     <path
                                         d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z">
@@ -97,13 +100,18 @@
                 <!-- class=" inabilitar-fila " -->
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
-            <!--not data-->
-            <div *ngIf="" class="not-data">
-                <img src="assets/svg/notdata.png" alt="not-data" />
-                <p>Realice una búsqueda</p>
-                <span>Para que pueda comenzar a transferir</span>
-            </div>
         </section>
+        <!--not data-->
+        <div *ngIf="dataSource.data.length == 0" class="not-data-content">
+            <div class="not-data">
+                <div>
+                    <img class="" src="https://www.basilica.hr/build/images/background/no-results-bg.2d2c6ee3.png"
+                        alt="not-data" />
+                </div>
+                <h3>No se econtraron Datos</h3>
+                <span>Para que pueda visualizar sus concesiones</span>
+            </div>
+        </div>
         <div>
             <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons></mat-paginator>
         </div>
@@ -114,7 +122,9 @@
     <article *ngFor="let item of dataSource.data" class="card-user">
         <!-- <span class="content_name">M</span> -->
         <!-- <input id="checkbox" class="checkbox" type="checkbox" /> -->
-        <label class="switch" for="checkbox" [ngClass]="{'active': item.id_state == 'A', 'deactivate': item.id_state == 'D'}" (click)="change_state(item.id_concession, (item.id_state == 'A' ? 'D' : 'A'))">
+        <label class="switch" for="checkbox"
+            [ngClass]="{'active': item.id_state == 'A', 'deactivate': item.id_state == 'D'}"
+            (click)="change_state(item.id_concession, (item.id_state == 'A' ? 'D' : 'A'))">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
                 <path
                     d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z">

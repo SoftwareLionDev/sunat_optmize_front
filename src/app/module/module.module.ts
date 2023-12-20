@@ -12,8 +12,8 @@ import { ReporteGuiaComponent } from './reporte-guia/reporte-guia.component';
 import { ListadoConcesionesComponent } from './concesiones/listado-concesiones/listado-concesiones.component';
 import { NuevaConcesionComponent } from './concesiones/nueva-concesion/nueva-concesion.component';
 import { HistorialCambiosComponent } from './concesiones/historial-cambios/historial-cambios.component';
-
-
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { BusquedaCampoPipe } from '../pipe/busqueda-campo.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { HistorialCambiosComponent } from './concesiones/historial-cambios/histo
     ReporteGuiaComponent,
     ListadoConcesionesComponent,
     NuevaConcesionComponent,
-    HistorialCambiosComponent
+    HistorialCambiosComponent,
+    BusquedaCampoPipe
   ],
   imports: [
     BrowserModule,
@@ -33,6 +34,7 @@ import { HistorialCambiosComponent } from './concesiones/historial-cambios/histo
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxMatSelectSearchModule
   ]
 })
 export class ModuleModule { }
