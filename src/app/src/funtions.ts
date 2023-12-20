@@ -41,7 +41,7 @@ export class Funtions {
         })
     }
 
-
+    
 
     get_ls_configuration() {
         const ls = localStorage.getItem('configuration');

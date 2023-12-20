@@ -42,16 +42,12 @@ export class ListadoUsuariosComponent {
 
   applyFilter(filterValue: string) {
     console.log(filterValue);
-
     let data_filter: any[] = this.dataUsers.filter(x => x.id_state.includes(filterValue));
-
     this.dataSource.data = data_filter;
-
     // this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-
 
   }
 
