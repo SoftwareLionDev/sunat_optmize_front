@@ -37,7 +37,7 @@ export class ListadoUsuariosComponent {
 
   search(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    
+
 
     if (window.innerWidth <= 767) {
 
@@ -91,10 +91,10 @@ export class ListadoUsuariosComponent {
   public async delete(id_user: number) {
     const response = await this.fn.message_question('¿Desea eliminar el usuario?');
 
-    if(!response) return;
+    if (!response) return;
 
     this.users.delete(id_user).subscribe(r => {
-      if(!r.success){
+      if (!r.success) {
         this.fn.message_error(r.message);
         return;
       }
@@ -103,18 +103,18 @@ export class ListadoUsuariosComponent {
     });
   }
 
-  public async change_state(id_user: number, id_state: string){
+  public async change_state(id_user: number, id_state: string) {
     let operation = id_state == 'A' ? 'activar' : 'desactivar';
 
     let response = await this.fn.message_question(`¿Desea ${operation} el usuario?`);
-    
-    if(response){
+
+    if (response) {
       this.users.change_state(id_user, id_state).subscribe(r => {
-        if(!r.success){
+        if (!r.success) {
           this.fn.message_error(r.message);
           return;
         }
-  
+
         this.list_User();
       });
     }
@@ -128,14 +128,10 @@ export class ListadoUsuariosComponent {
     console.log(body);
     const isMobile = this.viewportRuler.getViewportSize().width < 600; // Ajusta el umbral según tus necesidades
     const modalConfig = {
-      width: isMobile ? '100%' : '500px',
-      height: isMobile ? '100%' : 'auto',
-      maxWidth: '100%',
-      maxHeight: '100%',
-      panelClass: isMobile ? 'mobile-dialog' : 'desktop-dialog',
+      panelClass: 'full-screen-modal',
       data: body,
     };
-    
+
     const dialogRef = this.modals.open(NuevoUsuarioComponent, modalConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result.ok) {

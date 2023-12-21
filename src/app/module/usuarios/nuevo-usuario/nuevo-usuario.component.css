@@ -39,17 +39,15 @@ main {
     padding-block-start: 1rem;
 }
 
+
 footer {
     display: flex;
     align-items: center;
     gap: 0.4rem;
     justify-content: flex-end;
-    position: absolute;
-    bottom: 0;
-    right: 20px;
     background: white;
     width: 100%;
-    padding: 1rem 0rem;
+    padding: 1rem;
     border-top: 1px solid rgb(247, 247, 247);
     font-size: 12.5px;
 
@@ -57,9 +55,9 @@ footer {
 
 footer .cancelar {
     display: flex;
-    width: 150px;
     height: 39px;
     padding: 9px 27px;
+    width: 100%;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -76,13 +74,13 @@ footer .cancelar {
 footer .guardar {
     display: flex;
     font-weight: 500;
-    width: 180px;
     height: 38px;
-    padding: 10px;
+    padding: 10px 35px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    width: 100%;
     color: white;
     font-size: 12.5px;
     border-radius: 3px;
@@ -90,6 +88,7 @@ footer .guardar {
     cursor: pointer;
     outline: none;
 }
+
 
 
 .custom-slide-toggle {

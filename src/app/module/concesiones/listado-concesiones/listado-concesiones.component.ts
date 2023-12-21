@@ -27,7 +27,7 @@ export class ListadoConcesionesComponent {
     private viewportRuler: ViewportRuler,
     private fn: Funtions,
     private s_concession: ConcessionService
-    ) { }
+  ) { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -37,7 +37,7 @@ export class ListadoConcesionesComponent {
     this.list_concession();
   }
 
-  list_concession(){
+  list_concession() {
     this.fn.show_spinner();
     this.s_concession.list().subscribe(r => {
       this.fn.hiden_loading();
@@ -56,7 +56,7 @@ export class ListadoConcesionesComponent {
     );
   }
 
-  filter_state(){
+  filter_state() {
     let data_filter: any[] = this.concessions.filter(x => x.id_state.includes(this.value_state_filter));
 
     this.dataSource.data = data_filter;
@@ -68,14 +68,8 @@ export class ListadoConcesionesComponent {
 
 
   public new_concession(item: any = null) {
-    const isMobile = this.viewportRuler.getViewportSize().width < 600; // Ajusta el umbral según tus necesidades
-
     const modalConfig = {
-      width: isMobile ? '100%' : '500px',
-      height: isMobile ? '100%' : 'auto',
-      maxWidth: '100%',
-      maxHeight: '100%',
-      panelClass: isMobile ? 'mobile-dialog' : 'desktop-dialog',
+      panelClass: 'full-screen-modal',
       data: item
     };
 
@@ -88,18 +82,18 @@ export class ListadoConcesionesComponent {
     });
   }
 
-  public async change_state(id_concession: number, id_state: string){
+  public async change_state(id_concession: number, id_state: string) {
     let operation = id_state == 'A' ? 'activar' : 'desactivar';
 
     let response = await this.fn.message_question(`¿Desea ${operation} la concession?`);
-    
-    if(response){
+
+    if (response) {
       this.s_concession.change_state(id_concession, id_state).subscribe(r => {
-        if(!r.success){
+        if (!r.success) {
           this.fn.message_error(r.message);
           return;
         }
-  
+
         this.list_concession();
       });
     }
@@ -148,10 +142,10 @@ export class ListadoConcesionesComponent {
   public async delete(id_concession: number) {
     const response = await this.fn.message_question('¿Desea eliminar la concesion?');
 
-    if(!response) return;
+    if (!response) return;
 
     this.s_concession.delete(id_concession).subscribe(r => {
-      if(!r.success){
+      if (!r.success) {
         this.fn.message_error(r.message);
         return;
       }
