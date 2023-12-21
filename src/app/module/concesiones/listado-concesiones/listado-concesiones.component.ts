@@ -85,7 +85,7 @@ export class ListadoConcesionesComponent {
   public async change_state(id_concession: number, id_state: string) {
     let operation = id_state == 'A' ? 'activar' : 'desactivar';
 
-    let response = await this.fn.message_question(`¿Desea ${operation} la concession?`);
+    let response = await this.fn.message_question(`¿Desea ${operation} la concesión?`);
 
     if (response) {
       this.s_concession.change_state(id_concession, id_state).subscribe(r => {
