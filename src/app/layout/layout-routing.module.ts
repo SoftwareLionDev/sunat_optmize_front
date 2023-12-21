@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'concesiones', component: ListadoConcesionesComponent, data: { displayName: 'Concesiones' } },
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'bienvenido',
         pathMatch: 'full'
       }
     ],

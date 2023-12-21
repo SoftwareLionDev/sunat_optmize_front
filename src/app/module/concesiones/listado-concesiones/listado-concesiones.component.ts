@@ -102,14 +102,8 @@ export class ListadoConcesionesComponent {
   public HistorialCambios(id_concession: number) {
     console.log(id_concession);
 
-    const isMobiles = this.viewportRuler.getViewportSize().width < 600; // Ajusta el umbral según tus necesidades
-
     const modalConfig = {
-      width: isMobiles ? '100%' : '1000px',
-      height: isMobiles ? '100%' : 'auto',
-      maxWidth: '100%',
-      maxHeight: '100%',
-      panelClass: isMobiles ? 'mobile-dialog' : 'desktop-dialog-historial',
+      panelClass: 'full-screen-modal-historial',
       data: id_concession
     };
 
@@ -140,7 +134,7 @@ export class ListadoConcesionesComponent {
 
 
   public async delete(id_concession: number) {
-    const response = await this.fn.message_question('¿Desea eliminar la concesion?');
+    const response = await this.fn.message_question('¿Desea eliminar la concesión?');
 
     if (!response) return;
 
