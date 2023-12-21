@@ -36,6 +36,12 @@ export class ConcessionService {
     return this.http.get<ResponseApi>(url, { headers: this._headers });
   }
 
+  list_log(id_concession: number): Observable<ResponseApi> {
+    const url = AppConfig.url_api + `/concession/log/${id_concession}`;
+
+    return this.http.get<ResponseApi>(url, { headers: this._headers });
+  }
+
   change_state(id_concession: number, id_state: string): Observable<ResponseApi>{
     const url = AppConfig.url_api + `/concession/change-state`;
 

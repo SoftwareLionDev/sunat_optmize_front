@@ -86,6 +86,8 @@ export class Funtions {
     }
 
     convert_date(value_date: any, format = 'dd/mm/yyyy') {
+        if(!value_date) return "";
+        
         const es_Date = value_date instanceof Date;
 
         // Si es un string (2023-01-05) y no tiene una T, y no es una fecha

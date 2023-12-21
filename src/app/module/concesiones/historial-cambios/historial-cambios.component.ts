@@ -1,8 +1,10 @@
 import { ViewportRuler } from '@angular/cdk/scrolling';
-import { Component, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, Optional, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConcessionService } from 'src/app/services/concession.service';
+import { Funtions } from 'src/app/src/funtions';
 
 @Component({
   selector: 'app-historial-cambios',
@@ -10,48 +12,49 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./historial-cambios.component.css']
 })
 export class HistorialCambiosComponent {
-  public displayedColumns: string[] = ['usuario', 'estado', 'fecha', 'departamento', 'codigo', 'proveedor', 'P', '3', 'personal'];
-  public dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  public displayedColumns: string[] = ['usuario', 'estado', 'fecha', 'departamento', 'codigo', 'proveedor', 'zone', 'nro_proveedores', 'personal'];
+  public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() { }
+  public history: any[] = [];
+
+  constructor(
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    private s_concession: ConcessionService,
+    public fn: Funtions
+  ) { }
+
+  ngOnInit(){
+    this.s_concession.list_log(this.data).subscribe(r => {
+      this.history = r.result;
+      this.dataSource.data = this.history;
+    });
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  search(event: Event) {
+    let filterValue = (event.target as HTMLInputElement).value;
+    filterValue = filterValue.trim().toLowerCase();
+
+    if (window.innerWidth <= 767) {
+
+      this.dataSource.data = this.history;
+
+      this.dataSource.data = this.dataSource.data.filter(item => {
+        for (const key in item) {
+          if (item[key] && item[key].toString().toLowerCase().includes(filterValue)) {
+            return true; // Si alguna propiedad contiene el valor, se incluye en el resultado
+          }
+        }
+        return false; // Si ninguna propiedad contiene el valor, se excluye del resultado
+      });
+    }
+    else {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+  }
 }
-
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Factura Electronica', weight: 1.0079, symbol: 'El codigo de Local anexo  Consignado no se encuentra ' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 1, name: 'Factura Electronica', weight: 1.0079, symbol: 'El codigo de Local anexo  Consignado no se encuentra ' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'El codigo de Local anexo  Consignado no se encuentra' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-
-];
-
-
 

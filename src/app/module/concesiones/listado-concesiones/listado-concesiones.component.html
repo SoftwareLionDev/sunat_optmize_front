@@ -77,6 +77,12 @@
                     </td>
                 </ng-container>
 
+                <ng-container matColumnDef="mail">
+                    <th mat-header-cell *matHeaderCellDef>Correo</th>
+                    <td mat-cell *matCellDef="let element">{{element.mail}}
+                    </td>
+                </ng-container>
+
 
                 <ng-container matColumnDef="MontoRecarga">
                     <th mat-header-cell *matHeaderCellDef class="tc">Acciones</th>
@@ -88,7 +94,7 @@
                             <button (click)="delete(element.id_concession)" type="button" class="key delete">
                                 <img src="assets/delte.svg" alt="img">
                             </button>
-                            <button (click)="HistorialCambios()" type="button" class="key historial">
+                            <button (click)="HistorialCambios(element.id_concession)" type="button" class="key historial">
                                 <i class='bx bx-history'></i>
                             </button>
                         </div>
@@ -156,7 +162,7 @@
                 <img src="assets/editusuario.svg" alt="img">
                 <span>Editar Concesión</span>
             </button>
-            <button type="button" (click)="HistorialCambios()" class="mat-menu">
+            <button type="button" (click)="HistorialCambios(item.id_concession)" class="mat-menu">
                 <i class='bx bx-history'></i>
                 Historial de Cambios
             </button>

@@ -16,7 +16,7 @@ import { ConcessionService } from 'src/app/services/concession.service';
 export class ListadoConcesionesComponent {
 
 
-  public displayedColumns: string[] = ['estado', 'departamento', 'codigo', 'nombre', 'zona', 'proveedor', 'personal', 'MontoRecarga'];
+  public displayedColumns: string[] = ['estado', 'departamento', 'codigo', 'nombre', 'zona', 'proveedor', 'personal', 'mail', 'MontoRecarga'];
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   public concessions: any[] = [];
@@ -105,7 +105,9 @@ export class ListadoConcesionesComponent {
     }
   }
 
-  public HistorialCambios() {
+  public HistorialCambios(id_concession: number) {
+    console.log(id_concession);
+
     const isMobiles = this.viewportRuler.getViewportSize().width < 600; // Ajusta el umbral según tus necesidades
 
     const modalConfig = {
@@ -114,7 +116,9 @@ export class ListadoConcesionesComponent {
       maxWidth: '100%',
       maxHeight: '100%',
       panelClass: isMobiles ? 'mobile-dialog' : 'desktop-dialog-historial',
+      data: id_concession
     };
+
     this.modals.open(HistorialCambiosComponent, modalConfig);
   }
 

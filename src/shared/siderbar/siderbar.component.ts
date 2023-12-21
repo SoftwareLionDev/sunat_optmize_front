@@ -31,6 +31,7 @@ export class SiderbarComponent {
   public contentMargin: number = 240;
   public isFullScreenOpen = false;
   public session_ls: any = undefined;
+  public menu: NavItem[] = [];
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -51,6 +52,32 @@ export class SiderbarComponent {
     if (!this.session_ls) {
       this.router.navigate(['/']);
       return;
+    }
+
+    this.menu.push({
+      displayName: 'Panel de Inicio',
+      iconName: ' <i class="bx bx-home"></i> ',
+      route: '/dashboard/bienvenido',
+    }, {
+      displayName: 'Reporte GRE',
+      iconName: '<i class="bx bx-server" ></i>',
+      route: '/dashboard/dashboard',
+    });
+
+    if(this.session_ls.role_name.toUpperCase() == "ADMINISTRADOR"){
+      this.menu.push({
+        displayName: 'Usuarios',
+        iconName: '<i class="bx bx-user"></i>',
+        route: '/dashboard/usuarios',
+      });
+    }
+
+    if(this.session_ls.role_name.toUpperCase() == "ADMINISTRADOR" || this.session_ls.role_name.toUpperCase() == "SUPERVISOR"){
+      this.menu.push({
+        displayName: 'Concesiones',
+        iconName: '<i class="bx bx-map-pin"></i>',
+        route: '/dashboard/concesiones',
+      })
     }
   }
 
@@ -84,28 +111,7 @@ export class SiderbarComponent {
     this.selectedItem = item;
   }
 
-  menu: NavItem[] = [
-    {
-      displayName: 'Panel de Inicio',
-      iconName: ' <i class="bx bx-home"></i> ',
-      route: '/dashboard/bienvenido',
-    },
-    {
-      displayName: 'Reporte GRE',
-      iconName: '<i class="bx bx-server" ></i>',
-      route: '/dashboard/dashboard',
-    },
-    {
-      displayName: 'Usuarios',
-      iconName: '<i class="bx bx-user"></i>',
-      route: '/dashboard/usuarios',
-    },
-    {
-      displayName: 'Concesiones',
-      iconName: '<i class="bx bx-map-pin"></i>',
-      route: '/dashboard/concesiones',
-    },
-  ];
+  
 }
 
 
