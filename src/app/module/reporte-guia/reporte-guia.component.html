@@ -252,9 +252,16 @@
                 </ng-container>
 
                 <ng-container matColumnDef="code_concession">
-                    <th mat-header-cell *matHeaderCellDef>Concesion</th>
+                    <th mat-header-cell *matHeaderCellDef>Cod. Concesion</th>
                     <td mat-cell *matCellDef="let element">
                         {{ element.code_concession }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name_concession">
+                    <th mat-header-cell *matHeaderCellDef>Concesion</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.name_concession }}
                     </td>
                 </ng-container>
 

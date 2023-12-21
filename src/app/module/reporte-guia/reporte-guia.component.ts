@@ -20,7 +20,7 @@ export class ReporteGuiaComponent {
   year: number = new Date().getFullYear();
 
   anulado = false;
-  public displayedColumnsOptimize: string[] = ['date', 'type', 'Numeration', 'dateTime', 'Transmitter', 'BusinessName', 'status', 'user_notified', 'code_concession', 'date_notified', 'see', 'options'];
+  public displayedColumnsOptimize: string[] = ['date', 'type', 'Numeration', 'dateTime', 'Transmitter', 'BusinessName', 'status', 'user_notified', 'code_concession', 'name_concession', 'date_notified', 'see', 'options'];
   public dataSourceOptimizeAll = new MatTableDataSource<any>([]);
   public dataSourceOptimize = new MatTableDataSource<any>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -5,18 +5,17 @@ import { ListadoUsuariosComponent } from '../module/usuarios/listado-usuarios/li
 import { BienvenidoComponent } from '../module/bienvenido/bienvenido.component';
 import { ReporteGuiaComponent } from '../module/reporte-guia/reporte-guia.component';
 import { ListadoConcesionesComponent } from '../module/concesiones/listado-concesiones/listado-concesiones.component';
+import { authGuard } from '../auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      {
-        path: 'bienvenido', component: BienvenidoComponent, data: { displayName: 'Panel de Inicio' }
-      },
+      { path: 'bienvenido', component: BienvenidoComponent, data: { displayName: 'Panel de Inicio' } },
       { path: 'dashboard', component: ReporteGuiaComponent, data: { displayName: 'Reporte (Guias)' } },
-      { path: 'usuarios', component: ListadoUsuariosComponent, data: { displayName: 'Usuarios' } },
-      { path: 'concesiones', component: ListadoConcesionesComponent, data: { displayName: 'Concesiones' } },
+      { path: 'usuarios', component: ListadoUsuariosComponent, canActivate: [authGuard], data: { displayName: 'Usuarios' } },
+      { path: 'concesiones', component: ListadoConcesionesComponent, canActivate: [authGuard], data: { displayName: 'Concesiones' } },
       {
         path: '',
         redirectTo: 'dashboard',

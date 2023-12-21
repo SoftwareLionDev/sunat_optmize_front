@@ -38,9 +38,12 @@ export class SiderbarComponent {
     public modals: MatDialog,
     private s_user: UserService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: Router,
     private http: HttpClient
-  ) { }
+  ) { 
+    console.log('gola cons');
+  }
+  
   async ngOnInit() {
     let r_config = await this.http.get('assets/config.json').toPromise();
     let config = r_config as { apiUrl: string };
@@ -53,6 +56,8 @@ export class SiderbarComponent {
       this.router.navigate(['/']);
       return;
     }
+
+    console.log(this.route.url);
 
     this.menu.push({
       displayName: 'Panel de Inicio',
@@ -78,6 +83,10 @@ export class SiderbarComponent {
         iconName: '<i class="bx bx-map-pin"></i>',
         route: '/dashboard/concesiones',
       })
+    }
+
+    if(this.session_ls.role_name.toUpperCase() != "ADMINISTRADOR" && this.route.url == '/dashboard/usuarios'){
+      this.route.navigate(['/dashboard/dashboard']);
     }
   }
 
