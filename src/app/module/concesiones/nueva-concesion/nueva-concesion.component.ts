@@ -24,10 +24,10 @@ export class NuevaConcesionComponent {
     private s_concession: ConcessionService,
     private dialog: MatDialogRef<null>,
     @Optional() @Inject(MAT_DIALOG_DATA) public body: any,
-  ){
+  ) {
     this.create_form();
 
-    if(body){
+    if (body) {
       this.load_concession();
     }
   }
@@ -44,7 +44,7 @@ export class NuevaConcesionComponent {
       (component_Control.hasError('required') || component_Control.hasError('invalidEmail'));
   }
 
-  load_concession(){
+  load_concession() {
     this.form_concession.patchValue({
       id_concession: this.body.id_concession,
       id_department: this.body.id_department,
@@ -56,18 +56,18 @@ export class NuevaConcesionComponent {
     });
   }
 
-  save_concession(){
+  save_concession() {
     this.fn.empty_form(this.form_concession);
     if (this.form_concession.invalid) return;
     this.fn.show_spinner();
-   
+
     const update = !this.body ? false : true;
     this.s_concession.save(this.form_concession.value, update).subscribe(r => {
       this.fn.hiden_loading();
       if (!r.success) {
         return this.fn.message_error(r.message);
       }
-      this.fn.message_information('Usuario Registrado Correctamente');
+      this.fn.message_information('Concesión Registrado Correctamente');
       this.dialog.close({ ok: true });
     }, (error) => {
       this.fn.hiden_loading();
@@ -75,7 +75,7 @@ export class NuevaConcesionComponent {
     });
   }
 
-  list_select(){
+  list_select() {
     this.s_department.list().subscribe(r => {
       if (r.success) {
         this.departments = r.result;
@@ -85,7 +85,7 @@ export class NuevaConcesionComponent {
     });
 
     this.s_user.list_users().subscribe(r => {
-      if(r.success){
+      if (r.success) {
         this.users = r.result.filter((x: any) => x.id_state == 'A');
       }
     })

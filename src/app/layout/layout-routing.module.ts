@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: 'concesiones', component: ListadoConcesionesComponent, canActivate: [authGuard], data: { displayName: 'Concesiones' } },
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'bienvenido',
         pathMatch: 'full'
       }
     ],

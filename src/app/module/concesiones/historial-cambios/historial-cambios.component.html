@@ -5,7 +5,7 @@
     </button>
 </header>
 
-<main style="overflow: auto; padding: 30px;">
+<main class="over-">
     <div class="form">
         <div hidden>
             <label class="text-label">Fecha Inicio</label>
@@ -32,7 +32,10 @@
         </div>
         <div class="-col-2">
             <label class="text-label">Buscador</label>
-            <input (keyup)="search($event)" type="text" class="input-" placeholder="Buscar..">
+            <div class="relative">
+                <i class='bx bx-search-alt icons'></i>
+                <input (keyup)="search($event)" type="text" class="input- pl-34" placeholder="Buscar...">
+            </div>
         </div>
 
         <div *ngIf="" class="container-search">
@@ -111,32 +114,26 @@
     </main>
     <main class="content-movil">
         <article *ngFor="let item of dataSource.data" class="card-user">
-            <div class="datos-user">
-                <div>
-                    <h3>{{ item.full_name }}</h3>
-                    <p>{{item.user_log}}</p>
-                    <h4>{{ item.code }}</h4>
-                </div>
+            <div class="datos_user">
                 <!-- modificar - desactivar - eliminar - insertar -->
-                <span class="status desactivar">{{item.operation}}</span>
+                <div style="display: flex; position: absolute; top: 10px; right: 10px;">
+                    <span class="status desactivar">{{item.operation}}</span>
+                </div>
+                <h3 class="user ">{{item.user_log}}</h3>
+                <p class="cod-name "> <strong>{{ item.code }}</strong> - {{ item.full_name }}</p>
+                <h3 class="user upercase ">{{item.name_department}}</h3>
             </div>
-            <div class="datos-user">
-                <div>
-                    <p>Fecha </p>
-                    <h3> 
-                        {{ fn.convert_date(item.date, 'dd/mm/yyyy') }}
-                        <span>{{item.date.split('T')[1].split('.')[0]}}</span>
-                    </h3>
-                </div>
-                <div>
-                    <p>Departamento</p>
-                    <h3>{{item.name_department}}</h3>
-                </div>
-                <div>
-                    <p>N° Proveedor</p>
-                    <h3>{{item.nro_supplier}}</h3>
-                </div>
+            <div class="zona-proveedor">
+                <h3><strong>Zona: </strong><span class="bg-gfe"> {{ item.zone }}</span></h3>
+                <h3> <strong>N. Proveedor = </strong> <span class="bg-gfe">{{item.nro_supplier}}</span> </h3>
             </div>
+            <h3 class="user"> <i class='bx bxs-user'></i> {{item.name}}</h3>
+            <p class="horam-fecha">
+                <span> <i class='bx bx-calendar'></i>
+                    {{ fn.convert_date(item.date, 'dd/mm/yyyy') }}</span>
+
+                <span><i class='bx bx-time-five'></i> {{item.date.split('T')[1].split('.')[0]}}</span>
+            </p>
         </article>
     </main>
 </main>

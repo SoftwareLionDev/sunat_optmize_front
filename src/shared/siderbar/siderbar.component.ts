@@ -67,9 +67,11 @@ export class SiderbarComponent {
       displayName: 'Reporte GRE',
       iconName: '<i class="bx bx-server" ></i>',
       route: '/dashboard/dashboard',
-    });
+    }
 
-    if(this.session_ls.role_name.toUpperCase() == "ADMINISTRADOR"){
+    );
+
+    if (this.session_ls.role_name.toUpperCase() == "ADMINISTRADOR") {
       this.menu.push({
         displayName: 'Usuarios',
         iconName: '<i class="bx bx-user"></i>',
@@ -77,7 +79,7 @@ export class SiderbarComponent {
       });
     }
 
-    if(this.session_ls.role_name.toUpperCase() == "ADMINISTRADOR" || this.session_ls.role_name.toUpperCase() == "SUPERVISOR"){
+    if (this.session_ls.role_name.toUpperCase() == "ADMINISTRADOR" || this.session_ls.role_name.toUpperCase() == "SUPERVISOR") {
       this.menu.push({
         displayName: 'Concesiones',
         iconName: '<i class="bx bx-map-pin"></i>',
@@ -120,7 +122,7 @@ export class SiderbarComponent {
     this.selectedItem = item;
   }
 
-  
+
 }
 
 
