@@ -13,7 +13,7 @@ export class NuevoUsuarioComponent implements OnInit {
   public formUser!: FormGroup;
   public list_role: any[] = [];
   mostrarErrores: { [key: string]: boolean } = {};
-
+  hide = true;
   constructor(
     private close: MatDialogRef<null>,
     @Optional() @Inject(MAT_DIALOG_DATA) public body: any,
@@ -23,7 +23,7 @@ export class NuevoUsuarioComponent implements OnInit {
 
   ) {
     this.CreateFormUser();
-    
+
     if (body.edit) this.Edit_users();
   }
 

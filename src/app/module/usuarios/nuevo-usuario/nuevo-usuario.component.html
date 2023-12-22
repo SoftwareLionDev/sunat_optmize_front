@@ -42,11 +42,16 @@
             </div>
         </div>
         <div>
-            <label class="text-label" title="required">Contraseña</label>
+            <label class="text-label" title="required" id="texto-secreto">Contraseña</label>
             <div class="relative">
                 <i class='bx bx-lock icons'></i>
-                <input type="text" formControlName="password" class="input-"
+                <input formControlName="password" class="input- fz-3" [type]="hide ? 'password' : 'text'"
                     [ngClass]="{'error': check_field('password')}" placeholder="Ingrese Contraseña">
+                <button (click)="hide = !hide" matSuffix class="hidde-passw" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon style="font-size: 22px;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+
             </div>
         </div>
         <div>

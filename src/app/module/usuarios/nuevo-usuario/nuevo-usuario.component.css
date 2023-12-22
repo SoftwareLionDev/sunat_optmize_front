@@ -8,7 +8,31 @@ main {
     padding: 30px;
 }
 
+.hidde-passw {
+    position: absolute;
+    right: 24px;
+    width: 10px !important;
+    height: 10px !important;
+    top: 10px;
+    color: #595959;
+    font-size: 11px;
+}
+#texto-secreto {
+    color: transparent;
+    background: linear-gradient(90deg, black 50%, transparent 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 2px 100%;
+  }
+  
 
+.fz-3 {
+    font-size: 16px !important;
+}
+
+.fz-3::placeholder {
+    font-size: 13px !important;
+}
 
 .input- {
     padding: 0.5rem 0.5rem 0.5rem 40px;
