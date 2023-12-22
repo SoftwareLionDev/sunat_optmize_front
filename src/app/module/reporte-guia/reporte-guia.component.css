@@ -110,7 +110,10 @@ article .btn-excel:hover {
     width: 100%;
     border: 1px solid #DBDFE9;
     outline: none;
-    padding: 1.1rem 1.1rem 1.1rem 2.5rem;
+    /* padding: 1.1rem 1.1rem 1.1rem 2.5rem; */
+    /* padding: 10px 1.1rem 1.1rem 2.5rem; */
+    padding-left: 40px;
+    padding-right: 10px;
     height: 39px;
     font-size: 13px;
     border-radius: 6px;

@@ -95,6 +95,12 @@ export class Funtions {
             value_date = value_date + 'T00:00:00';
         }
 
+        
+
+        if(!es_Date && value_date.includes('Z')){
+            value_date = value_date.split('.')[0];
+        }
+
         let date = es_Date ? value_date : new Date(value_date.replace('.000Z', ''));
 
         // Obtenemos el día, mes y año por separado
