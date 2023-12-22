@@ -18,6 +18,21 @@
     font-weight: 600;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #232837;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    margin: 0 auto;
+    font-size: 14px;
+    font-weight: 600;
+}
 
 .logo {
     color: white;

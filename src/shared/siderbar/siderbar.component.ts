@@ -23,6 +23,7 @@ export interface NavItem {
   styleUrls: ['./siderbar.component.css']
 })
 export class SiderbarComponent {
+  year: number = new Date().getFullYear();
   selectedItem: string = 'PANEL DE INICIO';
   public menutoogle?: boolean;
   public mobile?: boolean;
@@ -40,10 +41,10 @@ export class SiderbarComponent {
     private router: Router,
     private route: Router,
     private http: HttpClient
-  ) { 
+  ) {
     console.log('gola cons');
   }
-  
+
   async ngOnInit() {
     let r_config = await this.http.get('assets/config.json').toPromise();
     let config = r_config as { apiUrl: string };
@@ -87,7 +88,7 @@ export class SiderbarComponent {
       })
     }
 
-    if(this.session_ls.role_name.toUpperCase() != "ADMINISTRADOR" && this.route.url == '/dashboard/usuarios'){
+    if (this.session_ls.role_name.toUpperCase() != "ADMINISTRADOR" && this.route.url == '/dashboard/usuarios') {
       this.route.navigate(['/dashboard/dashboard']);
     }
   }

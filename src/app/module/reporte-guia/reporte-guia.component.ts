@@ -17,7 +17,7 @@ import { AppConfig } from '../../config';
   styleUrls: ['./reporte-guia.component.css']
 })
 export class ReporteGuiaComponent {
-  year: number = new Date().getFullYear();
+
 
   anulado = false;
   public displayedColumnsOptimize: string[] = ['date', 'type', 'Numeration', 'dateTime', 'Transmitter', 'BusinessName', 'status', 'user_notified', 'code_concession', 'name_concession', 'date_notified', 'see', 'options'];
