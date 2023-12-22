@@ -35,6 +35,11 @@ export class ListadoUsuariosComponent {
     this.list_User();
   }
 
+  ocultarTexto(texto: string): string {
+    return '*'.repeat(texto.length);
+  }
+
+
   search(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
 

@@ -8,7 +8,25 @@ main {
     padding: 30px;
 }
 
+.hidde-passw {
+    position: absolute;
+    right: 24px;
+    width: 10px !important;
+    height: 10px !important;
+    top: 10px;
+    color: #595959;
+    font-size: 11px;
+}
 
+
+
+.fz-3 {
+    font-size: 16px !important;
+}
+
+.fz-3::placeholder {
+    font-size: 13px !important;
+}
 
 .input- {
     padding: 0.5rem 0.5rem 0.5rem 40px;
