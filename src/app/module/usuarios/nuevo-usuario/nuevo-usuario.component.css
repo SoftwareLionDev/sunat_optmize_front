@@ -17,14 +17,8 @@ main {
     color: #595959;
     font-size: 11px;
 }
-#texto-secreto {
-    color: transparent;
-    background: linear-gradient(90deg, black 50%, transparent 50%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    background-size: 2px 100%;
-  }
-  
+
+
 
 .fz-3 {
     font-size: 16px !important;
