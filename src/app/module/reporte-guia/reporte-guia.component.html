@@ -188,7 +188,7 @@
             </mat-menu>
             <!-- El overlay -->
             <div class="overlay" *ngIf="anulado" (click)="closeModalAnulado()"></div>
-            <span>18/09/2023 18:00:31</span>
+            <span style="font-size: 14px;"> {{ date_time_format(item.fecPublica) }}</span>
         </div>
     </section>
 
