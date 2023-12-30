@@ -1019,7 +1019,20 @@ small {
         background-color: var(--mat-select-panel-background-color);
     }
 
-
+    .btn-excel {
+        background-color: var(--color-main);
+        padding: 0.5rem 1.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: var(--white);
+        cursor: pointer;
+        border-radius: 6px;
+        outline: none;
+        height: 40px;
+        transition: background-color 0.3s, color 0.3s;
+    }
 }
 
 @media (min-width: 968px) {
@@ -1056,4 +1069,28 @@ small {
     .container_ {
         padding: 35px;
     }
+}
+
+
+.btn-excel {
+    background-color: #1F9B61;
+    padding: 0.5rem 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 6px;
+    height: 43px;
+    outline: none;
+    transition: background-color 0.3s, color 0.3s;
+    width: 180px;
+}
+
+.btn-excel:hover {
+    background-color: #137f4c;
+    color: ghostwhite;
 }

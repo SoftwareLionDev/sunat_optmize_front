@@ -54,7 +54,7 @@ export class ReporteGuiaComponent {
     document.getElementById('search')?.click();
   }
 
-  public msg_content(code_message: string, url: string) {
+  msg_content(code_message: string, url: string) {
     this.modals.open(AlertComponent, {
       width: '560px',
       data: {

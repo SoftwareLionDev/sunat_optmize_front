@@ -23,26 +23,26 @@ export class AlertComponent {
   ngOnInit() {
     this.fn.show_spinner();
 
-    // this.s_message.get_content(this.data.code_message, this.data.url).subscribe(r => {
-    //   this.fn.hiden_loading();
+    this.s_message.get_content(this.data.code_message, this.data.url).subscribe(r => {
+      this.fn.hiden_loading();
 
-    //   if(!r.success){
-    //     this.fn.message_error(r.message);
-    //     return;
-    //   }
+      if(!r.success){
+        this.fn.message_error(r.message);
+        return;
+      }
 
 
-    //   let e = document.getElementById('v-content');
+      let e = document.getElementById('v-content');
 
-    //   if(e){
-    //     e.innerHTML = r.result.content_message;
-    //   }
+      if(e){
+        e.innerHTML = r.result.content_message;
+      }
 
-    //   this.content_message = r.result.content_message;
-    //   console.log(this.content_message);
-    // }, (error) => {
-    //   this.fn.hiden_loading();
-    //   this.fn.message_error(error.message);
-    // } );
+      this.content_message = r.result.content_message;
+      console.log(this.content_message);
+    }, (error) => {
+      this.fn.hiden_loading();
+      this.fn.message_error(error.message);
+    } );
   }
 }

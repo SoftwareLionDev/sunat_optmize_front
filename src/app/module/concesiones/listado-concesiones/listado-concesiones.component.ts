@@ -66,6 +66,11 @@ export class ListadoConcesionesComponent {
     }
   }
 
+  exportar_excel() {
+    const data = this.dataSource.data;
+
+    this.fn.exporto_to_excel(data);
+  }
 
   public new_concession(item: any = null) {
     const modalConfig = {
