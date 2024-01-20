@@ -71,6 +71,8 @@ export class ReporteGuiaComponent {
     for (let index = 0; index < data.length; index++) {
       const element = data[index];
 
+      const hours_notified = element.date_notified.split('T')[1].split('.')[0];
+
       data_excel.push({
         fecha_mensaje: element.fecPublica,
         tipo_gre: element.type_gre,
@@ -80,9 +82,14 @@ export class ReporteGuiaComponent {
         razon_social: element.business_name,
         estado: element.description_code,
         baja_descripcion: element.sub_status,
-        fecha_baja: element.date_low
+        fecha_baja: element.date_low,
+        usuario_notificado: element.user_notified,
+        codigo_concesion: element.code_concession,
+        concesion: element.name_concession,
+        fecha_notificada: element.date_notified.split('T')[0] +" "+hours_notified
       });
     }
+
     this.fn.exporto_to_excel(data_excel);
   }
 
