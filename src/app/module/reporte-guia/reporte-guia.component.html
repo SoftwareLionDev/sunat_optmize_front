@@ -81,7 +81,7 @@
 
         <!-- Menu de opciones para descargar -->
         <mat-menu #menu="matMenu">
-            <button type="button" class="mat-menu">
+            <button type="button" class="mat-menu" (click)="msg_content(item.code_message, item.url_content, item)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                     <g fill="none" stroke="#017df8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M12 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5.5M19 22v-6m3 3l-3-3l-3 3" />
@@ -334,8 +334,8 @@
                     <th mat-header-cell *matHeaderCellDef class="tc">Acciones</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="flex-button-accion">
-                            <!-- email -->
-                            <button (click)="msg_content(element.code_message, element.url_content)" type="button">
+                            <!-- content -->
+                            <button (click)="msg_content(element.code_message, element.url_content, element)" type="button">
                                 <div style="width: 50px;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                         <g fill="none" stroke="currentColor" stroke-linecap="round"

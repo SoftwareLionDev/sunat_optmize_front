@@ -21,6 +21,14 @@ export class AlertComponent {
   }
 
   ngOnInit() {
+    let guide = this.data.guide;
+
+    if(guide.code_gre == '31' && guide.status_code == '01'){
+      this.content_message = `La G.R.E del Transportista ${guide.numeration} fue extraído desde la consulta masiva de GR de SUNAT cuya fecha de emisión corresponde a ${this.date_format(guide.datetime_issue)}`;
+      return;
+    }
+    
+
     this.fn.show_spinner();
 
     this.s_message.get_content(this.data.code_message, this.data.url).subscribe(r => {
@@ -44,5 +52,13 @@ export class AlertComponent {
       this.fn.hiden_loading();
       this.fn.message_error(error.message);
     } );
+  }
+
+  date_format(date_db: string) {
+    date_db = date_db.replace('.000Z', '');
+
+    const date = new Date(date_db);
+
+    return date.toLocaleString('es-PE').replace(',', '');
   }
 }

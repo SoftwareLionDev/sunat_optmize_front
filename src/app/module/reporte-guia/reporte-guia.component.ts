@@ -54,12 +54,13 @@ export class ReporteGuiaComponent {
     document.getElementById('search')?.click();
   }
 
-  msg_content(code_message: string, url: string) {
+  msg_content(code_message: string, url: string, guide: any) {
     this.modals.open(AlertComponent, {
       width: '560px',
       data: {
         code_message,
-        url
+        url,
+        guide
       }
     })
   }
