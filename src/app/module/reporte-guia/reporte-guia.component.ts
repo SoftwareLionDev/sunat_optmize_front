@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,17 +10,18 @@ import { GuideService } from '../../services/guide.service';
 import { Funtions } from '../../src/funtions';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../../config';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-reporte-guia',
   templateUrl: './reporte-guia.component.html',
-  styleUrls: ['./reporte-guia.component.css']
+  styleUrls: ['./reporte-guia.component.scss']
 })
 export class ReporteGuiaComponent {
 
 
   anulado = false;
-  public displayedColumnsOptimize: string[] = ['date', 'type', 'Numeration', 'dateTime', 'Transmitter', 'BusinessName', 'status', 'user_notified', 'code_concession', 'name_concession', 'date_notified', 'see', 'options'];
+  public displayedColumnsOptimize: string[] = ['visto', 'dateTime', 'type', 'Numeration', 'Transmitter', 'BusinessName', 'status', 'user_notified', 'code_concession', 'name_concession', 'date_notified', 'usuario_confirmado', 'fecha_confirmacion', 'see', 'options'];
   public dataSourceOptimizeAll = new MatTableDataSource<any>([]);
   public dataSourceOptimize = new MatTableDataSource<any>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -34,7 +35,8 @@ export class ReporteGuiaComponent {
     private router: Router,
     private s_guide: GuideService,
     public fn: Funtions,
-    private http: HttpClient
+    private http: HttpClient,
+    private s_mensaje: MessageService
   ) {
     const date = new Date();
     this.current_date = this.fn.convert_date(date, 'yyyy-mm-dd');
@@ -72,10 +74,18 @@ export class ReporteGuiaComponent {
     for (let index = 0; index < data.length; index++) {
       const element = data[index];
 
-      const hours_notified = element.date_notified.split('T')[1].split('.')[0];
+      console.log(element.date_notified);
+
+      let hours_notified = '';
+      let fecha_notificada = '';
+
+      if(element.date_notified){
+        fecha_notificada = element.date_notified.split('T')[0];
+        hours_notified = element.date_notified.split('T')[1].split('.')[0];
+      }
 
       data_excel.push({
-        fecha_mensaje: element.fecPublica,
+        confirmado: element.id_user_confirmacion ? 'SI': 'NO',
         tipo_gre: element.type_gre,
         numeracion: element.numeration,
         fecha_emision: element.datetime_issue.replace('.000Z', '').replace('T', ' '),
@@ -87,14 +97,19 @@ export class ReporteGuiaComponent {
         usuario_notificado: element.user_notified,
         codigo_concesion: element.code_concession,
         concesion: element.name_concession,
-        fecha_notificada: element.date_notified.split('T')[0] +" "+hours_notified
+        fecha_notificada: fecha_notificada +" "+hours_notified,
+        fecha_confirmada: element.fecha_confirmacion,
+        usuario_confirmado: element.usuario_confirmado
       });
     }
 
     this.fn.exporto_to_excel(data_excel);
   }
 
-  btn_search(start_date: string, end_date: string, type_guide: string, summary: boolean, filter_value: string) {
+  public v_start_date: string = ''; v_end_date: string = ''; v_type_guide: string = ''; v_summary: boolean = false; v_filter_value: string = ''; v_confirmadas: string = '';
+
+  btn_search(start_date: string, end_date: string, type_guide: string, summary: boolean, filter_value: string, confirmadas: string) {
+    this.v_start_date = start_date; this.v_end_date = end_date; this.v_type_guide = type_guide; this.v_summary = summary; this.v_filter_value = filter_value; this.v_confirmadas = confirmadas;
     // this.dataSourceOptimize = new MatTableDataSource<any>(ELEMENT_DATA);
     // this.dataSourceOptimize.paginator = this.paginator;
     // return;
@@ -102,7 +117,7 @@ export class ReporteGuiaComponent {
 
     this.fn.show_spinner();
 
-    this.s_guide.list(this.fn.date_db(start_date), this.fn.date_db(end_date), type_guide, summary).subscribe(r => {
+    this.s_guide.list(this.fn.date_db(start_date), this.fn.date_db(end_date), type_guide, summary, confirmadas).subscribe(r => {
       this.fn.hiden_loading();
 
       if (!r.success) {
@@ -206,6 +221,18 @@ export class ReporteGuiaComponent {
     }
   }
 
+  @ViewChild('modal_confirmacion') modal_confirmacion!: TemplateRef<any>;
+  public codigo_mensaje_confirmar: string = '';
+
+  btn_confirmar(code_message: string, id_user_confirmacion: any){
+    if(id_user_confirmacion) return;
+
+    this.codigo_mensaje_confirmar = code_message;
+
+    this.modals.open(this.modal_confirmacion, {
+      width: '400px'
+    })
+  }
 
   date_format(date_db: string) {
     date_db = date_db.replace('.000Z', '');
@@ -225,6 +252,27 @@ export class ReporteGuiaComponent {
     return date_return + ' ' + a_date_time[1];
   }
 
+  btn_aceptar_confirmar(confirmado: any){
+    if(!confirmado) return;
+
+    this.fn.show_spinner();
+
+    this.s_mensaje.confirmar(this.codigo_mensaje_confirmar).subscribe(r => {
+      this.fn.hiden_loading();
+      
+      if(!r.success){
+        return this.fn.message_error(r.message);
+      }
+
+      this.modals.closeAll();
+      this.fn.message_information('Confirmación registrada');
+      
+      this.btn_search(this.v_start_date, this.v_end_date, this.v_type_guide, this.v_summary, this.v_filter_value, this.v_confirmadas);
+    }, (error) => {
+      this.fn.hiden_loading();
+      this.fn.message_error(error.message);
+    });    
+  }
 
 
   openModalAnulado() {

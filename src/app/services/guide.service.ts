@@ -15,9 +15,9 @@ export class GuideService {
     private s_user: UserService
   ) { }
 
-  list(start_date: string, end_date: string, type_guide: string, summary: boolean): Observable<ResponseApi> {
+  list(start_date: string, end_date: string, type_guide: string, summary: boolean, confirmadas: string): Observable<ResponseApi> {
     let session_ls = this.s_user.session_ls();
-    const url = AppConfig.url_api + `/guide?start_date=${start_date}&end_date=${end_date}&type_guide=${type_guide}&ruc=${session_ls.ruc}&summary=${summary}`;
+    const url = AppConfig.url_api + `/guide?start_date=${start_date}&end_date=${end_date}&type_guide=${type_guide}&ruc=${session_ls.ruc}&summary=${summary}&confirmadas=${confirmadas}`;
 
     const _headers = {
       'Authorization': 'Bearer ' + session_ls.token

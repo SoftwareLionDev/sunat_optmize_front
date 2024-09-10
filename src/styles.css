@@ -934,6 +934,21 @@ small {
     font-size: 11.5px;
 }
 
+
+.btn-primary {
+    display: flex;
+    padding: 9px 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    height: 40px;
+    color: white;
+    background: var(--color-main);
+    cursor: pointer;
+}
+
 .btn-search {
     display: flex;
     padding: 9px 20px;
@@ -1093,4 +1108,14 @@ small {
 .btn-excel:hover {
     background-color: #137f4c;
     color: ghostwhite;
+}
+
+
+.pointer{
+    cursor: pointer;
+}
+
+
+.w-100{
+    width: 100%;
 }

@@ -14,6 +14,7 @@ import { NuevaConcesionComponent } from './concesiones/nueva-concesion/nueva-con
 import { HistorialCambiosComponent } from './concesiones/historial-cambios/historial-cambios.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { BusquedaCampoPipe } from '../pipe/busqueda-campo.pipe';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BusquedaCampoPipe } from '../pipe/busqueda-campo.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    CommonModule
   ]
 })
 export class ModuleModule { }

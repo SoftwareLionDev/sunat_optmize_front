@@ -461,7 +461,7 @@ hr {
     .form-content .form {
         width: 70%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 90px 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 90px 1fr;
         flex-direction: row;
         align-items: center;
     }
@@ -666,4 +666,32 @@ hr {
 .not-pdf:hover {
     background: transparent !important;
     background: none !important;
+}
+
+
+.c-modal-confirmacion{
+    .titulo{
+        color: #3c3c3c;
+        border-bottom: 0.5px solid #80808054;
+        padding: 10px;
+        font-weight: 500;
+    }
+
+    .cuerpo{
+        padding: 10px;
+    }
+}
+
+.success{
+    color: rgb(0, 219, 0);
+    font-weight: bold;
+}
+
+.no-visto{
+    color: #a8a8a8;
+}
+
+.deshabilitado{
+    background: rgb(177, 177, 177);
+    cursor: none;
 }

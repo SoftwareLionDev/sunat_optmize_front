@@ -5,6 +5,17 @@
     <article class="form-content">
         <div class="form">
             <div>
+                <label class="text-label">Confirmadas</label>
+                <div class="relative">
+                    <mat-select type="text" class="input-" placeholder="seleccionar" #confirmadas value="">
+                        <mat-option value="">Todos</mat-option>
+                        <mat-option value="SI">Confirmadas</mat-option>
+                        <mat-option value="NO">Pendientes</mat-option>
+                    </mat-select>
+                </div>
+            </div>
+
+            <div>
                 <label class="text-label">Tipo de Guia</label>
                 <div class="relative">
                     <mat-select type="text" class="input-" placeholder="seleccionar" #type_guide value="">
@@ -48,7 +59,7 @@
 
             <div class="container-search">
                 <button class="search" id="search"
-                    (click)="btn_search(start_date.value, end_date.value, type_guide.value, summary.checked, filter_value.value)">
+                    (click)="btn_search(start_date.value, end_date.value, type_guide.value, summary.checked, filter_value.value, confirmadas.value)">
                     <i class='bx bx-search'></i>
                     Buscar
                 </button>
@@ -74,7 +85,10 @@
 
     <!-- versión Movil -->
     <section class="content-movil" *ngFor="let item of dataSourceOptimize.data">
-        <h3>{{ item.type_gre }}: {{ item.numeration }}</h3>
+        <h3 style="display: flex; align-items: center; gap: 5px;">
+            <mat-icon class="pointer" [ngClass]="{'success': item.id_user_confirmacion, 'no-visto': !item.id_user_confirmacion}" (click)="btn_confirmar(item.code_message, item.id_user_confirmacion)">done_all</mat-icon>
+            {{ item.type_gre }}: {{ item.numeration }}
+        </h3>
         <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 2px; top: 2px;">
             <mat-icon>more_vert</mat-icon>
         </button>
@@ -112,10 +126,16 @@
                 </svg>
                 <span>Descargar XML</span>
             </button>
+
+            <button type="button" class="mat-menu" (click)="btn_confirmar(item.code_message, item.id_user_confirmacion)">
+                <mat-icon class="pointer" [ngClass]="{'success': item.id_user_confirmacion, 'no-visto': !item.id_user_confirmacion}">done_all</mat-icon>
+                <span>Confirmar</span>
+            </button>
         </mat-menu>
 
         <p> {{ item.ruc_issuer }} - <strong> {{item.business_name}} </strong></p>
         <p><strong>EMISIÓN:</strong> {{date_format(item.datetime_issue) }} </p>
+        
         <p class="flex-codcens">
             <span>
                 <strong>Cod. Concesion: </strong>
@@ -131,6 +151,7 @@
             </span>
             <ng-template #showDash> -- </ng-template>
         </p>
+
         <p>
             <strong style="text-transform: uppercase;">Usuario Ntf: </strong>
             <ng-container *ngIf="item.user_notified; else showDash">
@@ -142,6 +163,19 @@
             <ng-container *ngIf="item.date_notified; else showDash">
                 {{ fn.convert_date(item.date_notified, 'dd/mm/yyyy') }}
                 <span>{{ item.date_notified ? item.date_notified.split('T')[1].split('.')[0] : ''}}</span>
+            </ng-container>
+        </p>
+
+        <p>
+            <strong style="text-transform: uppercase;">Usuario Cfm: </strong>
+            <ng-container *ngIf="item.usuario_confirmado; else showDash">
+                {{ item.usuario_confirmado }}
+            </ng-container>
+        </p>
+        <p>
+            <strong style="text-transform: uppercase;">Fecha Cfm: </strong>
+            <ng-container *ngIf="item.fecha_confirmacion; else showDash">
+                {{ item.fecha_confirmacion }}
             </ng-container>
         </p>
         <ng-template #showDash> -- </ng-template>
@@ -188,7 +222,7 @@
             </mat-menu>
             <!-- El overlay -->
             <div class="overlay" *ngIf="anulado" (click)="closeModalAnulado()"></div>
-            <span style="font-size: 14px;"> {{ date_time_format(item.fecPublica) }}</span>
+            <!-- <span style="font-size: 14px;"> {{ date_time_format(item.fecPublica) }}</span> -->
         </div>
     </section>
 
@@ -197,9 +231,15 @@
     <section class="content-desktop">
         <section class="example-container">
             <table mat-table [dataSource]="dataSourceOptimize">
-                <ng-container matColumnDef="date">
-                    <th mat-header-cell *matHeaderCellDef>Fecha mensaje</th>
-                    <td mat-cell *matCellDef="let element"> {{ date_time_format(element.fecPublica) }}</td>
+                <ng-container matColumnDef="visto">
+                    <th mat-header-cell *matHeaderCellDef>Confir.</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <mat-icon class="pointer" [ngClass]="{'success': element.id_user_confirmacion, 'no-visto': !element.id_user_confirmacion}" (click)="btn_confirmar(element.code_message, element.id_user_confirmacion)">done_all</mat-icon>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="dateTime">
+                    <th mat-header-cell *matHeaderCellDef>Fecha/Hora Emisión</th>
+                    <td mat-cell *matCellDef="let element"> {{ date_format(element.datetime_issue) }} </td>
                 </ng-container>
                 <ng-container matColumnDef="type">
                     <th mat-header-cell *matHeaderCellDef class="tc">Tipo de GRE</th>
@@ -208,10 +248,6 @@
                 <ng-container matColumnDef="Numeration">
                     <th mat-header-cell *matHeaderCellDef class="tc">Númeración</th>
                     <td mat-cell *matCellDef="let element" class="tc">{{element.numeration}}</td>
-                </ng-container>
-                <ng-container matColumnDef="dateTime">
-                    <th mat-header-cell *matHeaderCellDef>Fecha/Hora Emisión</th>
-                    <td mat-cell *matCellDef="let element"> {{ date_format(element.datetime_issue) }} </td>
                 </ng-container>
                 <ng-container matColumnDef="Transmitter">
                     <th mat-header-cell *matHeaderCellDef class="tc">RUC del Emisor</th>
@@ -310,6 +346,20 @@
                     </td>
                 </ng-container>
 
+                <ng-container matColumnDef="usuario_confirmado">
+                    <th mat-header-cell *matHeaderCellDef title="Fecha Notificada" class="tc">Usuario Cfm</th>
+                    <td mat-cell *matCellDef="let element" class="tc">
+                        {{ element.usuario_confirmado }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fecha_confirmacion">
+                    <th mat-header-cell *matHeaderCellDef title="Fecha Notificada" class="tc">Fecha Cfm</th>
+                    <td mat-cell *matCellDef="let element" class="tc">
+                        {{ element.fecha_confirmacion }}
+                    </td>
+                </ng-container>
+
                 <!-- View -->
                 <ng-container matColumnDef="see">
                     <th mat-header-cell *matHeaderCellDef>Ver</th>
@@ -345,8 +395,6 @@
                                             <path d="m3 7l9 6l9-6" />
                                         </g>
                                     </svg>
-
-
                                 </div>
                             </button>
 
@@ -392,3 +440,23 @@
         <span>No se encontraron guias, con los filtros establecidos.</span>
     </div>
 </main>
+
+
+<ng-template #modal_confirmacion>
+    <div class="c-modal-confirmacion">
+        <div class="titulo">Confirmación de lectura</div>
+
+        <div class="cuerpo">
+            <p style="color: rgb(87, 87, 87);">Si ha revisado la guía seleccionada, marque la siguiente casilla y seleccione aceptar.</p>
+        
+            <div style="display: flex; gap: 5px; padding-top: 10px;">
+                <input type="checkbox" name="confirmar" id="confirmar" #check_confirmar>
+                <label for="confirmar">Confirmo haber revisado la guía seleccionada.</label>
+            </div>
+        </div>
+    
+        <div style="padding: 10px;">
+            <button class="btn-primary w-100" (click)="btn_aceptar_confirmar(check_confirmar.checked)">Aceptar</button>
+        </div>
+    </div>
+</ng-template>
