@@ -36,7 +36,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     HttpClientModule,
     NgxMatSelectSearchModule,
-    CommonModule
+    CommonModule,
   ]
 })
 export class ModuleModule { }

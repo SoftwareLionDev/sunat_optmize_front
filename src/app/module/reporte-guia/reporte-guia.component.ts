@@ -93,7 +93,7 @@ export class ReporteGuiaComponent {
         razon_social: element.business_name,
         estado: element.description_code,
         baja_descripcion: element.sub_status,
-        fecha_baja: element.date_low,
+        fecha_baja: this.convertirFechaBaja(element.date_low),
         usuario_notificado: element.user_notified,
         codigo_concesion: element.code_concession,
         concesion: element.name_concession,
@@ -223,11 +223,15 @@ export class ReporteGuiaComponent {
 
   @ViewChild('modal_confirmacion') modal_confirmacion!: TemplateRef<any>;
   public codigo_mensaje_confirmar: string = '';
+  public guia_confirmar: any;
 
-  btn_confirmar(code_message: string, id_user_confirmacion: any){
+  btn_confirmar(code_message: string, id_user_confirmacion: any, guia_confirmar: any){
     if(id_user_confirmacion) return;
 
     this.codigo_mensaje_confirmar = code_message;
+    this.guia_confirmar = guia_confirmar;
+
+    console.log(this.guia_confirmar);
 
     this.modals.open(this.modal_confirmacion, {
       width: '400px'
@@ -250,6 +254,22 @@ export class ReporteGuiaComponent {
     let date_return = this.fn.convert_date(a_date_time[0]);
 
     return date_return + ' ' + a_date_time[1];
+  }
+
+  convertirFechaBaja(fecha_hora: string) {
+    if(!fecha_hora) return "";
+
+    let fecha = fecha_hora.split(' ')[0];
+    let hora = fecha_hora.split(' ')[1];
+    
+    let [horas, minutos, segundos] = hora.split(':').map(Number);
+    let periodo = horas >= 12 ? 'p. m.' : 'a. m.';
+    
+    // Convertir las horas al formato de 12 horas
+    horas = horas % 12 || 12;  // Si la hora es 0, mostrar 12
+    let horaFormateada = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')} ${periodo}`;
+    
+    return fecha +" "+ horaFormateada;
   }
 
   btn_aceptar_confirmar(confirmado: any){
