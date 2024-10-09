@@ -76,19 +76,11 @@ export class ReporteGuiaComponent {
 
       console.log(element.date_notified);
 
-      let hours_notified = '';
-      let fecha_notificada = '';
-
-      if(element.date_notified){
-        fecha_notificada = element.date_notified.split('T')[0];
-        hours_notified = element.date_notified.split('T')[1].split('.')[0];
-      }
-
       data_excel.push({
         confirmado: element.id_user_confirmacion ? 'SI': 'NO',
         tipo_gre: element.type_gre,
         numeracion: element.numeration,
-        fecha_emision: element.datetime_issue.replace('.000Z', '').replace('T', ' '),
+        fecha_emision: element.datetime_issue,
         ruc_emisor: element.ruc_issuer,
         razon_social: element.business_name,
         estado: element.description_code,
@@ -97,7 +89,7 @@ export class ReporteGuiaComponent {
         usuario_notificado: element.user_notified,
         codigo_concesion: element.code_concession,
         concesion: element.name_concession,
-        fecha_notificada: fecha_notificada +" "+hours_notified,
+        fecha_notificada: element.date_notified,
         fecha_confirmada: element.fecha_confirmacion,
         usuario_confirmado: element.usuario_confirmado
       });

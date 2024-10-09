@@ -134,7 +134,7 @@
         </mat-menu>
 
         <p> {{ item.ruc_issuer }} - <strong> {{item.business_name}} </strong></p>
-        <p><strong>EMISIÓN:</strong> {{date_format(item.datetime_issue) }} </p>
+        <p><strong>EMISIÓN:</strong> {{item.datetime_issue }} </p>
         
         <p class="flex-codcens">
             <span>
@@ -161,8 +161,7 @@
         <p>
             <strong style="text-transform: uppercase;">Fecha Ntf: </strong>
             <ng-container *ngIf="item.date_notified; else showDash">
-                {{ fn.convert_date(item.date_notified, 'dd/mm/yyyy') }}
-                <span>{{ item.date_notified ? item.date_notified.split('T')[1].split('.')[0] : ''}}</span>
+                {{ item.date_notified }}
             </ng-container>
         </p>
 
@@ -204,7 +203,7 @@
                         </div>
                         <div>
                             <p>Fecha Emitido:</p>
-                            <strong>{{ date_format(item.datetime_issue) }}</strong>
+                            <strong>{{ item.datetime_issue }}</strong>
                         </div>
                     </div>
                     <div class="tooltip-content">
@@ -215,7 +214,7 @@
 
                         <div>
                             <p>Fecha baja:</p>
-                            <strong> {{ item.date_low.split(' ')[0] +' '+convertirFechaBaja(item.date_low) }} </strong>
+                            <strong> {{ convertirFechaBaja(item.date_low) }} </strong>
                         </div>
                     </div>
                 </div>
@@ -239,7 +238,7 @@
                 </ng-container>
                 <ng-container matColumnDef="dateTime">
                     <th mat-header-cell *matHeaderCellDef>Fecha/Hora Emisión</th>
-                    <td mat-cell *matCellDef="let element"> {{ date_format(element.datetime_issue) }} </td>
+                    <td mat-cell *matCellDef="let element"> {{ element.datetime_issue }} </td>
                 </ng-container>
                 <ng-container matColumnDef="type">
                     <th mat-header-cell *matHeaderCellDef class="tc">Tipo de GRE</th>
@@ -288,7 +287,7 @@
                                         </div>
                                         <div>
                                             <p>Fecha Emitido:</p>
-                                            <strong>{{ date_format(element.datetime_issue) }}</strong>
+                                            <strong>{{ element.datetime_issue }}</strong>
                                         </div>
                                     </div>
                                     <div class="tooltip-content">
@@ -341,8 +340,7 @@
                 <ng-container matColumnDef="date_notified">
                     <th mat-header-cell *matHeaderCellDef title="Fecha Notificada" class="tc">Fecha Ntf</th>
                     <td mat-cell *matCellDef="let element" class="tc">
-                        {{ fn.convert_date(element.date_notified, 'dd/mm/yyyy') }}
-                        <span>{{ element.date_notified ? element.date_notified.split('T')[1].split('.')[0] : ''}}</span>
+                        {{ element.date_notified }}
                     </td>
                 </ng-container>
 
