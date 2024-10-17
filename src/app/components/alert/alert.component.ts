@@ -24,8 +24,8 @@ export class AlertComponent {
   ngOnInit() {
     let guide = this.data.guide;
 
-    if(guide.code_gre == '31' && guide.status_code == '01'){
-      this.content_message = `La G.R.E del Transportista ${guide.numeration} fue extraído desde la consulta masiva de GR de SUNAT cuya fecha de emisión corresponde a ${guide.datetime_issue}`;
+    if(guide.fuente == 'GRE_MASIVA'){
+      this.content_message = `La G.R.E del ${guide.type_gre} ${guide.numeration} fue extraído desde la consulta masiva de GR de SUNAT cuya fecha de emisión corresponde a ${guide.datetime_issue}`;
       return;
     }
     
