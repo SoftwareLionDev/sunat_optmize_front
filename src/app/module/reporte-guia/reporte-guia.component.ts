@@ -48,8 +48,6 @@ export class ReporteGuiaComponent {
     let r_config = await this.http.get('assets/config.json').toPromise();
     let config = r_config as { apiUrl: string };
     AppConfig.url_api = config.apiUrl;
-
-
   }
 
   ngAfterViewInit() {
@@ -135,12 +133,14 @@ export class ReporteGuiaComponent {
   pdf(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string) {
     if (serie[0] == 'T') return;
 
+    const fecha_emision = date_issue.split(' ')[0];
+
     const data = {
       ruc: ruc_issuer,
       type_document,
       serie,
       number,
-      date_issue
+      date_issue: fecha_emision
     };
 
     console.log(data);
@@ -163,7 +163,7 @@ export class ReporteGuiaComponent {
   download_file(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string, type_file: string) {
     if (serie[0] == 'T' && type_file == 'pdf') return;
 
-    date_issue = this.fn.convert_date(date_issue, 'dd/mm/yyyy');
+    date_issue = date_issue.split(' ')[0];
 
     const data = {
       ruc: ruc_issuer,
