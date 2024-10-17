@@ -194,6 +194,7 @@ export class ReporteGuiaComponent {
 
   filter(filterValue: string) {
     filterValue = filterValue.trim();
+    this.v_filter_value = filterValue;
 
     if (window.innerWidth <= 767) {
 
