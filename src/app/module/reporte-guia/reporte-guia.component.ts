@@ -151,7 +151,7 @@ export class ReporteGuiaComponent {
       this.fn.hiden_loading();
 
       if (!r.success) {
-        this.fn.message_error(r.message);
+        this.fn.message_warning(r.message);
         return;
       }
       this.pdf_64 = r.result.file_base64;
@@ -179,7 +179,7 @@ export class ReporteGuiaComponent {
       this.fn.hiden_loading();
 
       if (!r.success) {
-        this.fn.message_error(r.message);
+        this.fn.message_warning(r.message);
         return;
       }
 

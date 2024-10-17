@@ -26,6 +26,13 @@ export class Funtions {
             icon: 'error',
         });
     }
+    public message_warning(message: string) {
+        Swal.fire({
+            title: 'Alerta',
+            text: message,
+            icon: 'warning',
+        });
+    }
 
     public message_information(message: string) {
         Swal.fire({
