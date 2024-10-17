@@ -363,7 +363,7 @@
                     <th mat-header-cell *matHeaderCellDef>Ver</th>
                     <td mat-cell *matCellDef="let element">
                         <button [ngClass]="{'not-pdf': element.numeration[0] == 'T'}"
-                            (click)="pdf(element.ruc_issuer, element.code_gre, element.numeration.split('-')[0], element.numeration.split('-')[1], element.datetime_issue)"
+                            (click)="pdf(element.ruc_issuer, element.code_gre, element.numeration.split('-')[0], element.numeration.split('-')[1], element.fecha_formato)"
                             type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                 <g fill="currentColor">

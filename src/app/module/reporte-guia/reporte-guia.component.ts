@@ -135,8 +135,6 @@ export class ReporteGuiaComponent {
   pdf(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string) {
     if (serie[0] == 'T') return;
 
-    date_issue = this.fn.convert_date(date_issue, 'dd/mm/yyyy');
-
     const data = {
       ruc: ruc_issuer,
       type_document,
@@ -144,6 +142,8 @@ export class ReporteGuiaComponent {
       number,
       date_issue
     };
+
+    console.log(data);
 
     this.fn.show_spinner();
 
