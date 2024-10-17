@@ -229,6 +229,8 @@ export class ReporteGuiaComponent {
       width: '400px'
     })
   }
+ 
+ 
 
   date_format(date_db: string) {
     date_db = date_db.replace('.000Z', '');

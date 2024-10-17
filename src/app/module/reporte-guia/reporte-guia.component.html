@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div style="height: 40px; display: flex; align-items: end; justify-content: center;">
+            <div class="chebk">
                 <div class="content-sumary">
                     <input type="checkbox" id="sumary" style="width: 20px;height: 20px;" name="sumary" #summary />
                     <label for="sumary">Resumen</label>
@@ -78,7 +78,7 @@
             <input type="search" placeholder="Buscar...." #filter_value (input)="filter(filter_value.value)">
         </div>
         <div *ngIf="info_sync" class="actualizacion">
-            <p>Sincronización: {{fn.date_user(info_sync.date_sync)}} {{info_sync.time_sync}} </p>
+            <p>Sincronización:  <strong>{{fn.date_user(info_sync.date_sync)}} {{info_sync.time_sync}}</strong> </p>
         </div>
     </div>
 
@@ -442,21 +442,30 @@
 
 <ng-template #modal_confirmacion style="z-index: 0;">
     <div class="c-modal-confirmacion">
-        <div class="titulo">Confirmación de lectura</div>
-
+        <div class="header-modals">
+            <h2 class="titulo">Confirmación de lectura</h2>
+            <button mat-dialog-close class="btn-close"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 12 16"><path fill="currentColor" d="M10 12.5a.47.47 0 0 1-.35-.15l-8-8c-.2-.2-.2-.51 0-.71s.51-.2.71 0l7.99 8.01c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"/><path fill="currentColor" d="M2 12.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l8-7.99c.2-.2.51-.2.71 0s.2.51 0 .71l-8.01 7.99c-.1.1-.23.15-.35.15"/></svg>
+            </button>
+        </div>
+      
         <div class="cuerpo">
             <!-- <p style="color: rgb(87, 87, 87);">Si ha revisado la guía seleccionada, marque la siguiente casilla y seleccione aceptar.</p> -->
-        
-            <div style="display: flex; gap: 10px; padding-top: 10px; align-items: center;">
-                <span>
-                    <input type="checkbox" name="confirmar" id="confirmar" #check_confirmar>
-                </span>
-                <!-- <label for="confirmar">Acepto que he leído y revisado la G.R Remitente/Transportista EG01-0000356.</label> -->
-                <label for="confirmar">Acepto que he leído y revisado la G.R del {{guia_confirmar.type_gre}} {{guia_confirmar.numeration}}.</label>
-            </div>
+            <div class="checkbox-wrapper-33">
+                <label class="checkbox">
+                  <input class="checkbox__trigger visuallyhidden" #check_confirmar type="checkbox" />
+                  <span class="checkbox__symbol">
+                    <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 14l8 7L24 7"></path>
+                    </svg>
+                  </span>
+                  <p class="checkbox__textwrapper">Acepto que he leído y revisado la G.R del {{guia_confirmar.type_gre}} {{guia_confirmar.numeration}}.</p>
+                </label>
+              </div>
         </div>
     
-        <div style="padding: 10px;">
+        <div class="flex-btn-wrap" style="padding: 15px 10px;">
+            <button class="btn-outle w-100" mat-dialog-close>Volver</button>
             <button class="btn-primary w-100" (click)="btn_aceptar_confirmar(check_confirmar.checked)">Aceptar</button>
         </div>
     </div>
