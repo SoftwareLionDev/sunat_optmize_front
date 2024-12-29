@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { GuideService } from 'src/app/services/guide.service';
 import { MessageService } from 'src/app/services/message.service';
 import { Funtions } from 'src/app/src/funtions';
@@ -15,7 +15,8 @@ export class AlertComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private s_message: MessageService,
-    private fn: Funtions
+    private fn: Funtions,
+    public dialogRef: MatDialogRef<AlertComponent>
   ) {
 
   }
@@ -23,8 +24,8 @@ export class AlertComponent {
   ngOnInit() {
     let guide = this.data.guide;
 
-    if(guide.code_gre == '31' && guide.status_code == '01'){
-      this.content_message = `La G.R.E del Transportista ${guide.numeration} fue extraído desde la consulta masiva de GR de SUNAT cuya fecha de emisión corresponde a ${this.date_format(guide.datetime_issue)}`;
+    if(guide.fuente == 'GRE_MASIVA'){
+      this.content_message = `La G.R.E del ${guide.type_gre} ${guide.numeration} fue extraído desde la consulta masiva de GR de SUNAT cuya fecha de emisión corresponde a ${guide.datetime_issue}`;
       return;
     }
     
@@ -35,7 +36,8 @@ export class AlertComponent {
       this.fn.hiden_loading();
 
       if(!r.success){
-        this.fn.message_error(r.message);
+        this.fn.message_warning(r.message);
+        this.dialogRef.close();
         return;
       }
 
