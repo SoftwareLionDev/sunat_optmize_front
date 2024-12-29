@@ -321,6 +321,14 @@ article .btn-excel:hover {
 
 }
 
+.business-name-content {
+    /* white-space: nowrap; */
+    width: 147px !important;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    font-size: 11.5px;
+}
+
 .content-search .actualizacion button {
     color: white;
     outline: none;
@@ -330,7 +338,7 @@ article .btn-excel:hover {
     cursor: pointer !important;
     background-color: orangered;
     height: 40px;
-    padding: 10px 20px;
+    padding: 10px 12px;
     border-top-right-radius: 11px;
     border-bottom-right-radius: 11px;
 
@@ -782,12 +790,7 @@ hr {
     align-items: end;
 }
 
-.business-name-content {
-    white-space: nowrap;
-    width: 250px !important;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+
 
 
 .not-found {
