@@ -15,6 +15,7 @@ import { HistorialCambiosComponent } from './concesiones/historial-cambios/histo
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { BusquedaCampoPipe } from '../pipe/busqueda-campo.pipe';
 import { CommonModule } from '@angular/common';
+import { SincronizacionGuiaRemisionComponent } from './sincronizacion-guia-remision/sincronizacion-guia-remision.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CommonModule } from '@angular/common';
     ListadoConcesionesComponent,
     NuevaConcesionComponent,
     HistorialCambiosComponent,
-    BusquedaCampoPipe
+    BusquedaCampoPipe,
+    SincronizacionGuiaRemisionComponent
   ],
   imports: [
     BrowserModule,

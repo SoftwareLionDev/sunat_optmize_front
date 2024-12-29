@@ -1,0 +1,386 @@
+<header class="modals-header" style="height: 6vh">
+  <h2 style="font-size: 16px">Sincronización de Guias de Remisión</h2>
+  <button type="button" mat-dialog-close>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="26"
+      viewBox="0 0 12 16"
+    >
+      <path
+        fill="currentColor"
+        d="M10 12.5a.47.47 0 0 1-.35-.15l-8-8c-.2-.2-.2-.51 0-.71s.51-.2.71 0l7.99 8.01c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"
+      />
+      <path
+        fill="currentColor"
+        d="M2 12.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l8-7.99c.2-.2.51-.2.71 0s.2.51 0 .71l-8.01 7.99c-.1.1-.23.15-.35.15"
+      />
+    </svg>
+  </button>
+</header>
+
+<main clas style="max-height: 84vh; height: 100%; overflow: auto">
+  <app-loading></app-loading>
+  <article class="form-content">
+    <div class="form">
+      <div>
+        <label class="text-label">Fecha de Emisión</label>
+        <div class="relative">
+          <input
+            readonly
+            class="datepiker"
+            name="fInicio"
+            placeholder="--/--/----"
+            [matDatepicker]="fInicio"
+            #start_date
+            value=""
+          />
+          <mat-datepicker #fInicio> </mat-datepicker>
+          <button class="datepik_button" type="button" (click)="fInicio.open()">
+            <i class="bx bx-calendar"></i>
+          </button>
+        </div>
+      </div>
+      <div class="container-search">
+        <button class="search" id="search">
+          <i class="bx bx-search"></i>
+          Buscar
+        </button>
+      </div>
+    </div>
+  </article>
+  <small class="alert"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      >
+        <path
+          stroke-dasharray="64"
+          stroke-dashoffset="64"
+          d="M12 3l9 17h-18l9 -17Z"
+        >
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            dur="0.6s"
+            values="64;0"
+          />
+        </path>
+        <path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10v4">
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            begin="0.6s"
+            dur="0.2s"
+            values="6;0"
+          />
+          <animate
+            attributeName="stroke-width"
+            begin="1.8s"
+            dur="3s"
+            keyTimes="0;0.1;0.2;0.3;1"
+            repeatCount="indefinite"
+            values="2;3;3;2;2"
+          />
+        </path>
+        <path stroke-dasharray="2" stroke-dashoffset="2" d="M12 17v0.01">
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            begin="0.8s"
+            dur="0.2s"
+            values="2;0"
+          />
+          <animate
+            attributeName="stroke-width"
+            begin="2.1s"
+            dur="3s"
+            keyTimes="0;0.1;0.2;0.3;1"
+            repeatCount="indefinite"
+            values="2;3;3;2;2"
+          />
+        </path>
+      </g>
+    </svg>
+    Se han sincronizado exitosamente 6/10 Guías de Remisión. Vuelva a
+    sincronizar con la misma fecha.</small
+  >
+
+  <!-- busqueda -->
+  <div class="content-search">
+    <div class="input-search">
+      <i class="bx bx-search"></i>
+      <input type="search" placeholder="Buscar...." #filter_value />
+    </div>
+  </div>
+
+  <!-- versión Movil -->
+  <section class="content-movil" *ngFor="let item of [1, 1, 1]">
+    <h3 style="display: flex; align-items: center; gap: 5px">
+      <!-- check -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="#339A00"
+          d="m9.55 15.15l8.475-8.475q.3-.3.7-.3t.7.3t.3.713t-.3.712l-9.175 9.2q-.3.3-.7.3t-.7-.3L4.55 13q-.3-.3-.288-.712t.313-.713t.713-.3t.712.3z"
+        />
+      </svg>
+      <!-- error -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 12 16"
+      >
+        <path
+          fill="#A80000"
+          d="M10 12.5a.47.47 0 0 1-.35-.15l-8-8c-.2-.2-.2-.51 0-.71s.51-.2.71 0l7.99 8.01c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"
+        />
+        <path
+          fill="#A80000"
+          d="M2 12.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l8-7.99c.2-.2.51-.2.71 0s.2.51 0 .71l-8.01 7.99c-.1.1-.23.15-.35.15"
+        />
+      </svg>
+      Transportista - EG03-99
+    </h3>
+
+    <p class="flex-codcens">
+      <span>
+        <strong>EMISIÓN </strong>
+        29/12/2024 01:14:00 p. m.
+      </span>
+    </p>
+    <p class="flex-codcens">
+      <span>
+        <strong>RUC del Emisor </strong>
+        10456182041
+      </span>
+    </p>
+    <p class="flex-codcens">
+      <span>
+        <strong>Razón Social </strong>
+        DE LA CRUZ GUTIERREZ FLAVIO ELADIO
+      </span>
+    </p>
+    <p class="flex-codcens">
+      <span>
+        <strong>Descripción </strong>
+        Comunicación de GRE - T...
+      </span>
+    </p>
+
+    <div class="flex-j">
+      <!-- anulado -->
+      <div class="status-issued content">Emitido</div>
+      <div *ngIf="">
+        <span class="status-anulado" [matMenuTriggerFor]="menuacciones">
+          <mat-icon>arrow_back_ios</mat-icon>
+          <mat-icon> timer</mat-icon>
+        </span>
+      </div>
+
+      <mat-menu #menuacciones="matMenu" #aboveMenu="matMenu" yPosition="above">
+        <div style="min-width: 260px">
+          <div class="tooltip-content">
+            <div>
+              <p>Estado:</p>
+              <strong class="pl-34">Emitido</strong>
+            </div>
+            <div>
+              <p>Fecha Emitido:</p>
+              <strong> </strong>
+            </div>
+          </div>
+          <div class="tooltip-content">
+            <div>
+              <p>Con baja:</p>
+              <strong class="pl-34"> </strong>
+            </div>
+
+            <div>
+              <p>Fecha baja:</p>
+              <strong> </strong>
+            </div>
+          </div>
+        </div>
+      </mat-menu>
+    </div>
+  </section>
+
+  <!-- web -->
+  <section class="content-desktop">
+    <section class="example-container">
+      <table mat-table [dataSource]="dataSourceO">
+        <ng-container matColumnDef="visto">
+          <th mat-header-cell *matHeaderCellDef class="tc">Sync</th>
+          <td mat-cell *matCellDef="let element" class="tc">
+            <!-- check -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#339A00"
+                d="m9.55 15.15l8.475-8.475q.3-.3.7-.3t.7.3t.3.713t-.3.712l-9.175 9.2q-.3.3-.7.3t-.7-.3L4.55 13q-.3-.3-.288-.712t.313-.713t.713-.3t.712.3z"
+              />
+            </svg>
+            <!-- error -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 12 16"
+            >
+              <path
+                fill="#A80000"
+                d="M10 12.5a.47.47 0 0 1-.35-.15l-8-8c-.2-.2-.2-.51 0-.71s.51-.2.71 0l7.99 8.01c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"
+              />
+              <path
+                fill="#A80000"
+                d="M2 12.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l8-7.99c.2-.2.51-.2.71 0s.2.51 0 .71l-8.01 7.99c-.1.1-.23.15-.35.15"
+              />
+            </svg>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="dateTime">
+          <th mat-header-cell *matHeaderCellDef>Fecha/Hora Emisión</th>
+          <td mat-cell *matCellDef="let element" style="font-size: 12.5px">
+            <p>29/12/2024</p>
+            <p style="flex-wrap: nowrap; white-space: nowrap">01:14:00 p. m.</p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            class="tc"
+            style="flex-wrap: nowrap; white-space: nowrap"
+          >
+            Tipo de GRE
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="tc"
+            style="flex-wrap: nowrap; white-space: nowrap"
+          >
+            Transportista
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Numeration">
+          <th mat-header-cell *matHeaderCellDef class="tc">Númeración</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="tc"
+            style="flex-wrap: nowrap; white-space: nowrap"
+          >
+            EG03-98
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Transmitter">
+          <th mat-header-cell *matHeaderCellDef class="tc">RUC del Emisor</th>
+          <td mat-cell *matCellDef="let element" class="tc">10456182041</td>
+        </ng-container>
+
+        <ng-container matColumnDef="BusinessName">
+          <th mat-header-cell *matHeaderCellDef>Razón Social</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="business-name-content" [title]="element.business_name">
+              INVERSIONES YARENDIELV E.I.R.L.
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef class="tc">Estado</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-issued">Emitido</div>
+
+            <div *ngIf="">
+              <!-- Ajusta el valor de z-index según tus necesidades -->
+              <span class="status-anulado" [matMenuTriggerFor]="menuacciones">
+                <mat-icon>arrow_back_ios</mat-icon>
+                <mat-icon> timer</mat-icon>
+                {{ element.description_code }}
+              </span>
+
+              <mat-menu
+                #menuacciones="matMenu"
+                #aboveMenu="matMenu"
+                yPosition="above"
+              >
+                <div style="min-width: 260px">
+                  <div class="tooltip-content">
+                    <div>
+                      <p>Estado:</p>
+                      <strong class="pl-34">Emitido</strong>
+                    </div>
+                    <div>
+                      <p>Fecha Emitido:</p>
+                      <strong> </strong>
+                    </div>
+                  </div>
+                  <div class="tooltip-content">
+                    <div>
+                      <p>Con baja:</p>
+                      <strong class="pl-34"> </strong>
+                    </div>
+
+                    <div>
+                      <p>Fecha baja:</p>
+                      <strong> </strong>
+                    </div>
+                  </div>
+                </div>
+              </mat-menu>
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="business-name-content" [title]="element.business_name">
+              Comunicación de GRE - T...
+            </div>
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumnsOptimize"
+          style="border-bottom: white !important"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumnsOptimize"
+          style="border-bottom: white !important"
+        ></tr>
+      </table>
+    </section>
+  </section>
+  <br />
+
+  <div class="not-found" *ngIf="dataSourceO.data.length == 0">
+    <mat-icon>blur_off</mat-icon>
+    <span>No se encontraron guias, con los filtros establecidos.</span>
+  </div>
+</main>
+<footer style="height: 10vh">
+  <button class="voverl" type="submit">Volver</button>
+</footer>

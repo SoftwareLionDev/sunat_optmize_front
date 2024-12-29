@@ -11,6 +11,7 @@ import { Funtions } from '../../src/funtions';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../../config';
 import { MessageService } from 'src/app/services/message.service';
+import { SincronizacionGuiaRemisionComponent } from '../sincronizacion-guia-remision/sincronizacion-guia-remision.component';
 
 @Component({
   selector: 'app-reporte-guia',
@@ -306,4 +307,31 @@ export class ReporteGuiaComponent {
   closeModalAnulado() {
     this.anulado = false;
   }
+
+  // item: any, edit: boolean
+  public sincronizarGuia() {
+    const body = {
+      // edit: edit,
+      // item: item
+    };
+    console.log(body);   
+    const modalConfig = {
+      panelClass: 'full-screen-modal-histor',
+      min_width: '600px',
+      data: body,
+    };
+    
+
+    const dialogRef = this.modals.open(SincronizacionGuiaRemisionComponent, modalConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.ok) {
+        // this.list_User();
+      }
+    })
+  }
+
+  
+
+
+
 }
