@@ -30,7 +30,6 @@ export class LoginComponent {
     let config = r_config as { apiUrl: string };
     AppConfig.url_api = config.apiUrl;
 
-
     const session_ls = this.s_user.session_ls();
 
     if (session_ls) {

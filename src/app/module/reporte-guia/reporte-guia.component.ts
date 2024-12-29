@@ -48,8 +48,6 @@ export class ReporteGuiaComponent {
     let r_config = await this.http.get('assets/config.json').toPromise();
     let config = r_config as { apiUrl: string };
     AppConfig.url_api = config.apiUrl;
-
-
   }
 
   ngAfterViewInit() {
@@ -100,7 +98,14 @@ export class ReporteGuiaComponent {
 
   public v_start_date: string = ''; v_end_date: string = ''; v_type_guide: string = ''; v_summary: boolean = false; v_filter_value: string = ''; v_confirmadas: string = '';
 
-  btn_search(start_date: string, end_date: string, type_guide: string, summary: boolean, filter_value: string, confirmadas: string) {
+  btn_search(
+    start_date: string,
+    end_date: string, 
+    type_guide: string,
+    summary: boolean,
+    filter_value: string,
+    confirmadas: string) {
+
     this.v_start_date = start_date; this.v_end_date = end_date; this.v_type_guide = type_guide; this.v_summary = summary; this.v_filter_value = filter_value; this.v_confirmadas = confirmadas;
     // this.dataSourceOptimize = new MatTableDataSource<any>(ELEMENT_DATA);
     // this.dataSourceOptimize.paginator = this.paginator;
@@ -109,9 +114,11 @@ export class ReporteGuiaComponent {
 
     this.fn.show_spinner();
 
-    this.s_guide.list(this.fn.date_db(start_date), this.fn.date_db(end_date), type_guide, summary, confirmadas).subscribe(r => {
-      this.fn.hiden_loading();
-
+     this.s_guide.list(
+     this.fn.date_db(start_date), 
+     this.fn.date_db(end_date),
+     type_guide, summary, confirmadas).subscribe(r => {
+     this.fn.hiden_loading();
       if (!r.success) {
         this.dataSourceOptimize = new MatTableDataSource<any>([]);
         this.fn.message_error(r.message.includes('Failed to connect to') ? 'Error al conectar con el servidor' : r.message);
@@ -159,7 +166,7 @@ export class ReporteGuiaComponent {
       this.fn.print_pdfbase64(this.pdf_64);
     })
   }
-
+  
   download_file(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string, type_file: string) {
     if (serie[0] == 'T' && type_file == 'pdf') return;
 

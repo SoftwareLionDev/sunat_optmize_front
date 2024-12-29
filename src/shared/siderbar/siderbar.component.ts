@@ -70,7 +70,7 @@ export class SiderbarComponent {
       route: '/dashboard/dashboard',
     }
 
-    );
+    )
 
     if (this.session_ls.role_name.toUpperCase() == "ADMINISTRADOR") {
       this.menu.push({

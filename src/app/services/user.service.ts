@@ -16,7 +16,7 @@ export class UserService {
     const url = AppConfig.url_api + '/user/login';
     return this.http.post<ResponseApi>(url, body);
   }
-
+  
   save_user(body: any, update: boolean): Observable<ResponseApi> {
     let url = AppConfig.url_api + '/user';
     if (update) {
@@ -25,7 +25,6 @@ export class UserService {
     else {
       return this.http.post<ResponseApi>(url, body);
     }
-
   }
 
   list_users(): Observable<ResponseApi> {
