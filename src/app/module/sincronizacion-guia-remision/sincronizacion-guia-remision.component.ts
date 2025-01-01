@@ -67,8 +67,7 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
             this.dataSourceGuia.data = response.result;
             this.guias = response.result;
             console.log(this.dataSourceGuia);
-            this.guiasFiltradas = [...this.guias];
-  
+            this.guiasFiltradas = [...this.guias];  
             // Procesar estados
             this.totalGuias = this.guias.length;
             this.guiasCompletadas = this.guias.filter((g) => g.estado === 'COMPLETADO').length;
@@ -84,9 +83,7 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
           this.sppiner.hide();
         },
       });
-    } else {
-      alert('Seleccione una fecha válida.');
-    }
+    } 
   }
   
 
