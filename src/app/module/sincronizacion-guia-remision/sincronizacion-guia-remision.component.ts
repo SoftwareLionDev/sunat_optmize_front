@@ -15,15 +15,17 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  public displayedColumnsOptimize: string[] = ['visto', 'dateTime', 'type', 'Numeration', 'Transmitter', 'BusinessName', 'status', 'descripcion'];
+  public displayedColumnsOptimize: string[] = ['visto', 'dateTime', 'type', 'Numeration', 'Transmitter', 'BusinessName', 'status', 'verpdf', 'descripcion'];
   public dataSourceGuia = new MatTableDataSource<any>([]);
   public totalGuias: number = 0;
   public guiasCompletadas: number = 0;
   public guiasNoCompletadas: number = 0;
   public seleccionarFecha: string = ''; 
+  public hoy: Date = new Date(); 
   public guias: any[] = []; 
   public guiasFiltradas: any[] = [];
-  public pdf_64: string = '';
+  public pdf_64: string = '';  
+  public mostrar_mensajes: boolean = false;
   
   constructor(
        private s_guide: GuideService,
@@ -54,27 +56,22 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
       );
     });
   }
-  
 
-  public mostrar_mensajes: boolean = false;
+ 
+
 
   public buscarGuias(): void {
     this.mostrar_mensajes = false;
-
     if (this.seleccionarFecha) {
-      this.sppiner.show();
-      
+      this.sppiner.show();      
       var fecha_sync = this.fn.convert_date(this.seleccionarFecha, 'yyyy-mm-dd');
       console.log(fecha_sync);
-
       this.s_guide.guiasSicronizar(fecha_sync).subscribe({
         next: (response) => {
           this.sppiner.hide();
-
           if(!response.success){
             this.fn.message_error(response.message);
           }
-
           this.dataSourceGuia.data = response.result;
           this.guias = response.result;
           console.log(this.dataSourceGuia);
@@ -96,6 +93,36 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
   
 
  
+  pdf(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string) {
+    if (serie[0] == 'T') return;
+
+    const fecha_emision = date_issue.split(' ')[0];
+
+    const data = {
+      ruc: ruc_issuer,
+      type_document,
+      serie,
+      number,
+      date_issue: fecha_emision
+    };
+
+    console.log(data);
+
+    this.fn.show_spinner();
+
+    this.s_guide.get_file(data, 'pdf').subscribe(r => {
+      this.fn.hiden_loading();
+
+      if (!r.success) {
+        this.fn.message_warning(r.message);
+        return;
+      }
+      this.pdf_64 = r.result.file_base64;
+
+      this.fn.print_pdfbase64(this.pdf_64);
+    })
+  }
+  
   
 
  public convertirFechaBaja(fecha_hora: string) {

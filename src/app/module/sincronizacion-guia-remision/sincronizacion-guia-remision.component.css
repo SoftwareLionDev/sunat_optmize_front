@@ -810,7 +810,7 @@ footer .voverl {
     color: white;
     font-size: 12.5px;
     border-radius: 3px;
-    background: var(--color-main);
+    background: #767676;
     cursor: pointer;
     outline: none;
 }
