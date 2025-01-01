@@ -56,27 +56,35 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
   }
   
 
+  public mostrar_mensajes: boolean = false;
 
   public buscarGuias(): void {
+    this.mostrar_mensajes = false;
+
     if (this.seleccionarFecha) {
       this.sppiner.show();
-      this.s_guide.guiasSicronizar(this.seleccionarFecha).subscribe({
+      
+      var fecha_sync = this.fn.convert_date(this.seleccionarFecha, 'yyyy-mm-dd');
+      console.log(fecha_sync);
+
+      this.s_guide.guiasSicronizar(fecha_sync).subscribe({
         next: (response) => {
-          // Verifica si hay datos en la respuesta
-          if (response.result && response.result.length > 0) {
-            this.dataSourceGuia.data = response.result;
-            this.guias = response.result;
-            console.log(this.dataSourceGuia);
-            this.guiasFiltradas = [...this.guias];  
-            // Procesar estados
-            this.totalGuias = this.guias.length;
-            this.guiasCompletadas = this.guias.filter((g) => g.estado === 'COMPLETADO').length;
-            this.guiasNoCompletadas = this.guias.filter((g) => g.estado === 'NO COMPLETADO').length;
-          } else {
-            // Si no hay guías para la fecha seleccionada, muestra un mensaje
-            this.fn.message_error('No se encontraron guías para esta fecha.');
-          }
           this.sppiner.hide();
+
+          if(!response.success){
+            this.fn.message_error(response.message);
+          }
+
+          this.dataSourceGuia.data = response.result;
+          this.guias = response.result;
+          console.log(this.dataSourceGuia);
+          this.guiasFiltradas = [...this.guias];  
+          // Procesar estados
+          this.totalGuias = this.guias.length;
+          this.guiasCompletadas = this.guias.filter((g) => g.estado === 'COMPLETADO').length;
+          this.guiasNoCompletadas = this.guias.filter((g) => g.estado === 'NO COMPLETADO').length;
+
+          this.mostrar_mensajes = true;
         },
         error: (error) => {
           this.fn.message_error(error.message.includes('Http failure response') ? 'No se pudo conectar con la fuente de datos' : error.message);
