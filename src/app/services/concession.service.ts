@@ -44,7 +44,6 @@ export class ConcessionService {
 
   change_state(id_concession: number, id_state: string): Observable<ResponseApi>{
     const url = AppConfig.url_api + `/concession/change-state`;
-
     const body = {
       id_concession,
       id_state

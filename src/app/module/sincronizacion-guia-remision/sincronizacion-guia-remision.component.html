@@ -30,9 +30,9 @@
             readonly
             class="datepiker"
             name="fInicio"
+            [(ngModel)]="seleccionarFecha"
             placeholder="--/--/----"
             [matDatepicker]="fInicio"
-            #start_date
             value=""
           />
           <mat-datepicker #fInicio> </mat-datepicker>
@@ -40,86 +40,103 @@
             <i class="bx bx-calendar"></i>
           </button>
         </div>
+        <small *ngIf="" class="valid">Por favor, seleccione una fecha.</small>
       </div>
       <div class="container-search">
-        <button class="search" id="search">
-          <i class="bx bx-search"></i>
-          Buscar
+        <button (click)="buscarGuias()"   [disabled]="!seleccionarFecha" class="search" id="search">          
+          Sincronizar
         </button>
       </div>
     </div>
   </article>
 
-  <!-- style  (nosincrinado - noEncontrado - encontrado) -->
-  <small class=" status_ encontrado">
-    Se han sincronizado exitosamente 6/10 Guías de Remisión. Vuelva a
-    sincronizar con la misma fecha.</small
-  >
+  
+
+  <ng-container *ngIf="totalGuias > 0">
+    <!-- COMPLETADO -->
+    <small *ngIf="guiasCompletadas === totalGuias" class="status_ encontrado">
+      Se han sincronizado exitosamente Guías de Remisión. Vuelva a sincronizar
+      con la misma fecha.
+    </small>
+    
+    <!-- SIN SERIE -->
+    <small *ngIf="guiasCompletadas < totalGuias && guiasNoCompletadas === 0" class="status_ noEncontrado">
+      Se han sincronizado exitosamente {{ guiasCompletadas }}/{{ totalGuias }}
+      Guías de Remisión. Vuelva a sincronizar con la misma fecha.
+    </small>
+
+    <!-- NO COMPLETADO -->
+    <small *ngIf="guiasNoCompletadas > 0" class="status_ nosincrinado">
+      Se han sincronizado exitosamente {{ guiasCompletadas }}/{{ totalGuias }}
+      Guías de Remisión. Vuelva a sincronizar con la misma fecha.
+    </small>
+  </ng-container>
+
 
   <!-- busqueda -->
   <div class="content-search">
     <div class="input-search">
       <i class="bx bx-search"></i>
-      <input type="search" placeholder="Buscar...." #filter_value />
+      <input type="search" placeholder="Buscar...." (keyup)="applyFilter($event)" #input />
     </div>
   </div>
 
   <!-- versión Movil -->
-  <section class="content-movil" *ngFor="let item of [1, 1, 1]">
+  <section class="content-movil" *ngFor="let item of  guiasFiltradas">
     <h3 style="display: flex; align-items: center; gap: 5px">
-      <!-- check -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-      >
-        <path
-          fill="#339A00"
-          d="m9.55 15.15l8.475-8.475q.3-.3.7-.3t.7.3t.3.713t-.3.712l-9.175 9.2q-.3.3-.7.3t-.7-.3L4.55 13q-.3-.3-.288-.712t.313-.713t.713-.3t.712.3z"
-        />
-      </svg>
-      <!-- error -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="22"
-        height="22"
-        viewBox="0 0 12 16"
-      >
-        <path
-          fill="#A80000"
-          d="M10 12.5a.47.47 0 0 1-.35-.15l-8-8c-.2-.2-.2-.51 0-.71s.51-.2.71 0l7.99 8.01c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"
-        />
-        <path
-          fill="#A80000"
-          d="M2 12.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l8-7.99c.2-.2.51-.2.71 0s.2.51 0 .71l-8.01 7.99c-.1.1-.23.15-.35.15"
-        />
-      </svg>
-      Transportista - EG03-99
+  <!--  estado completado-->
+      <svg *ngIf="item.estado === 'COMPLETADO'" 
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="#339A00"
+        d="m9.55 15.15l8.475-8.475q.3-.3.7-.3t.7.3t.3.713t-.3.712l-9.175 9.2q-.3.3-.7.3t-.7-.3L4.55 13q-.3-.3-.288-.712t.313-.713t.713-.3t.712.3z"
+      />
+    </svg>
+    <!--  estado  no completyado-->
+    <svg *ngIf="item.estado != 'COMPLETADO'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 12 16"
+    >
+      <path
+        fill="#A80000"
+        d="M10 12.5a.47.47 0 0 1-.35-.15l-8-8c-.2-.2-.2-.51 0-.71s.51-.2.71 0l7.99 8.01c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"
+      />
+      <path
+        fill="#A80000"
+        d="M2 12.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l8-7.99c.2-.2.51-.2.71 0s.2.51 0 .71l-8.01 7.99c-.1.1-.23.15-.35.15"
+      />
+    </svg>
+      {{ item.tipo_gre }} -{{item.g_numSerie}}-{{item.numCpe}}
     </h3>
 
     <p class="flex-codcens">
       <span>
         <strong>EMISIÓN </strong>
-        29/12/2024 01:14:00 p. m.
+        {{ item.fecha_emision }}
       </span>
     </p>
     <p class="flex-codcens">
       <span>
         <strong>RUC del Emisor </strong>
-        10456182041
+        {{ item.g_rucEmisor }}
       </span>
     </p>
     <p class="flex-codcens">
       <span>
         <strong>Razón Social </strong>
-        DE LA CRUZ GUTIERREZ FLAVIO ELADIO
+        {{ item.razon_social }}
       </span>
     </p>
     <p class="flex-codcens">
       <span>
         <strong>Descripción </strong>
-        Comunicación de GRE - T...
+        {{ item.desAsunto}}
       </span>
     </p>
 
@@ -171,12 +188,12 @@
   <!-- web -->
   <section class="content-desktop">
     <section class="example-container">
-      <table mat-table [dataSource]="dataSourceO" tabindex="0">
+      <table mat-table [dataSource]="dataSourceGuia" tabindex="0">
         <ng-container matColumnDef="visto">
           <th mat-header-cell *matHeaderCellDef class="tc">Sync</th>
           <td mat-cell *matCellDef="let element" class="tc">
-            <!-- check -->
-            <svg
+            <!--  estado completado-->
+            <svg *ngIf="element.estado === 'COMPLETADO'" 
               xmlns="http://www.w3.org/2000/svg"
               width="22"
               height="22"
@@ -187,8 +204,8 @@
                 d="m9.55 15.15l8.475-8.475q.3-.3.7-.3t.7.3t.3.713t-.3.712l-9.175 9.2q-.3.3-.7.3t-.7-.3L4.55 13q-.3-.3-.288-.712t.313-.713t.713-.3t.712.3z"
               />
             </svg>
-            <!-- error -->
-            <svg
+            <!--  estado  no completyado-->
+            <svg *ngIf="element.estado != 'COMPLETADO'"
               xmlns="http://www.w3.org/2000/svg"
               width="22"
               height="22"
@@ -208,8 +225,7 @@
         <ng-container matColumnDef="dateTime">
           <th mat-header-cell *matHeaderCellDef>Fecha/Hora Emisión</th>
           <td mat-cell *matCellDef="let element" style="font-size: 12.5px">
-            <p>29/12/2024</p>
-            <p style="flex-wrap: nowrap; white-space: nowrap">01:14:00 p. m.</p>
+            <p>{{ element.fecha_emision }}</p>
           </td>
         </ng-container>
         <ng-container matColumnDef="type">
@@ -227,7 +243,7 @@
             class="tc"
             style="flex-wrap: nowrap; white-space: nowrap"
           >
-            Transportista
+          {{ element.tipo_gre}}
           </td>
         </ng-container>
         <ng-container matColumnDef="Numeration">
@@ -237,20 +253,19 @@
             *matCellDef="let element"
             class="tc"
             style="flex-wrap: nowrap; white-space: nowrap"
-          >
-            EG03-98
+          > {{element.g_numSerie}}-{{element.g_numCpe}} 
           </td>
         </ng-container>
         <ng-container matColumnDef="Transmitter">
           <th mat-header-cell *matHeaderCellDef class="tc">RUC del Emisor</th>
-          <td mat-cell *matCellDef="let element" class="tc">10456182041</td>
+          <td mat-cell *matCellDef="let element" class="tc">{{ element.g_rucEmisor }}</td>
         </ng-container>
 
         <ng-container matColumnDef="BusinessName">
           <th mat-header-cell *matHeaderCellDef>Razón Social</th>
           <td mat-cell *matCellDef="let element">
             <div class="business-name-content" [title]="element.business_name">
-              INVERSIONES YARENDIELV E.I.R.L.
+              {{ element.razon_social }}
             </div>
           </td>
         </ng-container>
@@ -319,16 +334,57 @@
               </mat-menu>
             </div>
           </td>
+
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="element.description_code == 'Emitido'" class="status-issued">
+                {{ element.description_code }}
+            </div>
+
+            <div *ngIf="element.description_code == 'Baja'">
+                <!-- Ajusta el valor de z-index según tus necesidades -->
+                <span class="status-anulado" [matMenuTriggerFor]="menuacciones">
+                    <mat-icon
+                        *ngIf="element.sub_status.includes('Antes de iniciar')">arrow_back_ios</mat-icon>
+                    <mat-icon *ngIf="element.sub_status.includes('Durante el traslado')"> timer</mat-icon>
+                    {{ element.description_code }}
+                </span>
+
+                <mat-menu #menuacciones="matMenu" #aboveMenu="matMenu" yPosition="above">
+                    <div style="min-width: 260px;">
+                        <div class="tooltip-content">
+                            <div>
+                                <p>Estado:</p>
+                                <strong class="pl-34">Emitido</strong>
+                            </div>
+                            <div>
+                                <p>Fecha Emitido:</p>
+                                <strong>{{ element.datetime_issue }}</strong>
+                            </div>
+                        </div>
+                        <div class="tooltip-content">
+                            <div>
+                                <p>Con baja:</p>
+                                <strong class="pl-34"> {{ element.sub_status.replace('Con baja - ', '') }}
+                                </strong>
+                            </div>
+
+                            <div>
+                                <p>Fecha baja:</p>
+                                <strong> {{ convertirFechaBaja(element.date_low) }} </strong>
+                            </div>
+                        </div>
+                    </div>
+                </mat-menu>
+            </div>
+        </td>
         </ng-container>
+
         <ng-container matColumnDef="descripcion">
           <th mat-header-cell *matHeaderCellDef>Descripción</th>
           <td mat-cell *matCellDef="let element">
-            <div class="business-name-content" >
-              Comunicación de GRE - T...  lotg  lotwewgfewjfgoewrjgiwegjw vwv wegfwkfepwefkwe vwefgewfioewmfoewfoew fweo fowef ewoif weoivwfg iowefnio
-            </div>
+            <div style="width: 200px;  flex-wrap: wrap; white-space: wrap;" >{{element.desAsunto}} </div>
           </td>
         </ng-container>
-
         <tr
           mat-header-row
           *matHeaderRowDef="displayedColumnsOptimize"
@@ -344,13 +400,12 @@
     <mat-paginator [pageSizeOptions]="[10, 30, 50]" showFirstLastButtons>
     </mat-paginator>
   </section>
-  <br />
 
-  <div class="not-found" *ngIf="dataSourceO.data.length == 0">
-    <mat-icon>blur_off</mat-icon>
-    <span>No se encontraron guias, con los filtros establecidos.</span>
+  <div class="not-found" *ngIf="dataSourceGuia.data.length == 0">
+    <mat-icon style="color: rgb(171, 171, 171);">blur_off</mat-icon>
+    <span style="color: rgb(170, 170, 170);  font-size: 13px ;">No se encontraron Registros de guias, Realice una Busqueda</span>
   </div>
 </main>
-<footer >
+<footer>
   <button class="voverl" type="submit">Volver</button>
 </footer>
