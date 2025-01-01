@@ -1,4 +1,4 @@
-<header class="modals-header" style="height: 6vh">
+<header class="modals-header" style="height: 5vh">
     <h2 style="font-size: 16px">Sincronización de Guias de Remisión</h2>
     <button type="button" mat-dialog-close>
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 12 16">
@@ -10,7 +10,7 @@
     </button>
 </header>
 
-<main clas style="max-height: 86vh; height: 100%; overflow: auto">
+<main clas style="max-height: 90vh; height: 100%; overflow: auto">
     <app-loading></app-loading>
     <article class="form-content">
         <div class="form">
@@ -22,9 +22,8 @@
                     <button class="datepik_button" type="button" (click)="fInicio.open()">
                         <i class="bx bx-calendar"></i>
                     </button>
-                </div>
-                
-                <small *ngIf="mostrar_mensajes" class="valid">Por favor, seleccione una fecha.</small>
+                </div>                
+                <!-- <small class="valid" *ngIf="">Por favor, seleccione una fecha.</small> -->
             </div>
             <div class="container-search">
                 <button (click)="buscarGuias()" [disabled]="!seleccionarFecha" class="search" id="search">
@@ -33,8 +32,6 @@
             </div>
         </div>
     </article>
-
-
 
     <ng-container *ngIf="mostrar_mensajes">
         <!-- COMPLETADO -->
@@ -111,7 +108,8 @@
             <!-- anulado -->
             <div class="status-issued content">Emitido</div>
             <!-- Ver Comprobante -->
-            <button type="button" class="ver-cpe movil">
+            <!-- element.g_rucEmisor, element.cod_cpe, element.g_numSerie, element.g_numCpe, element.fecha_emision -->
+            <button type="button"  (click)="download_file(item.g_rucEmisor, item.cod_cpe, item.g_numSerie, item.g_numCpe, item.fecha_emision, 'pdf')"  class="ver-cpe movil">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5">
                         <path
@@ -218,23 +216,7 @@
                     <td mat-cell *matCellDef="let element">
                         <div class="flex-">
                             <div class="status-issued">Emitido</div>
-                            <!-- ver Comprobante -->
-                            <button type="button" class="ver-cpe" matTooltip="Ver comprobante"
-                                matTooltipPosition="above">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                    <g fill="currentColor">
-                                        <path
-                                            d="M14 2.75c1.907 0 3.262.002 4.29.14c1.005.135 1.585.389 2.008.812c.487.487.7.865.817 1.538c.132.759.135 1.84.135 3.76a.75.75 0 0 0 1.5 0v-.096c0-1.8 0-3.018-.158-3.922c-.175-1.005-.549-1.656-1.233-2.34c-.749-.75-1.698-1.081-2.87-1.239c-1.14-.153-2.595-.153-4.433-.153H14a.75.75 0 0 0 0 1.5ZM2 14.25a.75.75 0 0 1 .75.75c0 1.92.003 3.001.135 3.76c.118.673.33 1.051.817 1.538c.423.423 1.003.677 2.009.812c1.028.138 2.382.14 4.289.14a.75.75 0 0 1 0 1.5h-.056c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.684-.685-1.058-1.336-1.233-2.341c-.158-.904-.158-2.123-.158-3.922V15a.75.75 0 0 1 .75-.75Zm20 0a.75.75 0 0 1 .75.75v.096c0 1.8 0 3.018-.158 3.922c-.175 1.005-.549 1.656-1.233 2.34c-.749.75-1.698 1.081-2.87 1.239c-1.14.153-2.595.153-4.433.153H14a.75.75 0 0 1 0-1.5c1.907 0 3.262-.002 4.29-.14c1.005-.135 1.585-.389 2.008-.812c.487-.487.7-.865.817-1.538c.132-.759.135-1.84.135-3.76a.75.75 0 0 1 .75-.75Zm-12.056-13H10a.75.75 0 0 1 0 1.5c-1.907 0-3.261.002-4.29.14c-1.005.135-1.585.389-2.008.812c-.487.487-.7.865-.817 1.538c-.132.759-.135 1.84-.135 3.76a.75.75 0 1 1-1.5 0v-.096c0-1.8 0-3.018.158-3.922c.175-1.005.549-1.656 1.233-2.34c.749-.75 1.698-1.081 2.87-1.239c1.14-.153 2.595-.153 4.433-.153ZM12 10.75a1.25 1.25 0 1 0 0 2.5a1.25 1.25 0 0 0 0-2.5Z" />
-                                        <path fill-rule="evenodd"
-                                            d="M5.892 14.06C5.297 13.37 5 13.025 5 12c0-1.025.297-1.37.892-2.06C7.08 8.562 9.072 7 12 7c2.927 0 4.92 1.562 6.108 2.94c.595.69.892 1.035.892 2.06c0 1.025-.297 1.37-.892 2.06C16.92 15.438 14.928 17 12 17c-2.927 0-4.92-1.562-6.108-2.94ZM9.25 12a2.75 2.75 0 1 1 5.5 0a2.75 2.75 0 0 1-5.5 0Z"
-                                            clip-rule="evenodd" />
-                                    </g>
-                                </svg>
-                            </button>
-
                         </div>
-
-
                         <div *ngIf="">
                             <!-- Ajusta el valor de z-index según tus necesidades -->
                             <span class="status-anulado" [matMenuTriggerFor]="menuacciones">
@@ -319,7 +301,9 @@
                     <td mat-cell *matCellDef="let element">
                         <div class="flex-">
                             <!-- ver Comprobante -->
-                            <button type="button" class="ver-cpe" matTooltip="Ver comprobante"
+                            <button type="button"
+                            (click)="pdf(element.g_rucEmisor, element.cod_cpe, element.g_numSerie, element.g_numCpe, element.fecha_emision)"
+                            class="ver-cpe" matTooltip="Ver comprobante"
                                 matTooltipPosition="above">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                     <g fill="currentColor">
@@ -331,85 +315,6 @@
                                     </g>
                                 </svg>
                             </button>
-                        </div>
-
-
-                        <div *ngIf="">
-                            <!-- Ajusta el valor de z-index según tus necesidades -->
-                            <span class="status-anulado" [matMenuTriggerFor]="menuacciones">
-                                <mat-icon>arrow_back_ios</mat-icon>
-                                <mat-icon> timer</mat-icon>
-                                {{ element.description_code }}
-                            </span>
-
-                            <mat-menu #menuacciones="matMenu" #aboveMenu="matMenu" yPosition="above">
-                                <div style="min-width: 260px">
-                                    <div class="tooltip-content">
-                                        <div>
-                                            <p>Estado:</p>
-                                            <strong class="pl-34">Emitido</strong>
-                                        </div>
-                                        <div>
-                                            <p>Fecha Emitido:</p>
-                                            <strong> </strong>
-                                        </div>
-                                    </div>
-                                    <div class="tooltip-content">
-                                        <div>
-                                            <p>Con baja:</p>
-                                            <strong class="pl-34"> </strong>
-                                        </div>
-
-                                        <div>
-                                            <p>Fecha baja:</p>
-                                            <strong> </strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </mat-menu>
-                        </div>
-                    </td>
-
-                    <td mat-cell *matCellDef="let element">
-                        <div *ngIf="element.description_code == 'Emitido'" class="status-issued">
-                            {{ element.description_code }}
-                        </div>
-
-                        <div *ngIf="element.description_code == 'Baja'">
-                            <!-- Ajusta el valor de z-index según tus necesidades -->
-                            <span class="status-anulado" [matMenuTriggerFor]="menuacciones">
-                                <mat-icon
-                                    *ngIf="element.sub_status.includes('Antes de iniciar')">arrow_back_ios</mat-icon>
-                                <mat-icon *ngIf="element.sub_status.includes('Durante el traslado')"> timer</mat-icon>
-                                {{ element.description_code }}
-                            </span>
-
-                            <mat-menu #menuacciones="matMenu" #aboveMenu="matMenu" yPosition="above">
-                                <div style="min-width: 260px;">
-                                    <div class="tooltip-content">
-                                        <div>
-                                            <p>Estado:</p>
-                                            <strong class="pl-34">Emitido</strong>
-                                        </div>
-                                        <div>
-                                            <p>Fecha Emitido:</p>
-                                            <strong>{{ element.datetime_issue }}</strong>
-                                        </div>
-                                    </div>
-                                    <div class="tooltip-content">
-                                        <div>
-                                            <p>Con baja:</p>
-                                            <strong class="pl-34"> {{ element.sub_status.replace('Con baja - ', '') }}
-                                            </strong>
-                                        </div>
-
-                                        <div>
-                                            <p>Fecha baja:</p>
-                                            <strong> {{ convertirFechaBaja(element.date_low) }} </strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </mat-menu>
                         </div>
                     </td>
                 </ng-container>
@@ -433,12 +338,15 @@
         </div>
     </section>
 
-    <div class="not-found" *ngIf="dataSourceGuia.data.length == 0">
-        <mat-icon style="color: rgb(171, 171, 171);">blur_off</mat-icon>
-        <span style="color: rgb(170, 170, 170);  font-size: 13px ; text-align: center; display: flex; align-items: center;">No se encontraron Registros de guias, Realice una
-            Busqueda</span>
+    <div class="content-notfound" *ngIf="dataSourceGuia.data.length == 0">
+        <div class="not-found" >
+            <mat-icon style="color: rgb(171, 171, 171);">blur_off</mat-icon>
+            <span style="color: rgb(170, 170, 170);  font-size: 13px ; text-align: center; display: flex; align-items: center;">No se encontraron Registros de guias, Realice una
+                Busqueda</span>
+        </div>
     </div>
+   
 </main>
-<footer>
-    <button class="voverl" type="submit">Volver</button>
+<footer style="height: 5vh;">
+    <button class="voverl" matDialogClose>Volver</button>
 </footer>

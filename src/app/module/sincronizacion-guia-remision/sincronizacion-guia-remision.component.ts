@@ -38,7 +38,10 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
     this.dataSourceGuia.paginator = this.paginator;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const s_fecha_actual = this.fn.convert_date(this.hoy, 'yyyy-mm-ddT00:00:00');
+    this.seleccionarFecha = s_fecha_actual;
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
@@ -92,12 +95,43 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
   }
   
 
+  download_file(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string, type_file: string) {
+    if (serie[0] == 'T' && type_file == 'pdf') return;
+
+    date_issue = date_issue.split(' ')[0];
+
+    const data = {
+      ruc: ruc_issuer,
+      type_document,
+      serie,
+      number,
+      date_issue
+    };
+
+    this.fn.show_spinner();
+
+    this.s_guide.get_file(data, type_file).subscribe(r => {
+      this.fn.hiden_loading();
+
+      if (!r.success) {
+        this.fn.message_warning(r.message);
+        return;
+      }
+
+      this.pdf_64 = r.result.file_base64;
+
+      console.log(this.pdf_64);
+
+      const name_file = `${ruc_issuer}-${type_document}-${serie}-${number}.${type_file}`;
+      this.fn.download_file64(this.pdf_64, type_file, name_file);
+    })
+  }
+    
+  
  
   pdf(ruc_issuer: string, type_document: string, serie: string, number: string, date_issue: string) {
     if (serie[0] == 'T') return;
-
     const fecha_emision = date_issue.split(' ')[0];
-
     const data = {
       ruc: ruc_issuer,
       type_document,
