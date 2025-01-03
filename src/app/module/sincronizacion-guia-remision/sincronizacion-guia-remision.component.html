@@ -133,7 +133,7 @@
             <div class="status-issued content">Emitido</div>
             <!-- Ver Comprobante -->
             <!-- element.g_rucEmisor, element.cod_cpe, element.g_numSerie, element.g_numCpe, element.fecha_emision -->
-            <button type="button"  (click)="download_file(item.g_rucEmisor, item.cod_cpe, item.g_numSerie, item.g_numCpe, item.fecha_emision, 'pdf')"  class="ver-cpe movil">
+            <button type="button"  [ngClass]="{'not-pdf': item.g_numSerie[0] == 'T' || !item.g_numCpe}" (click)="download_file(item.g_rucEmisor, item.cod_cpe, item.g_numSerie, item.g_numCpe, item.fecha_emision, 'pdf')"  class="ver-cpe movil">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5">
                         <path
@@ -328,9 +328,10 @@
                     <td mat-cell *matCellDef="let element">
                         <div class="flex-" >
                             <!-- ver Comprobante -->
-                            <button type="button" [ngClass]="{'not-pdf': element.g_numSerie[0] == 'T' || !element.g_numCpe}" style="margin: 0 auto;"
+                            <!-- -->
+                            <button type="button"  style="margin: 0 auto;"  [ngClass]="{'not-pdf': element.g_numSerie[0] == 'T' || !element.g_numCpe}"
                             (click)="pdf(element.g_rucEmisor, element.cod_cpe, element.g_numSerie, element.g_numCpe, element.fecha_emision)"
-                            class="ver-cpe not-pdf" matTooltip="Ver comprobante"
+                            class="ver-cpe" matTooltip="Ver comprobante"
                                 matTooltipPosition="above">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                     <g fill="currentColor">

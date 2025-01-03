@@ -663,13 +663,13 @@ hr {
 }
 
 
-.ver-cpe.not-pdf {
-    color: gray;
-    cursor: not-allowed;
-    opacity: 0.5;
+.not-pdf {
+    color: gray !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
 }
 
-.ver-cpe.not-pdf:hover {
+.not-pdf:hover {
     background: transparent !important;
     background: none !important;
 }
