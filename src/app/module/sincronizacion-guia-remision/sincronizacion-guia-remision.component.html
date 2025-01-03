@@ -56,14 +56,8 @@
         <div class="input-search">
             <i class="bx bx-search"></i>
             
-                <input
-                  type="text"
-                  placeholder="Buscar...."
-                  (keyup)="applyFilter($event)"
-                  #input
-                  style="padding-right: 30px;"
-                />
-                <button
+                <input type="search" placeholder="Buscar...." (input)="applyFilter($event)" #input  />
+                <!-- <button
                   (click)="clearSearch(input)"
                   style="
                     position: absolute;
@@ -79,7 +73,7 @@
                   *ngIf="input.value"
                 >
                   ✖
-                </button>
+                </button> -->
         </div>
     </div>
 
@@ -229,7 +223,7 @@
                 <ng-container matColumnDef="BusinessName">
                     <th mat-header-cell *matHeaderCellDef>Razón Social</th>
                     <td mat-cell *matCellDef="let element">
-                        <div class="business-name-content" [title]="element.business_name">
+                        <div class="business-name-content" [title]="element.business_name" style="width: 150px !important;  flex-wrap: wrap; white-space: wrap;">
                             {{ element.razon_social || '--'}}
                         </div>
                     </td>
@@ -350,7 +344,7 @@
                 <ng-container matColumnDef="descripcion">
                     <th mat-header-cell *matHeaderCellDef>Descripción</th>
                     <td mat-cell *matCellDef="let element">
-                        <div style="width: 180px;  flex-wrap: wrap; white-space: wrap;">{{element.desAsunto}} </div>
+                        <div style="width: 288px;  flex-wrap: wrap; white-space: wrap;">{{element.desAsunto}} </div>
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsOptimize" style="border-bottom: white !important">

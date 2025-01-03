@@ -44,7 +44,10 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
   }
 
   applyFilter(event: Event) {
+    
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    console.log('input', filterValue);
+
     this.dataSourceGuia.filter = filterValue;
     this.guiasFiltradas = this.guias.filter((guia) => {
       return (
