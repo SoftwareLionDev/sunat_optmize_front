@@ -207,7 +207,7 @@ table {
 }
 
 .example-container {
-    max-height: 40vh;
+    max-height: 50vh;
     height: 100%;
     overflow: auto;
 }
@@ -215,13 +215,13 @@ table {
 th.mat-header-cell,
 td.mat-cell,
 td.mat-footer-cell {
-    padding: 3px 10px;
+    padding: 3px 6px;
 }
 
 th.mat-header-cell[_ngcontent-gfx-c127],
 td.mat-cell[_ngcontent-gfx-c127],
 td.mat-footer-cell[_ngcontent-gfx-c127] {
-    padding: 3px 10px;
+    padding: 3px 6px;
 }
 
 
@@ -449,7 +449,7 @@ hr {
     .form-content .form {
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr  ;
+        grid-template-columns: 1fr 1fr  1fr ;
         flex-direction: row;
         align-items: center;
     }
@@ -578,7 +578,7 @@ hr {
     padding: 3px 15px;
     border-radius: 4px;
     font-size: 13px;
-    width: 90px;
+    width: 70px;
     text-align: center;
 }
 
@@ -605,10 +605,11 @@ hr {
 }
 
 .business-name-content {
-    white-space: nowrap;
-    width: 250px !important;
+    white-space: wrap;
+    width: 100px !important;
     overflow: hidden;
-    text-overflow: ellipsis;
+    flex-wrap: wrap;
+    font-size: 11.5px;
 }
 
 
@@ -662,12 +663,13 @@ hr {
 }
 
 
-.not-pdf {
+.ver-cpe.not-pdf {
     color: gray;
-    cursor: auto;
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
-.not-pdf:hover {
+.ver-cpe.not-pdf:hover {
     background: transparent !important;
     background: none !important;
 }

@@ -59,6 +59,13 @@ export class SincronizacionGuiaRemisionComponent implements AfterViewInit {
       );
     });
   }
+  
+  clearSearch(input: HTMLInputElement) {
+    input.value = ''; // Limpiar el valor del input
+    this.dataSourceGuia.filter = ''; // Restablecer el filtro
+    this.guiasFiltradas = this.guias; // Restaurar los datos originales
+  }
+  
 
  
 

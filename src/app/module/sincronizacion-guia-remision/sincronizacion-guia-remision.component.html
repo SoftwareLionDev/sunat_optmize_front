@@ -55,7 +55,31 @@
     <div class="content-search">
         <div class="input-search">
             <i class="bx bx-search"></i>
-            <input type="search" placeholder="Buscar...." (keyup)="applyFilter($event)" #input />
+            
+                <input
+                  type="text"
+                  placeholder="Buscar...."
+                  (keyup)="applyFilter($event)"
+                  #input
+                  style="padding-right: 30px;"
+                />
+                <button
+                  (click)="clearSearch(input)"
+                  style="
+                    position: absolute;
+                    right: 5px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    color: gray;
+                  "
+                  *ngIf="input.value"
+                >
+                  ✖
+                </button>
         </div>
     </div>
 
@@ -157,7 +181,7 @@
     <!-- web -->
     <section class="content-desktop">
         <section class="example-container">
-            <table mat-table [dataSource]="dataSourceGuia" tabindex="0">
+            <table mat-table [dataSource]="dataSourceGuia">
                 <ng-container matColumnDef="visto">
                     <th mat-header-cell *matHeaderCellDef class="tc">Sync</th>
                     <td mat-cell *matCellDef="let element" class="tc">
@@ -178,9 +202,9 @@
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="dateTime">
-                    <th mat-header-cell *matHeaderCellDef>Fecha/Hora Emisión</th>
-                    <td mat-cell *matCellDef="let element" style="font-size: 12.5px">
-                        <p style="width: 120px;">{{ element.fecha_emision || '--' }}</p>
+                    <th mat-header-cell *matHeaderCellDef>Fecha/Hora <br> Emisión</th>
+                    <td mat-cell *matCellDef="let element" style="font-size: 12px">
+                        <p style="width: 90px;">{{ element.fecha_emision || '--' }}</p>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="type">
@@ -211,7 +235,7 @@
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="status" stickyEnd>
+                <ng-container matColumnDef="status" >
                     <th mat-header-cell *matHeaderCellDef class="tc">Estado</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="flex-">
@@ -296,14 +320,17 @@
                         </div>
                     </td>
                 </ng-container>
-                <ng-container matColumnDef="verpdf" stickyEnd>
-                    <th mat-header-cell *matHeaderCellDef class="tc">ver PDF</th>
+                <ng-container matColumnDef="verpdf" >
+                    <th mat-header-cell *matHeaderCellDef class="tc">  
+                        <div  style=" display: flex; white-space: nowrap; flex-wrap: nowrap;">
+                        Ver PDF
+                    </div> </th>
                     <td mat-cell *matCellDef="let element">
-                        <div class="flex-">
+                        <div class="flex-" >
                             <!-- ver Comprobante -->
-                            <button type="button"
+                            <button type="button" [ngClass]="{'not-pdf': element.g_numSerie[0] == 'T' || !element.g_numCpe}" style="margin: 0 auto;"
                             (click)="pdf(element.g_rucEmisor, element.cod_cpe, element.g_numSerie, element.g_numCpe, element.fecha_emision)"
-                            class="ver-cpe" matTooltip="Ver comprobante"
+                            class="ver-cpe not-pdf" matTooltip="Ver comprobante"
                                 matTooltipPosition="above">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                     <g fill="currentColor">
@@ -322,7 +349,7 @@
                 <ng-container matColumnDef="descripcion">
                     <th mat-header-cell *matHeaderCellDef>Descripción</th>
                     <td mat-cell *matCellDef="let element">
-                        <div style="width: 200px;  flex-wrap: wrap; white-space: wrap;">{{element.desAsunto}} </div>
+                        <div style="width: 180px;  flex-wrap: wrap; white-space: wrap;">{{element.desAsunto}} </div>
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsOptimize" style="border-bottom: white !important">
@@ -330,6 +357,13 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumnsOptimize"
                     style="border-bottom: white !important"></tr>
             </table>
+
+            <div class="content-notfound">
+                <div *ngIf="guiasFiltradas.length === 0 && input.value.trim()" style="margin-block: 2.5rem; color: rgb(170, 170, 170); font-size: 13px; text-align: center; justify-content: center; ">
+                    No se encontraron registros para la búsqueda.
+                  </div>
+            </div>
+         
         </section>
 
         <div [hidden]="dataSourceGuia.data.length == 0">
@@ -345,7 +379,7 @@
                 Busqueda</span>
         </div>
     </div>
-   
+  
 </main>
 <footer style="height: 7vh;">
     <button class="voverl" matDialogClose>Volver</button>
