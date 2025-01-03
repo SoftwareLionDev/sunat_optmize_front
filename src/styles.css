@@ -421,6 +421,8 @@ input:focus {
         width: 100%;
     }
 
+
+
     .full-screen-modal-historial {
         max-width: 900px !important;
         height: auto;
@@ -434,7 +436,6 @@ input:focus {
 }
 
 @media (min-width: 1268px) {
-
 
     .full-screen-modal-historial {
         max-width: 1000px !important;
